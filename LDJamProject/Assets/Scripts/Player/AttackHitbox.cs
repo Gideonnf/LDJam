@@ -20,6 +20,7 @@ public class AttackHitbox : MonoBehaviour
         Vector3 dir = -player.GetComponent<PlayerCombat>().playerLookDir;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        objsAttacked = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -34,15 +35,13 @@ public class AttackHitbox : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("peen");
         if (other.gameObject.CompareTag("Enemy"))
         {
-            //foreach(GameObject objAttacked in objsAttacked)
-            //{
-            //    if (objAttacked == other.gameObject)
-            //        return;
-            //}
-            Debug.Log("peen2");
+            foreach(GameObject objAttacked in objsAttacked)
+            {
+                if (objAttacked == other.gameObject)
+                    return;
+            }
             Destroy(other.gameObject);
         }
     }
