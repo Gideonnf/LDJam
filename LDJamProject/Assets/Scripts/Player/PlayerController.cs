@@ -6,8 +6,8 @@ public class PlayerController : SingletonBase<PlayerController>
 {
     // Made this a singleton so that other scripts can just call player controller
     // to get the differet player components
-    
 
+    [SerializeField] Wagon wagon;
     PlayerMovement m_PlayerMovement;
     PlayerCombat m_PlayerCombat;
 
@@ -32,11 +32,11 @@ public class PlayerController : SingletonBase<PlayerController>
         {
             Interact();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !wagon.playerPullingWagon)
         {
             m_PlayerMovement.Dash();
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !wagon.playerPullingWagon)
         {
             m_PlayerCombat.Attack();
         }
@@ -48,7 +48,8 @@ public class PlayerController : SingletonBase<PlayerController>
     /// </summary>
     public void Interact()
     {
-
+        if (wagon.playerNearWagon)
+            wagon.Interact();
     }
 
     /// <summary>

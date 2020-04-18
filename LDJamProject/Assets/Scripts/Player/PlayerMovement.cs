@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     float currSpeed;
     float distanceDashed;
 
+    public Vector3 movementDir;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
-
+            movementDir = movement;
         }
 
     }
