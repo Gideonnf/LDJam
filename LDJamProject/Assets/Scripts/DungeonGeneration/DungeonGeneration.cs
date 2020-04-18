@@ -11,8 +11,14 @@ public class DungeonGeneration : MonoBehaviour
     Dictionary<RoomOpeningTypes, GameObject> m_RoomObjectData = new Dictionary<RoomOpeningTypes, GameObject>();
 
     Dictionary<Vector2Int, RoomOpeningTypes> m_Taken = new Dictionary<Vector2Int, RoomOpeningTypes>();
+    //store a dictionary of the room
+    Dictionary<Vector2Int, RoomBehaviour> m_RoomsBehaviour = new Dictionary<Vector2Int, RoomBehaviour>(); //randomize the type of rooms
 
     Vector2 m_RoomTileWidthHeight;
+
+    //impt room locations
+    Vector2Int m_SpawnRoomGridPos = Vector2Int.zero;
+    Vector2Int m_BossRoomGridPos = Vector2Int.zero;
 
     public void Start()
     {
@@ -110,6 +116,7 @@ public class DungeonGeneration : MonoBehaviour
         }
 
         InstantiateRooms();
+        DecideAndInitRoomType();
         InitUI();
     }
 
@@ -362,12 +369,78 @@ public class DungeonGeneration : MonoBehaviour
 
                 if (m_RoomParent != null)
                     room.transform.parent = m_RoomParent.transform;
+
+                RoomBehaviour roomBehaviour = room.GetComponent<RoomBehaviour>();
+                if (roomBehaviour != null)
+                {
+                    if (!m_RoomsBehaviour.ContainsKey(gridPos))
+                        m_RoomsBehaviour.Add(gridPos, roomBehaviour);
+                }
             }
         }           
     }
 
+    public void DecideAndInitRoomType()
+    {
+        //pick a random room to be the start room
+        //prefably those with 2 or more rooms
+        int randomNumber = Random.Range(0, m_Taken.Count - 1);
+        m_SpawnRoomGridPos = Vector2Int.zero;
+        List<Vector2Int> possibleRooms = GetRoomsWithCertainOpeningNumber(2, 4);
+        if (possibleRooms.Count > 0)
+        {
+            m_SpawnRoomGridPos = possibleRooms[Random.Range(0, possibleRooms.Count - 1)];
+        }
+
+        //pick a random room to be the boss room
+        //prefably those with 1-2 entrances
+        m_BossRoomGridPos = Vector2Int.zero;
+        possibleRooms.Clear();
+        possibleRooms = GetRoomsWithCertainOpeningNumber(1, 2);
+        if (possibleRooms.Count > 0)
+        {
+            m_BossRoomGridPos = possibleRooms[Random.Range(0, possibleRooms.Count - 1)];
+        }
+
+        //set the startRoom type
+        if (m_RoomsBehaviour.ContainsKey(m_SpawnRoomGridPos))
+        {
+            m_RoomsBehaviour[m_SpawnRoomGridPos].SetRoomType(RoomTypes.START_ROOM);
+        }
+
+        //set the boss room type
+        if (m_RoomsBehaviour.ContainsKey(m_BossRoomGridPos))
+        {
+            m_RoomsBehaviour[m_BossRoomGridPos].SetRoomType(RoomTypes.BOSS_ROOM);
+        }
+    }
+
+    //get rooms with a certain number of 'openings'
+    public List<Vector2Int> GetRoomsWithCertainOpeningNumber(int minNumber, int maxNumber)
+    {
+        List<Vector2Int> m_PossibleRooms = new List<Vector2Int>();
+
+        foreach (KeyValuePair<Vector2Int, RoomOpeningTypes> pair in m_Taken)
+        {
+            Vector2Int gridPos = pair.Key;
+            RoomOpeningTypes roomOpeningsType = pair.Value;
+
+            RoomOpeningInfo roomInfo = null;
+            if (m_RoomOpeningsData.ContainsKey(roomOpeningsType))
+                roomInfo = m_RoomOpeningsData[roomOpeningsType];
+
+            if (roomInfo == null)
+                continue;
+
+            if (roomInfo.m_NumberOfOpenings >= minNumber)
+                m_PossibleRooms.Add(gridPos);
+        }
+
+        return m_PossibleRooms;
+    }
+
     public void InitUI()
     {
-        DungeonMinimap.Instance.InitMiniMap(m_Taken);
+        DungeonMinimap.Instance.InitMiniMap(m_Taken, m_SpawnRoomGridPos, m_BossRoomGridPos);
     }
 }

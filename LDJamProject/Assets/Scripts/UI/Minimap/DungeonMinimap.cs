@@ -14,6 +14,11 @@ public class DungeonMinimap : SingletonBase<DungeonMinimap>
 {
     public List<RoomTypeUI> m_RoomUIData = new List<RoomTypeUI>();
 
+    [Header("Main UI")]
+    public GameObject m_MiniMapParent;
+    public float m_LerpSpeed = 1.2f;
+    public float m_LerpLimit = 0.9f;
+
     [Header("UI Room")]
     public GameObject m_RoomUIPrefab;
     public GameObject m_RoomUIParent;
@@ -24,6 +29,7 @@ public class DungeonMinimap : SingletonBase<DungeonMinimap>
     public GameObject m_PlayerIcon;
     public GameObject m_BossIcon;
 
+    float m_LerpTimer = 0.0f;
     Vector2 m_SizeOfRoomUI;
     Dictionary<Vector2Int, Image> m_RoomUIImages = new Dictionary<Vector2Int, Image>();
     Dictionary<RoomOpeningTypes, Sprite> m_RoomUI = new Dictionary<RoomOpeningTypes, Sprite>();
@@ -44,10 +50,25 @@ public class DungeonMinimap : SingletonBase<DungeonMinimap>
         }
     }
 
-    public void InitMiniMap(Dictionary<Vector2Int, RoomOpeningTypes> m_RoomsGenerated)
+    public void ResetUI()
     {
+        m_RoomUIImages.Clear();
+
+        foreach (Transform child in m_RoomUIParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        m_PlayerIcon.transform.localPosition = Vector2.zero;
+        m_BossIcon.transform.localPosition = Vector2.zero;
+    }
+
+    public void InitMiniMap(Dictionary<Vector2Int, RoomOpeningTypes> m_RoomsGenerated, Vector2Int startingRoomGridPos, Vector2Int bossRoomGridPos)
+    {
+        ResetUI();
+
         //get the positiona and type of map and print accordingly
-        foreach(KeyValuePair<Vector2Int, RoomOpeningTypes> room in m_RoomsGenerated)
+        foreach (KeyValuePair<Vector2Int, RoomOpeningTypes> room in m_RoomsGenerated)
         {
             RoomOpeningTypes type = room.Value;
             Vector2Int gridPos = room.Key;
@@ -62,13 +83,20 @@ public class DungeonMinimap : SingletonBase<DungeonMinimap>
                     uiImage.sprite = m_RoomUI[type];
 
                 //set all rooms inactive
-                //uiObject.SetActive(false);
+                uiObject.SetActive(false);
                 m_RoomUIImages.Add(gridPos, uiImage);
             }
         }
 
-        //on init, get room types, show the boss icon and player icon accordingly
+        SetIcons(startingRoomGridPos, bossRoomGridPos);
+    }
 
+    public void SetIcons(Vector2Int startingRoomGridPos, Vector2Int bossRoomGridPos)
+    {
+        if (m_RoomUIImages.ContainsKey(bossRoomGridPos))
+            m_BossIcon.transform.localPosition = m_RoomUIImages[bossRoomGridPos].transform.localPosition;
+
+        PlayerChangeRoom(startingRoomGridPos);
     }
 
     public void PlayerChangeRoom(Vector2Int playerNewPos)
@@ -88,5 +116,21 @@ public class DungeonMinimap : SingletonBase<DungeonMinimap>
         }
 
         //lerp the UI
+        StartCoroutine(LerpMapToCentre());
+    }
+
+    IEnumerator LerpMapToCentre()
+    {
+        //position the entire map to the centre
+        m_LerpTimer += Time.deltaTime * m_LerpSpeed;
+        while (m_LerpTimer <= m_LerpLimit)
+        {
+            if (m_MiniMapParent != null)
+                m_MiniMapParent.transform.localPosition = Vector2.Lerp(m_MiniMapParent.transform.localPosition, -m_PlayerIcon.transform.localPosition, m_LerpTimer);
+
+            yield return null;
+        }
+
+        m_MiniMapParent.transform.localPosition = -m_PlayerIcon.transform.localPosition;
     }
 }
