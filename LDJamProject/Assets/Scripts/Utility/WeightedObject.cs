@@ -25,6 +25,7 @@ class WeightedObject<T>
     }
 
     // Not done yet
+    //TODO: Fix it so it can be removed from the list
     public void RemoveEntry(T item, double weight)
     {
         accumulatedWeight -= weight;
@@ -41,12 +42,15 @@ class WeightedObject<T>
     public T GetRandom()
     {
         // Generate a random number between the sums of all the weight
-        double r = rand.NextDouble() * accumulatedWeight;
-
+        // Adds a chance based on 40% of the total accumulated weight to spawn no items
+        double r = rand.NextDouble() * (accumulatedWeight + (accumulatedWeight * 0.8));
+        //double r = accumulatedWeight; // for testing
         // Loop through all the objects in the list
         foreach (Entry entry in entries)
         {
-            // if r is more than any of those objects, they trigger
+            // if the accumulated weight is more than or equal to R
+            // it'll trigger
+            // if not then r is too big and it will look for the next item
             if (entry.accumulatedWeight >= r )
             {
                 return entry.item;
@@ -54,6 +58,24 @@ class WeightedObject<T>
         }
         return default(T); // Only if there are no entries
     }
+
+    //public T GetTestRandom()
+    //{
+
+    //    // Loop through all the objects in the list
+    //    foreach (Entry entry in entries)
+    //    {
+    //        // Rand a num from 0 to 100
+    //        double r = rand.NextDouble() * 100;
+
+    //        if (entry.accumulatedWeight >= r)
+    //        {
+    //            return entry.item;
+    //        }
+    //    }
+
+    //    return default(T); // if none of the items spawned
+    //}
 
     // To wipe the list
     // Needed for game event as the random chances might change
