@@ -1,0 +1,81 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RangedEnemyA : EnemyBase
+{
+    [SerializeField] float movespeed;
+    [SerializeField] float attackCooldown; // Time before another attack can be made
+    #region Animation-related hashes
+    int moving_bool;        // bool for isWalking
+    int hit_trigger;        // Take damage trigger
+    int attack_trigger;     // Shoot trigger
+    int attack_animation;   // Attack animation
+    #endregion
+
+    // Start is called before the first frame update
+    new public void Start()
+    {
+        base.Start();
+        moving_bool = Animator.StringToHash("moving");
+        hit_trigger = Animator.StringToHash("hit");
+        attack_trigger = Animator.StringToHash("attack");
+        attack_animation = Animator.StringToHash("attackAnim");
+        m_animator.SetBool(moving_bool, true);
+        SetMoveSpeed(movespeed);
+    }
+
+    // Update is called once per frame
+    new protected void Update()
+    {
+        base.Update();
+    }
+
+    /// <summary>
+    /// Function called when player is within attack range
+    /// </summary>
+    override protected void OnTargetReached()
+    {
+        ShootProjectile();
+        ClearPath();
+#if UNITY_EDITOR
+        m_triggered = true;
+#endif
+    }
+
+    /// <summary>
+    /// Plays the attack animation but does not shoot here
+    /// </summary>
+    private void Attack()
+    {
+        // Return if already attacking
+        if (m_animator.GetCurrentAnimatorStateInfo(0).tagHash == attack_animation || m_animator.GetNextAnimatorStateInfo(0).tagHash == attack_animation)
+            return;
+        m_animator.SetTrigger(attack_trigger);
+    }
+
+    /// <summary>
+    /// Function to be called by animation event so do not bother looking for where it's called in code.
+    /// </summary>
+    public void ShootProjectile()
+    {
+        // Shoot towards target
+        Debug.Log("shot towards an enemy");
+    }
+
+
+    /// <summary>
+    /// Function to call when this enemy takes damage
+    /// </summary>
+    /// <returns></returns>
+    override protected bool TakeDamage()
+    {
+        m_animator.SetTrigger(hit_trigger);
+        return base.TakeDamage();
+    }
+
+    override protected void OnDeath()
+    {
+
+    }
+}
