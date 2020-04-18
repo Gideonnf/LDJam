@@ -17,4 +17,15 @@ public class UniqueBoots : ItemObjBase
 
         Debug.Log("swag swag swag swag");
     }
+
+    public override void OnPickUp()
+    {
+        base.OnPickUp();
+
+    }
+
+    public override void OnRemove()
+    {
+        base.OnRemove();
+    }
 }

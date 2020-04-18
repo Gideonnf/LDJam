@@ -52,6 +52,9 @@ public class AttackHitbox : MonoBehaviour
                 if (objAttacked == other.gameObject)
                     return;
             }
+
+            EquipmentManager.Instance.NormalItemDrop(gameObject.transform.position);
+
             Destroy(other.gameObject);
             if (projectileSpeed > 0 && !projectilePierce)
             {

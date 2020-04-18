@@ -29,7 +29,15 @@ public class UniqueSword : ItemObjBase
         base.PassiveEffect();
 
         Debug.Log("Anti-Coronavirus");
+    }
 
+    public override void OnPickUp()
+    {
+        base.OnPickUp();
+    }
 
+    public override void OnRemove()
+    {
+        base.OnRemove();
     }
 }

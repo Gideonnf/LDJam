@@ -45,6 +45,16 @@ public class ItemObjBase : MonoBehaviour
         return;
     }
 
+    public virtual void OnPickUp()
+    {
+        return;
+    }
+
+    public virtual void OnRemove()
+    {
+        return;
+    }
+
     public string GetSetItemName
     {
         get { return m_ItemName; }

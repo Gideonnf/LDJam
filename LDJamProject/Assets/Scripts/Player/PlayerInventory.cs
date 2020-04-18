@@ -30,9 +30,28 @@ public class PlayerInventory : MonoBehaviour
     }
 
 
-    public void UpdateStats(GameObject addedItem)
+    public void AddStats(GameObject addedItem)
     {
+        ItemObjBase ItemBase = addedItem.GetComponent<ItemObjBase>();
 
+        // Generic item stats are applied to player
+        // i.e potion only has health gain
+        // weapon gives bonus damage
+        m_PlayerStats.m_CurrentDamage += ItemBase.GetSetItemDamage;
+
+        m_PlayerStats.m_CurrentSpeed += ItemBase.GetSetItemSpeed;
+
+        m_PlayerStats.m_CurrentHealth += ItemBase.GetSetItemHealth;
+    }
+
+    public void RemoveStats(ItemObjBase removedItem)
+    {
+        m_PlayerStats.m_CurrentDamage -= removedItem.GetSetItemDamage;
+
+        m_PlayerStats.m_CurrentSpeed -= removedItem.GetSetItemSpeed;
+
+        // Items that give health dont remove them
+        //m_PlayerStats.m_CurrentHealth -= removedItem.GetSetItemHealth;
     }
 
     public void AddToInventory(GameObject itemToAdd)
@@ -41,19 +60,41 @@ public class PlayerInventory : MonoBehaviour
 
         ItemObjBase ItemBase = itemToAdd.GetComponent<ItemObjBase>();
 
+        // Add all items to inventory items
         InventoryItems.Add(ItemBase);
 
+        // If the item is unique
         if (ItemBase.UniqueAbility)
         {
+            // Only unique items are added to this list
             UniqueItems.Add(ItemBase);
+
+            // Does any unique pick up effects
+            // i.e editing stats like dash speed etc
+            ItemBase.OnPickUp();
         }
 
-        UpdateStats(itemToAdd);
+        AddStats(itemToAdd);
 
         Debug.Log("item Added" + itemToAdd.name);
 
         // Will update UI to show the new items
         // When UI is implemented
+    }
+
+    public void RemoveFromInventory(ItemObjBase itemToRemove)
+    {
+        // Remove from inventory item list
+        InventoryItems.Remove(itemToRemove);
+
+        if (itemToRemove.UniqueAbility)
+        {
+            // Remove from unique item list
+            UniqueItems.Remove(itemToRemove);
+
+            //Remove any bonuses to stats that were places before
+            itemToRemove.OnRemove();
+        }
     }
 
     /// <summary>
