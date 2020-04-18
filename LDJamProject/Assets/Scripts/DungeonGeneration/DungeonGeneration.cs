@@ -12,6 +12,8 @@ public class DungeonGeneration : MonoBehaviour
 
     Dictionary<Vector2Int, RoomOpeningTypes> m_Taken = new Dictionary<Vector2Int, RoomOpeningTypes>();
 
+    Vector2 m_RoomTileWidthHeight;
+
     public void Start()
     {
         //sort the rooms accordingly
@@ -20,6 +22,16 @@ public class DungeonGeneration : MonoBehaviour
             m_RoomOpeningsData.Add(room.m_RoomOpeningInfo.m_RoomOpeningType, room.m_RoomOpeningInfo);
             m_RoomObjectData.Add(room.m_RoomOpeningInfo.m_RoomOpeningType, room.m_RoomPrefab);
         }
+
+        //get width and heigt of room
+        SpriteRenderer spriteRenderer = null;
+        if (m_RoomObjectData.ContainsKey(RoomOpeningTypes.L_R_U_D_OPENING))
+        {
+            spriteRenderer = m_RoomObjectData[RoomOpeningTypes.L_R_U_D_OPENING].GetComponent<SpriteRenderer>();
+        }
+
+        if (spriteRenderer != null)
+            m_RoomTileWidthHeight = new Vector2(spriteRenderer.bounds.size.x, spriteRenderer.bounds.size.y);
 
         GenerateLevel();
     }
@@ -344,7 +356,7 @@ public class DungeonGeneration : MonoBehaviour
 
             if (m_RoomObjectData.ContainsKey(roomType))
             {
-                Vector2 worldPos = new Vector2(gridPos.x * 1, gridPos.y * 1) * 0.4f;
+                Vector2 worldPos = new Vector2(gridPos.x * m_RoomTileWidthHeight.x, gridPos.y * m_RoomTileWidthHeight.y);
                 GameObject room = Instantiate(m_RoomObjectData[roomType], worldPos, m_RoomObjectData[roomType].transform.rotation);
 
                 if (m_RoomParent != null)
