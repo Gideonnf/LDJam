@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RangedEnemyA : EnemyBase
 {
+    ObjectPooler poolerInstance;
     [SerializeField] float movespeed;
     [SerializeField] float attackCooldown; // Time before another attack can be made
     #region Animation-related hashes
@@ -12,7 +13,6 @@ public class RangedEnemyA : EnemyBase
     int attack_trigger;     // Shoot trigger
     int attack_animation;   // Attack animation
     #endregion
-
     // Start is called before the first frame update
     new public void Start()
     {
@@ -23,6 +23,7 @@ public class RangedEnemyA : EnemyBase
         attack_animation = Animator.StringToHash("attackAnim");
         m_animator.SetBool(moving_bool, true);
         SetMoveSpeed(movespeed);
+        poolerInstance = ObjectPooler.Instance;
     }
 
     // Update is called once per frame
@@ -36,7 +37,7 @@ public class RangedEnemyA : EnemyBase
     /// </summary>
     override protected void OnTargetReached()
     {
-        ShootProjectile();
+        Attack();
         ClearPath();
 #if UNITY_EDITOR
         m_triggered = true;
@@ -60,6 +61,8 @@ public class RangedEnemyA : EnemyBase
     public void ShootProjectile()
     {
         // Shoot towards target
+        RangedEnemyA_Projectile newProjectile = poolerInstance.FetchGO("ERA_Proj").GetComponent<RangedEnemyA_Projectile>();
+        newProjectile.Init(m_rb.position, (m_rb.position - (Vector2)DEBUG_TARGET.position).normalized);
         Debug.Log("shot towards an enemy");
     }
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1220848100334806424}
   - component: {fileID: 1220848100334806422}
   - component: {fileID: 1220848100334806423}
+  - component: {fileID: 3105328810690665926}
   m_Layer: 0
   m_Name: MonsterRenderer
   m_TagString: Untagged
@@ -102,6 +103,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3105328810690665926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220848100334806425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e54c58d5590016419e984b8d7f56d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1220848101459671780
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,6 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1220848101459671838}
+  - component: {fileID: 8538446077974977951}
   - component: {fileID: 1220848101459671778}
   - component: {fileID: 1220848101459671779}
   m_Layer: 0
@@ -135,6 +149,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &8538446077974977951
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220848101459671780}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!195 &1220848101459671778
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -169,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a57219bc66f46214d8db2862b1262d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack_range_sqr: 50
+  attack_range_sqr: 900
   DEBUG_TARGET: {fileID: 0}
   movespeed: 20
   attackCooldown: 0
