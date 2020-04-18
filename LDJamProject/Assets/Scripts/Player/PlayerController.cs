@@ -14,6 +14,8 @@ public class PlayerController : SingletonBase<PlayerController>
     public PlayerStats m_PlayerStats;
     public PlayerInventory m_PlayerInventory;
 
+    Vector2Int m_CurrDungeonRoomGridPos = Vector2Int.zero;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,30 @@ public class PlayerController : SingletonBase<PlayerController>
         {
             m_PlayerCombat.Ranged();
         }
+
+        //if (Input.GetKeyUp(KeyCode.W))
+        //{
+        //    m_CurrDungeonRoomGridPos.y++;
+        //    ChangePlayerGridPosition(m_CurrDungeonRoomGridPos);
+        //}
+
+        //if (Input.GetKeyUp(KeyCode.S))
+        //{
+        //    m_CurrDungeonRoomGridPos.y--;
+        //    ChangePlayerGridPosition(m_CurrDungeonRoomGridPos);
+        //}
+
+        //if (Input.GetKeyUp(KeyCode.A))
+        //{
+        //    m_CurrDungeonRoomGridPos.x--;
+        //    ChangePlayerGridPosition(m_CurrDungeonRoomGridPos);
+        //}
+
+        //if (Input.GetKeyUp(KeyCode.D))
+        //{
+        //    m_CurrDungeonRoomGridPos.x++;
+        //    ChangePlayerGridPosition(m_CurrDungeonRoomGridPos);
+        //}
     }
 
 
@@ -64,4 +90,11 @@ public class PlayerController : SingletonBase<PlayerController>
 
     }
 
+    public void ChangePlayerGridPosition(Vector2Int newPlayerPosition, bool updateDungeon = true)
+    {
+        m_CurrDungeonRoomGridPos = newPlayerPosition;
+
+        if (updateDungeon)
+            DungeonGeneration.Instance.ChangeRoom(m_CurrDungeonRoomGridPos);
+    }
 }

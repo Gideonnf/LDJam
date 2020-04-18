@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class DungeonGeneration : MonoBehaviour
+public class DungeonGeneration : SingletonBase<DungeonGeneration>
 {
     public Vector2Int m_MinMaxRoomNumber = new Vector2Int(10,12);
     public List<Room> m_RoomTypeData = new List<Room>();
@@ -44,10 +44,10 @@ public class DungeonGeneration : MonoBehaviour
 
     public void Update()
     {
-        if (Input.anyKeyDown)
-        {
-            GenerateLevel();
-        }
+        //if (Input.anyKeyDown)
+        //{
+        //    GenerateLevel();
+        //}
     }
 
     public void GenerateLevel()
@@ -118,6 +118,10 @@ public class DungeonGeneration : MonoBehaviour
         InstantiateRooms();
         DecideAndInitRoomType();
         InitUI();
+
+        //setup initial start room
+        if (m_RoomsBehaviour.ContainsKey(m_SpawnRoomGridPos))
+            m_RoomsBehaviour[m_SpawnRoomGridPos].SetupRoom();
     }
 
     public bool AddToTaken(Vector2Int pos, RoomOpeningTypes type)
@@ -373,6 +377,8 @@ public class DungeonGeneration : MonoBehaviour
                 RoomBehaviour roomBehaviour = room.GetComponent<RoomBehaviour>();
                 if (roomBehaviour != null)
                 {
+                    roomBehaviour.SetRoomGridPos(gridPos);
+
                     if (!m_RoomsBehaviour.ContainsKey(gridPos))
                         m_RoomsBehaviour.Add(gridPos, roomBehaviour);
                 }
@@ -432,7 +438,7 @@ public class DungeonGeneration : MonoBehaviour
             if (roomInfo == null)
                 continue;
 
-            if (roomInfo.m_NumberOfOpenings >= minNumber)
+            if (roomInfo.m_NumberOfOpenings >= minNumber && roomInfo.m_NumberOfOpenings <= maxNumber)
                 m_PossibleRooms.Add(gridPos);
         }
 
@@ -442,5 +448,15 @@ public class DungeonGeneration : MonoBehaviour
     public void InitUI()
     {
         DungeonMinimap.Instance.InitMiniMap(m_Taken, m_SpawnRoomGridPos, m_BossRoomGridPos);
+    }
+
+    public void ChangeRoom(Vector2Int playerNewPos)
+    {
+        //TODO:: SET ROOM TO ACTIVE
+        //DO THE CAMERA SWEEP
+        //WHEN CAMERA IS FULLY SWEEPED, SET GAMEOBJECT TO INACTIVE
+        //UPDATE UI
+
+        DungeonMinimap.Instance.PlayerChangeRoom(playerNewPos);
     }
 }

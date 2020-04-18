@@ -115,22 +115,26 @@ public class DungeonMinimap : SingletonBase<DungeonMinimap>
             m_PlayerIcon.transform.localPosition = m_RoomUIImages[playerNewPos].transform.localPosition;
         }
 
+        m_CurrHighlightedRoom = playerNewPos;
+
         //lerp the UI
+        m_LerpTimer = 0.0f;
         StartCoroutine(LerpMapToCentre());
     }
 
     IEnumerator LerpMapToCentre()
     {
         //position the entire map to the centre
-        m_LerpTimer += Time.deltaTime * m_LerpSpeed;
-        while (m_LerpTimer <= m_LerpLimit)
+        while (Vector2.SqrMagnitude(m_MiniMapParent.transform.localPosition - -m_PlayerIcon.transform.localPosition) > 0.2f)
         {
             if (m_MiniMapParent != null)
-                m_MiniMapParent.transform.localPosition = Vector2.Lerp(m_MiniMapParent.transform.localPosition, -m_PlayerIcon.transform.localPosition, m_LerpTimer);
+                m_MiniMapParent.transform.localPosition = Vector2.Lerp(m_MiniMapParent.transform.localPosition, -m_PlayerIcon.transform.localPosition, Time.fixedDeltaTime * m_LerpSpeed);
 
             yield return null;
         }
 
         m_MiniMapParent.transform.localPosition = -m_PlayerIcon.transform.localPosition;
+
+        yield return null;
     }
 }
