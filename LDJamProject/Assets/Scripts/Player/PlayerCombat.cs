@@ -6,42 +6,42 @@ using UnityEngine.UI;
 public class PlayerCombat : MonoBehaviour
 {
     [HideInInspector]public Vector3 playerLookDir;
-    [SerializeField] float meleeAttackSpeed = 0.5f;
-    [SerializeField] float rangedAttackSpeed = 2f;
     [SerializeField] GameObject meleeAttackHitbox;
     [SerializeField] GameObject rangedAttackHitbox;
     [SerializeField] Slider meleeBar;
     [SerializeField] Slider rangedBar;
 
+    PlayerStats playerStats;
     float meleeAttackSpeed_;
     float rangedAttackSpeed_;
 
     // Start is called before the first frame update
     void Start()
     {
-        meleeAttackSpeed_ = meleeAttackSpeed;
-        rangedAttackSpeed_ = rangedAttackSpeed;
+        playerStats = GetComponent<PlayerStats>();
+        meleeAttackSpeed_ = playerStats.m_CurrentMeleeAttackSpeed;
+        rangedAttackSpeed_ = playerStats.m_CurrentRangedAttackSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (meleeAttackSpeed_ < meleeAttackSpeed)
+        if (meleeAttackSpeed_ < playerStats.m_CurrentMeleeAttackSpeed)
             meleeAttackSpeed_ += Time.deltaTime;
-        if (rangedAttackSpeed_ < rangedAttackSpeed)
+        if (rangedAttackSpeed_ < playerStats.m_CurrentRangedAttackSpeed)
             rangedAttackSpeed_ += Time.deltaTime;
         Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         worldMousePos.z = 0;
         playerLookDir = worldMousePos - GetComponent<Transform>().position;
         playerLookDir.Normalize();
 
-        meleeBar.value = meleeAttackSpeed_ / meleeAttackSpeed;
-        rangedBar.value = rangedAttackSpeed_ / rangedAttackSpeed;
+        meleeBar.value = meleeAttackSpeed_ / playerStats.m_CurrentMeleeAttackSpeed;
+        rangedBar.value = rangedAttackSpeed_ / playerStats.m_CurrentRangedAttackSpeed;
     }
 
     public void Melee()
     {
-        if(meleeAttackSpeed_ >= meleeAttackSpeed)
+        if(meleeAttackSpeed_ >= playerStats.m_CurrentMeleeAttackSpeed)
         {
             Instantiate(meleeAttackHitbox);
             meleeAttackSpeed_ = 0;
@@ -50,7 +50,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void Ranged()
     {
-        if (rangedAttackSpeed_ >= rangedAttackSpeed)
+        if (rangedAttackSpeed_ >= playerStats.m_CurrentRangedAttackSpeed)
         {
             Instantiate(rangedAttackHitbox);
             rangedAttackSpeed_ = 0;

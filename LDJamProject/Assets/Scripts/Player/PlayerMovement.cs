@@ -6,17 +6,12 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
 
-    [SerializeField] float movementSpeed = 5.0f;
-    [SerializeField] float dashSpeed = 8.0f;
-    [SerializeField] float dashDistance = 5.0f;
-    [SerializeField] float timeToRechargeOneDash = 2.0f;
-    [SerializeField] int maxNumOfDash = 4;
     [SerializeField] Slider staminaBar;
 
+    PlayerStats playerStats;
     Rigidbody2D PlayerRB;
     Vector2 movement;
     bool isDashing;
-    float currSpeed;
     float distanceDashed;
     int numOfDash;
     float dashRechargeTime;
@@ -26,11 +21,11 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerStats = GetComponent<PlayerStats>();
         PlayerRB = GetComponent<Rigidbody2D>();
         isDashing = false;
-        currSpeed = movementSpeed;
         distanceDashed = 0;
-        numOfDash = maxNumOfDash;
+        numOfDash = playerStats.m_CurrentMaxDash;
         dashRechargeTime = 0;
     }
 
@@ -39,11 +34,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if(isDashing)
         {
-            distanceDashed += dashSpeed * Time.deltaTime;
-            if(distanceDashed >= dashDistance)
+            distanceDashed += playerStats.m_CurrentDashSpeed * Time.deltaTime;
+            if(distanceDashed >= playerStats.m_CurrentDashDistance)
             {
                 isDashing = false;
-                currSpeed = movementSpeed;
+                playerStats.m_CurrentSpeed = playerStats.m_CurrentMovementSpeed;
             }
         }
         else
@@ -53,22 +48,22 @@ public class PlayerMovement : MonoBehaviour
             movementDir = movement;
         }
 
-        if(numOfDash < maxNumOfDash && dashRechargeTime < timeToRechargeOneDash)
+        if(numOfDash < playerStats.m_CurrentMaxDash && dashRechargeTime < playerStats.m_CurrentTimeToRechargeOneDash)
         {
             dashRechargeTime += Time.deltaTime;
-            if (dashRechargeTime >= timeToRechargeOneDash)
+            if (dashRechargeTime >= playerStats.m_CurrentTimeToRechargeOneDash)
             {
                 dashRechargeTime = 0;
                 numOfDash++;
             }
         }
 
-        staminaBar.value = (((float)numOfDash * timeToRechargeOneDash) + dashRechargeTime) / (timeToRechargeOneDash * (float)maxNumOfDash);
+        staminaBar.value = (((float)numOfDash * playerStats.m_CurrentTimeToRechargeOneDash) + dashRechargeTime) / (playerStats.m_CurrentTimeToRechargeOneDash * (float)playerStats.m_CurrentMaxDash);
     }
 
     private void FixedUpdate()
     {
-        PlayerRB.MovePosition(PlayerRB.position + movement * currSpeed * Time.fixedDeltaTime);
+        PlayerRB.MovePosition(PlayerRB.position + movement * playerStats.m_CurrentSpeed * Time.fixedDeltaTime);
     }
 
     public void Dash()
@@ -76,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         if (numOfDash > 0) 
         {
             isDashing = true;
-            currSpeed = dashSpeed;
+            playerStats.m_CurrentSpeed = playerStats.m_CurrentDashSpeed;
             distanceDashed = 0;
             numOfDash--;
         }
