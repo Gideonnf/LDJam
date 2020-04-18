@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 9106058306348112295}
   - component: {fileID: 9106058306348112292}
   - component: {fileID: -6091134737354150929}
-  - component: {fileID: -303535858953330649}
+  - component: {fileID: 4665410675029819197}
   m_Layer: 0
-  m_Name: Sword
+  m_Name: FlameDash
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LifeTime: 480
---- !u!114 &-303535858953330649
+--- !u!114 &4665410675029819197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,15 +132,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 9106058306348112293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dedf378509de0344f9bef27035d61a27, type: 3}
+  m_Script: {fileID: 11500000, guid: 0571108011c4a8f42ad98a90ed3f63d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ItemName: Sword
+  m_ItemName: Unnamed Item
   m_ItemDescription: 
-  m_ItemSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_ItemType: 2
-  m_DamageBoost: 5
-  m_SpeedBoost: 5
-  m_HealthGain: 5
+  m_ItemSprite: {fileID: 0}
+  m_ItemType: 0
+  m_DamageBoost: 0
+  m_SpeedBoost: 0
+  m_HealthGain: 0
   m_ItemChance: 0
   UniqueAbility: 1
+  flame: {fileID: 0}
+  distanceFromPlayer: 0

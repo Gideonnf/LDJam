@@ -11,10 +11,13 @@ public class AttackHitbox : MonoBehaviour
     [SerializeField] float distanceFromPlayer;
     [SerializeField] float projectileSpeed;
     [SerializeField] bool projectilePierce;
+    [SerializeField] bool canHitMultipleTimes;
+    [SerializeField] float timeBetweenEachHit;
 
     GameObject player;
     List<GameObject> objsAttacked;
     Vector3 direction;
+    List<float> timeBetweenEachHit_;
 
     // Start is called before the first frame update
     void Start()
@@ -27,19 +30,25 @@ public class AttackHitbox : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         objsAttacked = new List<GameObject>();
         direction = player.GetComponent<PlayerCombat>().playerLookDir;
+        timeBetweenEachHit_ = new List<float>();
     }
 
     // Update is called once per frame
     void Update()
     {
         lifetime -= Time.deltaTime;
-        if (lifetime <= 0) 
+        if (lifetime <= 0)
         {
             Destroy(gameObject);
         }
-        if(projectileSpeed > 0)
+        if (projectileSpeed > 0)
         {
             transform.position += direction * projectileSpeed * Time.deltaTime;
+        }
+
+        for (int i = 0; i < timeBetweenEachHit_.Count; i++)
+        {
+            timeBetweenEachHit_[i] -= Time.deltaTime;
         }
     }
 
@@ -47,14 +56,18 @@ public class AttackHitbox : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            foreach(GameObject objAttacked in objsAttacked)
+            foreach (GameObject objAttacked in objsAttacked)
             {
                 if (objAttacked == other.gameObject)
                     return;
             }
 
-            EquipmentManager.Instance.NormalItemDrop(gameObject.transform.position);
+            for (int i = 0; i < player.GetComponent<PlayerInventory>().UniqueItems.Count; ++i)
+            {
+                player.GetComponent<PlayerInventory>().UniqueItems[i].WhenEnemyHit(other.gameObject);
+            }
 
+            EquipmentManager.Instance.NormalItemDrop(gameObject.transform.position);
             Destroy(other.gameObject);
             if (projectileSpeed > 0 && !projectilePierce)
             {

@@ -39,7 +39,7 @@ public class PlayerStats : MonoBehaviour
     public int m_StartingMaxDash = 4;
 
     // Current Stats after bonuses are applied from items
-    [HideInInspector]
+    
     public float m_CurrentDamage;
     public float m_CurrentSpeed;
     public float m_CurrentMovementSpeed;
@@ -54,7 +54,7 @@ public class PlayerStats : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         m_CurrentDamage = m_StartingDamage;
         m_CurrentSpeed = m_StartingSpeed;

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4414706094592830941}
   - component: {fileID: 3728915708958617934}
   m_Layer: 0
-  m_Name: ItemGO 1
+  m_Name: Boots
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,5 +142,5 @@ MonoBehaviour:
   m_DamageBoost: 0
   m_SpeedBoost: 5
   m_HealthGain: 0
-  m_ItemChance: 30.2
+  m_ItemChance: 0
   UniqueAbility: 1

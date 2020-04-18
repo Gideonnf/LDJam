@@ -39,6 +39,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 isDashing = false;
                 playerStats.m_CurrentSpeed = playerStats.m_CurrentMovementSpeed;
+                for (int i = 0; i < GetComponent<PlayerInventory>().UniqueItems.Count; ++i)
+                {
+                    GetComponent<PlayerInventory>().UniqueItems[i].WhenDashEnds();
+                }
             }
         }
         else

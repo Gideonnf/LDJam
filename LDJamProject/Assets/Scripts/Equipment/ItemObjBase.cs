@@ -40,7 +40,17 @@ public class ItemObjBase : MonoBehaviour
         return;
     }
 
+    public virtual void WhenEnemyHit(GameObject enemy)
+    {
+        return;
+    }
+
     public virtual void PassiveEffect()
+    {
+        return;
+    }
+
+    public virtual void WhenDashEnds()
     {
         return;
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6385744341626999093}
   - component: {fileID: 2867979360169527573}
   m_Layer: 0
-  m_Name: ItemGO 2
+  m_Name: Shield
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,5 +142,5 @@ MonoBehaviour:
   m_DamageBoost: 0
   m_SpeedBoost: 0
   m_HealthGain: 0
-  m_ItemChance: 40.2
+  m_ItemChance: 0
   UniqueAbility: 0

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    [HideInInspector] public List<ItemObjBase> UniqueItems = new List<ItemObjBase>();
     List<ItemObjBase> InventoryItems = new List<ItemObjBase>();
-    List<ItemObjBase> UniqueItems = new List<ItemObjBase>();
     PlayerStats m_PlayerStats;
 
     // Start is called before the first frame update
@@ -18,14 +18,18 @@ public class PlayerInventory : MonoBehaviour
     void Update()
     {
         //Debug.Log("Testing");
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
            // for(int i = 0; i < InventoryI)
            for(int i = 0; i < UniqueItems.Count; ++i)
             {
                 UniqueItems[i].Attack();
-                UniqueItems[i].PassiveEffect();
             }
+        }
+
+        for (int i = 0; i < UniqueItems.Count; ++i)
+        {
+            UniqueItems[i].PassiveEffect();
         }
     }
 
@@ -66,12 +70,12 @@ public class PlayerInventory : MonoBehaviour
         // If the item is unique
         if (ItemBase.UniqueAbility)
         {
-            // Only unique items are added to this list
-            UniqueItems.Add(ItemBase);
-
             // Does any unique pick up effects
             // i.e editing stats like dash speed etc
             ItemBase.OnPickUp();
+
+            // Only unique items are added to this list
+            UniqueItems.Add(ItemBase);
         }
 
         AddStats(itemToAdd);

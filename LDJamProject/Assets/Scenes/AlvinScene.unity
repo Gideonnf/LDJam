@@ -136,6 +136,8 @@ GameObject:
   - component: {fileID: 6095663}
   - component: {fileID: 6095667}
   - component: {fileID: 6095666}
+  - component: {fileID: 6095668}
+  - component: {fileID: 6095669}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -219,11 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce51cccdaf71e6648a216cf1aff649bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  dashSpeed: 12
-  dashDistance: 1.5
-  timeToRechargeOneDash: 2
-  maxNumOfDash: 4
   staminaBar: {fileID: 920834167}
   movementDir: {x: 0, y: 0, z: 0}
 --- !u!61 &6095664
@@ -288,8 +285,8 @@ MonoBehaviour:
   bDontDestroyOnLoad: 0
   bUseRootTransform: 0
   wagon: {fileID: 1104243957}
-  m_PlayerStats: {fileID: 0}
-  m_PlayerInventory: {fileID: 0}
+  m_PlayerStats: {fileID: 6095668}
+  m_PlayerInventory: {fileID: 6095669}
 --- !u!114 &6095667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,14 +300,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLookDir: {x: 0, y: 0, z: 0}
-  meleeAttackSpeed: 0.5
-  rangedAttackSpeed: 5
   meleeAttackHitbox: {fileID: 8871712413403499726, guid: d275bcec2444f7340856a0c57f4e87f7,
     type: 3}
   rangedAttackHitbox: {fileID: 2950864716078817997, guid: b1f85b096ea5dab499cfdc0c4ea21d39,
     type: 3}
   meleeBar: {fileID: 1851977033}
   rangedBar: {fileID: 2061568035}
+--- !u!114 &6095668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6095660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba6491eb70d1df439da7737976ca050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StartingDamage: 1
+  m_StartingSpeed: 5
+  m_StartingDashSpeed: 12
+  m_StartingDashDistance: 1.5
+  m_StartingHealth: 5
+  m_StartingMeleeAttackSpeed: 0.5
+  m_FastestMeleeAttackSpeed: 0.05
+  m_StartingRangedAttackSpeed: 10
+  m_FastestRangedAttackSpeed: 0.5
+  m_StartingTimeToRechargeOneDash: 2
+  m_StartingMaxDash: 4
+  m_CurrentDamage: 0
+  m_CurrentSpeed: 0
+  m_CurrentMovementSpeed: 0
+  m_CurrentDashSpeed: 0
+  m_CurrentDashDistance: 0
+  m_CurrentHealth: 0
+  m_MaxHealth: 0
+  m_CurrentMeleeAttackSpeed: 0
+  m_CurrentRangedAttackSpeed: 0
+  m_CurrentTimeToRechargeOneDash: 0
+  m_CurrentMaxDash: 0
+--- !u!114 &6095669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6095660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96e1a71ab4a0c1c4b9112d1322ed2c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &35821838
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,6 +465,7 @@ GameObject:
   - component: {fileID: 95227685}
   - component: {fileID: 95227684}
   - component: {fileID: 95227687}
+  - component: {fileID: 95227688}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -542,6 +584,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &95227688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95227683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb4816393fba9a488db32bd9f88b6c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &133197402
 GameObject:
   m_ObjectHideFlags: 0
