@@ -16,16 +16,18 @@ public class EnemyBase : MonoBehaviour
 #endif
 
     protected Vector3 m_nextPosition;
+    protected Rigidbody2D m_rb;
     [SerializeField] float attack_range_sqr;
     public Transform DEBUG_TARGET;
     NavMeshAgent m_agent;
     // Start is called before the first frame update
     virtual public void Start()
     {
+        m_rb = GetComponent<Rigidbody2D>();
         m_agent = GetComponent<NavMeshAgent>();
         m_animator = GetComponentInChildren<Animator>();
         m_agent.updatePosition = false;
-        //m_agent.updateRotation = false;
+        m_agent.updateRotation = false;
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class EnemyBase : MonoBehaviour
     {
         m_agent.SetDestination(DEBUG_TARGET.position);
         m_nextPosition = m_agent.nextPosition;
+        m_rb.position = m_agent.nextPosition;
         transform.position = m_nextPosition;
         if ((m_nextPosition - DEBUG_TARGET.position).sqrMagnitude <= attack_range_sqr)
         {
