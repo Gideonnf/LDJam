@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [HideInInspector]public Vector3 playerDir;
+    [HideInInspector]public Vector3 playerLookDir;
     [SerializeField] float attackSpeed = 0.5f;
     [SerializeField] GameObject attackHitbox;
 
@@ -24,8 +24,8 @@ public class PlayerCombat : MonoBehaviour
             attackSpeed_ -= Time.deltaTime;
         Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         worldMousePos.z = 0;
-        playerDir = worldMousePos - GetComponent<Transform>().position;
-        playerDir.Normalize();
+        playerLookDir = worldMousePos - GetComponent<Transform>().position;
+        playerLookDir.Normalize();
     }
 
     public void Attack()

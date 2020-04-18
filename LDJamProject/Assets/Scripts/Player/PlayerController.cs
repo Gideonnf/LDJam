@@ -23,7 +23,11 @@ public class PlayerController : MonoBehaviour
         {
             Interact();
         }
-        if(Input.GetMouseButton(0))
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            m_PlayerMovement.Dash();
+        }
+        if (Input.GetMouseButton(0))
         {
             m_PlayerCombat.Attack();
         }

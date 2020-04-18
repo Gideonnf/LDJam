@@ -4,29 +4,57 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    [SerializeField] float movementSpeed = 5.0f;
+    [SerializeField] float dashSpeed = 8.0f;
+    [SerializeField] float dashDistance = 5.0f;
+
     Rigidbody2D PlayerRB;
-
     Vector2 movement;
-
-    [SerializeField] float MovementSpeed = 10.0f;
+    bool isDashing;
+    float currSpeed;
+    float distanceDashed;
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerRB = GetComponent<Rigidbody2D>();
+        isDashing = false;
+        currSpeed = movementSpeed;
+        distanceDashed = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-       
+        if(isDashing)
+        {
+            distanceDashed += dashSpeed * Time.deltaTime;
+            if(distanceDashed >= dashDistance)
+            {
+                isDashing = false;
+                currSpeed = movementSpeed;
+            }
+        }
+        else
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+
+        }
+
     }
 
     private void FixedUpdate()
     {
-        PlayerRB.MovePosition(PlayerRB.position + movement * MovementSpeed * Time.fixedDeltaTime);
+        PlayerRB.MovePosition(PlayerRB.position + movement * currSpeed * Time.fixedDeltaTime);
+    }
+
+    public void Dash()
+    {
+        isDashing = true;
+        currSpeed = dashSpeed;
+        distanceDashed = 0;
     }
 
     #region Movement Functions

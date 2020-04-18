@@ -16,8 +16,8 @@ public class AttackHitbox : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        transform.position = player.transform.position + (player.GetComponent<PlayerCombat>().playerDir * distanceFromPlayer);
-        Vector3 dir = -player.GetComponent<PlayerCombat>().playerDir;
+        transform.position = player.transform.position + (player.GetComponent<PlayerCombat>().playerLookDir * distanceFromPlayer);
+        Vector3 dir = -player.GetComponent<PlayerCombat>().playerLookDir;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
