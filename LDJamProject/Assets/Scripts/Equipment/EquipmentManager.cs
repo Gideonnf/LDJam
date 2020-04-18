@@ -12,6 +12,7 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
         BOOTS,
         AMULET,
         ARMOR,
+        SHIELD,
         TOTAL_ITEMS
     }
 
@@ -98,14 +99,16 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
     public void NormalItemDrop(Vector3 DropPosition)
     {
         GameObject item = m_NormalItems.GetRandom();
-        ItemObjBase objBase = item.GetComponent<ItemObjBase>();
 
-        if (objBase == null)
+        if (item == null)
         {
-            Debug.LogWarning("There isnt an item in the list");
+            Debug.Log("No item was found");
             return;
         }
-        else if (objBase.m_ItemType == ItemType.NOTHING)
+
+        ItemObjBase objBase = item.GetComponent<ItemObjBase>();
+
+        if (objBase.m_ItemType == ItemType.NOTHING)
         {
             // Tehres no item
             return;
