@@ -38,7 +38,11 @@ public class PlayerController : SingletonBase<PlayerController>
         }
         if (Input.GetMouseButton(0) && !wagon.playerPullingWagon)
         {
-            m_PlayerCombat.Attack();
+            m_PlayerCombat.Melee();
+        }
+        if (Input.GetMouseButton(1) && !wagon.playerPullingWagon)
+        {
+            m_PlayerCombat.Ranged();
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AttackHitbox : MonoBehaviour
 {
@@ -8,9 +9,12 @@ public class AttackHitbox : MonoBehaviour
 
     [SerializeField] float lifetime;
     [SerializeField] float distanceFromPlayer;
+    [SerializeField] float projectileSpeed;
+    [SerializeField] bool projectilePierce;
+
     GameObject player;
     List<GameObject> objsAttacked;
-
+    Vector3 direction;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +23,10 @@ public class AttackHitbox : MonoBehaviour
         transform.position = player.transform.position + (player.GetComponent<PlayerCombat>().playerLookDir * distanceFromPlayer);
         Vector3 dir = -player.GetComponent<PlayerCombat>().playerLookDir;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        angle += 90;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         objsAttacked = new List<GameObject>();
+        direction = player.GetComponent<PlayerCombat>().playerLookDir;
     }
 
     // Update is called once per frame
@@ -30,6 +36,10 @@ public class AttackHitbox : MonoBehaviour
         if (lifetime <= 0) 
         {
             Destroy(gameObject);
+        }
+        if(projectileSpeed > 0)
+        {
+            transform.position += direction * projectileSpeed * Time.deltaTime;
         }
     }
 
@@ -43,6 +53,10 @@ public class AttackHitbox : MonoBehaviour
                     return;
             }
             Destroy(other.gameObject);
+            if (projectileSpeed > 0 && !projectilePierce)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,12 +9,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float movementSpeed = 5.0f;
     [SerializeField] float dashSpeed = 8.0f;
     [SerializeField] float dashDistance = 5.0f;
+    [SerializeField] float timeToRechargeOneDash = 2.0f;
+    [SerializeField] int maxNumOfDash = 4;
+    [SerializeField] Slider staminaBar;
 
     Rigidbody2D PlayerRB;
     Vector2 movement;
     bool isDashing;
     float currSpeed;
     float distanceDashed;
+    int numOfDash;
+    float dashRechargeTime;
 
     public Vector3 movementDir;
 
@@ -24,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
         currSpeed = movementSpeed;
         distanceDashed = 0;
+        numOfDash = maxNumOfDash;
+        dashRechargeTime = 0;
     }
 
     // Update is called once per frame
@@ -45,6 +53,17 @@ public class PlayerMovement : MonoBehaviour
             movementDir = movement;
         }
 
+        if(numOfDash < maxNumOfDash && dashRechargeTime < timeToRechargeOneDash)
+        {
+            dashRechargeTime += Time.deltaTime;
+            if (dashRechargeTime >= timeToRechargeOneDash)
+            {
+                dashRechargeTime = 0;
+                numOfDash++;
+            }
+        }
+
+        staminaBar.value = (((float)numOfDash * timeToRechargeOneDash) + dashRechargeTime) / (timeToRechargeOneDash * (float)maxNumOfDash);
     }
 
     private void FixedUpdate()
@@ -54,38 +73,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dash()
     {
-        isDashing = true;
-        currSpeed = dashSpeed;
-        distanceDashed = 0;
+        if (numOfDash > 0) 
+        {
+            isDashing = true;
+            currSpeed = dashSpeed;
+            distanceDashed = 0;
+            numOfDash--;
+        }
     }
-
-    #region Movement Functions
-
-    public void Jump()
-    {
-        
-    }
-
-    public void MoveUp()
-    {
-
-    }
-
-    public void MoveLeft()
-    {
-
-    }
-
-    public void MoveRight()
-    {
-
-    }
-
-    public void MoveDown()
-    {
-
-    }
-
-    #endregion
-
 }
