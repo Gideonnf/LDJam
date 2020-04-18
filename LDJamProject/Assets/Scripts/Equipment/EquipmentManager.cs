@@ -22,6 +22,7 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
     //[Tooltip("List of possible Items")]
     //[SerializeField] List<Item> m_NormalItemList = new List<Item>();
     [Header("Equipment Manager Configuration")]
+    
 
     [Tooltip("Enable to remove item from the list after dropping")]
     [SerializeField] bool m_DropOnce = false;
@@ -39,6 +40,8 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
     WeightedObject<Item> m_NormalItems = new WeightedObject<Item>();
     WeightedObject<Item> m_BossItems = new WeightedObject<Item>();
    // WeightedObject<Item> m_TradeItems = new WeightedObject<Item>();
+
+     Dictionary<GameObject, Item> ActiveItems = new Dictionary<GameObject, Item>();
 
     // Start is called before the first frame update
     void Start()
@@ -90,9 +93,35 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
         else
         {
             // Drop the items
+
+            //Create the sprite
+            GameObject newItem = ObjectPooler.Instance.FetchGO("ItemObject");
+
+            // Set the position of the item
+            newItem.transform.position = DropPosition;
+
+            // Change the sprite
+            newItem.GetComponent<SpriteRenderer>().sprite = itemDrop.m_ItemSprite;
+
+            // Add to the dictionary
+            ActiveItems.Add(newItem, itemDrop);
         }
     }
 
 
+    public void PickupItem(GameObject Item)
+    {
+        Item pickedupItem;
+        ActiveItems.TryGetValue(Item, out pickedupItem);
+
+        // If they manage to pick up the item
+        if (pickedupItem != null)
+        {
+            // Add it to player inventory
+            // Call player class here later
+            PlayerController.Instance.m_PlayerInventory.AddToInventory(pickedupItem);
+        }
+
+    }
 
 }

@@ -10,7 +10,6 @@ public class ObjectPoolerItem
     public int amountToAdd = 5;
 
     // Key to identify the Object
-    [System.NonSerialized]
     public string name = "";
     [System.NonSerialized]
     // Own list to store which objects have been created

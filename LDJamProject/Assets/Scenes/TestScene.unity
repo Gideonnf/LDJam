@@ -151,12 +151,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfPools:
-  - prefabToCreate: {fileID: 0}
+  - prefabToCreate: {fileID: 9106058306348112293, guid: 02f481e43e1904b40b53ea4608144d44,
+      type: 3}
     amountToCreate: 5
     amountToAdd: 5
-  - prefabToCreate: {fileID: 0}
-    amountToCreate: 5
-    amountToAdd: 5
+    name: ItemObject
 --- !u!4 &35003096
 Transform:
   m_ObjectHideFlags: 0
