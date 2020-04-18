@@ -59,24 +59,6 @@ class WeightedObject<T>
         return default(T); // Only if there are no entries
     }
 
-    //public T GetTestRandom()
-    //{
-
-    //    // Loop through all the objects in the list
-    //    foreach (Entry entry in entries)
-    //    {
-    //        // Rand a num from 0 to 100
-    //        double r = rand.NextDouble() * 100;
-
-    //        if (entry.accumulatedWeight >= r)
-    //        {
-    //            return entry.item;
-    //        }
-    //    }
-
-    //    return default(T); // if none of the items spawned
-    //}
-
     // To wipe the list
     // Needed for game event as the random chances might change
     public void ClearList()

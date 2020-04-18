@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -8,10 +9,20 @@ public class PlayerInventory : MonoBehaviour
     List<ItemObjBase> InventoryItems = new List<ItemObjBase>();
     PlayerStats m_PlayerStats;
 
+    public GameObject InventoryBarReference;
+    public List<GameObject> InventorySlots = new List<GameObject>();
+
+    Dictionary<int, ItemObjBase> ItemSlotTracker = new Dictionary<int, ItemObjBase>();
     // Start is called before the first frame update
     void Start()
     {
-        m_PlayerStats = GetComponent<PlayerStats>();        
+        m_PlayerStats = GetComponent<PlayerStats>();
+
+        foreach (Transform child in InventoryBarReference.transform)
+        {
+            InventorySlots.Add(child.gameObject);
+            child.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -70,6 +81,10 @@ public class PlayerInventory : MonoBehaviour
 
         AddStats(itemToAdd);
 
+        AddToUI(ItemBase);
+
+        Destroy(itemToAdd);
+
         Debug.Log("item Added" + itemToAdd.name);
 
         // Will update UI to show the new items
@@ -89,6 +104,41 @@ public class PlayerInventory : MonoBehaviour
             //Remove any bonuses to stats that were places before
             itemToRemove.OnRemove();
         }
+    }
+
+    /// <summary>
+    /// Called when adding an item to the UI Bar
+    /// </summary>
+    /// <param name="itemToAdd"></param>
+    public void AddToUI(ItemObjBase itemToAdd)
+    {
+        for (int i = 0; i < InventorySlots.Count; ++i)
+        {
+            // Takes the first inactive item
+            if (InventorySlots[i].activeSelf == false)
+            {
+                // Set the item slot to active
+                InventorySlots[i].SetActive(true);
+                // Change the sprite
+                InventorySlots[i].GetComponent<Image>().sprite = itemToAdd.m_ItemSprite;
+                // Store it in the dictionary to keep track 
+                ItemSlotTracker.Add(i, itemToAdd);
+
+                break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Removes the item from the UI bar
+    /// Called if the player picks up too many items or sells an item
+    /// </summary>
+    /// <param name="itemToRemove"></param>
+    public void RemoveFromtUI(ItemObjBase itemToRemove)
+    {
+        //TODO: Find a way to coordinate item slots with the item its holding(?)
+        // So when the player removes it can remove an item in the middle for example
+        // then shift all the items down
     }
 
     /// <summary>

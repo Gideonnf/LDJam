@@ -181,7 +181,7 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
             // Remove it from the list and set active to false
             //ActiveItems.Remove(Item);
 
-            Destroy(Item);
+           // Destroy(Item);
         }
 
     }
