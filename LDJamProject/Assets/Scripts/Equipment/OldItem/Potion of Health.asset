@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62fa339179f64204e83d00b2fddf92f0, type: 3}
-  m_Name: Iron Sword
+  m_Name: Potion of Health
   m_EditorClassIdentifier: 
-  m_ItemName: Iron Sword
-  m_ItemDescription: It is an Iron Sword. What did you expect?
-  m_ItemSprite: {fileID: 0}
+  m_ItemName: Potion of Health
+  m_ItemDescription: Drink for hp baby
+  m_ItemSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_ItemType: 1
-  m_DamageBoost: 5
+  m_DamageBoost: 0
   m_SpeedBoost: 0
-  m_HealthGain: 0
+  m_HealthGain: 5
   m_ItemChance: 35

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Item Object")]
-public class Item : ScriptableObject
+public class ItemObjBase : MonoBehaviour
 {
     [Header("Item Data")]
 
@@ -18,7 +17,7 @@ public class Item : ScriptableObject
     public Sprite m_ItemSprite;
 
     [Tooltip("Type of item")]
-    [SerializeField] EquipmentManager.ItemType m_ItemType;
+    public EquipmentManager.ItemType m_ItemType;
 
     [Tooltip("Damage Boost of the item")]
     [SerializeField] float m_DamageBoost;
@@ -33,16 +32,23 @@ public class Item : ScriptableObject
     [Range(0, 100)]
     [SerializeField] float m_ItemChance;
 
+    [Tooltip("Does this object have a unique ability")]
+    public bool UniqueAbility = false;
+
+    public virtual void Attack()
+    {
+        return;
+    }
+
+    public virtual void PassiveEffect()
+    {
+        return;
+    }
+
     public string GetSetItemName
     {
         get { return m_ItemName; }
         set { m_ItemName = value; }
-    }
-
-    public string GetItemType
-    {
-        get { return m_ItemName; }
-       // set { m_ItemName = value; }
     }
 
     public float GetSetItemDamage

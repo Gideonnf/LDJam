@@ -24,16 +24,29 @@ class WeightedObject<T>
         entries.Add(new Entry { item = item, accumulatedWeight = accumulatedWeight });
     }
 
+    // Not done yet
+    public void RemoveEntry(T item, double weight)
+    {
+        accumulatedWeight -= weight;
+        for (int i = 0; i < entries.Count; ++i)
+        {
+            //if (entries[i].item == item)
+            //{
+
+            //}
+        }
+    }
+
     // To get random event
     public T GetRandom()
     {
         // Generate a random number between the sums of all the weight
         double r = rand.NextDouble() * accumulatedWeight;
 
-        // Loop through all the events in the list
+        // Loop through all the objects in the list
         foreach (Entry entry in entries)
         {
-            // if r is more than any of those events, they trigger
+            // if r is more than any of those objects, they trigger
             if (entry.accumulatedWeight >= r )
             {
                 return entry.item;
