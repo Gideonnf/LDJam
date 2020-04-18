@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Rigidbody PlayerRB;
+    Rigidbody2D PlayerRB;
 
-    Vector3 movement;
+    Vector2 movement;
 
     [SerializeField] float MovementSpeed = 10.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        PlayerRB = GetComponent<Rigidbody>();
+        PlayerRB = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
-        movement.z = Input.GetAxisRaw("Vertical");
+        movement.y = Input.GetAxisRaw("Vertical");
        
     }
 
