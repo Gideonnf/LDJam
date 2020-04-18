@@ -17,16 +17,6 @@ public class PlayerInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Testing");
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-           // for(int i = 0; i < InventoryI)
-           for(int i = 0; i < UniqueItems.Count; ++i)
-            {
-                UniqueItems[i].Attack();
-            }
-        }
-
         for (int i = 0; i < UniqueItems.Count; ++i)
         {
             UniqueItems[i].PassiveEffect();

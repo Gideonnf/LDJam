@@ -43,6 +43,10 @@ public class PlayerCombat : MonoBehaviour
     {
         if(meleeAttackSpeed_ >= playerStats.m_CurrentMeleeAttackSpeed)
         {
+            for (int i = 0; i < GetComponent<PlayerInventory>().UniqueItems.Count; ++i)
+            {
+                GetComponent<PlayerInventory>().UniqueItems[i].MeleeAttack();
+            }
             Instantiate(meleeAttackHitbox);
             meleeAttackSpeed_ = 0;
         }

@@ -37,7 +37,7 @@ public class ItemObjBase : MonoBehaviour
     [Tooltip("Does this object have a unique ability")]
     public bool UniqueAbility = false;
 
-    public virtual void Attack()
+    public virtual void MeleeAttack()
     {
         return;
     }

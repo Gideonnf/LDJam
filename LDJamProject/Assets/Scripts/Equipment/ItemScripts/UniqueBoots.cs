@@ -4,24 +4,19 @@ using UnityEngine;
 
 public class UniqueBoots : ItemObjBase
 {
-    public override void Attack()
+    public override void MeleeAttack()
     {
-        base.Attack();
-
-        Debug.Log("VROOM VROOOM I WANT TO DIE VROOM VROOM");
+        base.MeleeAttack();
     }
 
     public override void PassiveEffect()
     {
         base.PassiveEffect();
-
-        Debug.Log("swag swag swag swag");
     }
 
     public override void OnPickUp()
     {
         base.OnPickUp();
-
     }
 
     public override void OnRemove()

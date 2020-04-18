@@ -8,23 +8,6 @@ public class FullHealthProjectile : ItemObjBase
     PlayerStats playerStats;
     float prevAttackSpeed;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public override void Attack()
-    {
-        base.Attack();
-    }
-
     public override void PassiveEffect()
     {
         if (playerStats.m_CurrentHealth == playerStats.m_MaxHealth && !healthIsMax)

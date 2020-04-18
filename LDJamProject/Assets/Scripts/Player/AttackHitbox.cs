@@ -13,6 +13,7 @@ public class AttackHitbox : MonoBehaviour
     [SerializeField] bool projectilePierce;
     [SerializeField] bool canHitMultipleTimes;
     [SerializeField] float timeBetweenEachHit;
+    [SerializeField] bool posBasedOnMovementDir;
 
     GameObject player;
     List<GameObject> objsAttacked;
@@ -23,11 +24,24 @@ public class AttackHitbox : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        transform.position = player.transform.position + (player.GetComponent<PlayerCombat>().playerLookDir * distanceFromPlayer);
-        Vector3 dir = -player.GetComponent<PlayerCombat>().playerLookDir;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        angle += 90;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        Vector3 dir;
+        float angle;
+        if (posBasedOnMovementDir)
+        {
+            transform.position = player.transform.position - (player.GetComponent<PlayerMovement>().movementDir * distanceFromPlayer);
+            dir = player.GetComponent<PlayerMovement>().movementDir;
+            angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            angle += 90;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+        else
+        {
+            transform.position = player.transform.position + (player.GetComponent<PlayerCombat>().playerLookDir * distanceFromPlayer);
+            dir = -player.GetComponent<PlayerCombat>().playerLookDir;
+            angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            angle += 90;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
         objsAttacked = new List<GameObject>();
         direction = player.GetComponent<PlayerCombat>().playerLookDir;
         timeBetweenEachHit_ = new List<float>();
@@ -48,7 +62,8 @@ public class AttackHitbox : MonoBehaviour
 
         for (int i = 0; i < timeBetweenEachHit_.Count; i++)
         {
-            timeBetweenEachHit_[i] -= Time.deltaTime;
+            if(timeBetweenEachHit_[i] < timeBetweenEachHit)
+                timeBetweenEachHit_[i] += Time.deltaTime;
         }
     }
 
@@ -56,10 +71,12 @@ public class AttackHitbox : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            foreach (GameObject objAttacked in objsAttacked)
+            for (int i = 0; i < objsAttacked.Count; i++)
             {
-                if (objAttacked == other.gameObject)
+                if (objsAttacked[i] == other.gameObject && timeBetweenEachHit_[i] >= timeBetweenEachHit)
+                {
                     return;
+                }
             }
 
             for (int i = 0; i < player.GetComponent<PlayerInventory>().UniqueItems.Count; ++i)

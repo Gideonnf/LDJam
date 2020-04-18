@@ -4,31 +4,14 @@ using UnityEngine;
 
 public class UniqueSword : ItemObjBase
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void MeleeAttack()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public override void Attack()
-    {
-        base.Attack();
-
-        Debug.Log("It does an attack lol pew pew pew pew ");
-
+        base.MeleeAttack();
     }
 
     public override void PassiveEffect()
     {
         base.PassiveEffect();
-
-        Debug.Log("Anti-Coronavirus");
     }
 
     public override void OnPickUp()

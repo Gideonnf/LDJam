@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 9106058306348112295}
   - component: {fileID: 9106058306348112292}
   - component: {fileID: -6091134737354150929}
-  - component: {fileID: 4665410675029819197}
+  - component: {fileID: 5303554852695560074}
   m_Layer: 0
-  m_Name: FlameDash
+  m_Name: Sword 1
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LifeTime: 480
---- !u!114 &4665410675029819197
+--- !u!114 &5303554852695560074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,17 +132,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 9106058306348112293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0571108011c4a8f42ad98a90ed3f63d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4976e821f279e934db7e12a1056a93fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ItemName: Boots of Balor
-  m_ItemDescription: Boots woven using the skin of the fire demon Balor
+  m_ItemName: Demacia's Might
+  m_ItemDescription: Ring with runes from the land of Demacia
   m_ItemSprite: {fileID: 0}
-  m_ItemType: 3
+  m_ItemType: 1
   Object: {fileID: 0}
   m_DamageBoost: 0
   m_SpeedBoost: 0
   m_HealthGain: 0
-  m_ItemChance: 72.3
+  m_ItemChance: 69.8
   UniqueAbility: 1
-  flame: {fileID: 4046673116177785811, guid: 10c4d63aa60b34e49af80c4c73815712, type: 3}
+  Melee360Hitbox: {fileID: 4807032442683410141, guid: 588cc38dbc1312e41a2692b40aec964e,
+    type: 3}
