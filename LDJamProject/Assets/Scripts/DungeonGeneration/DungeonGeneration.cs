@@ -110,6 +110,7 @@ public class DungeonGeneration : MonoBehaviour
         }
 
         InstantiateRooms();
+        InitUI();
     }
 
     public bool AddToTaken(Vector2Int pos, RoomOpeningTypes type)
@@ -363,5 +364,10 @@ public class DungeonGeneration : MonoBehaviour
                     room.transform.parent = m_RoomParent.transform;
             }
         }           
+    }
+
+    public void InitUI()
+    {
+        DungeonMinimap.Instance.InitMiniMap(m_Taken);
     }
 }
