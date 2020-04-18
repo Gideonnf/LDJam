@@ -338,6 +338,10 @@ public class DungeonGeneration : MonoBehaviour
             Vector2Int gridPos = roomInfo.Key;
             RoomOpeningTypes roomType = roomInfo.Value;
 
+            //if for some reason theres no opening, check the surrounds and give it one
+            if (roomType == RoomOpeningTypes.NO_OPENING)
+                roomType = ChangeCurrentRoomToExact(gridPos);
+
             if (m_RoomObjectData.ContainsKey(roomType))
             {
                 Vector2 worldPos = new Vector2(gridPos.x * 1, gridPos.y * 1) * 0.4f;
