@@ -24,8 +24,9 @@ public class InventorySlot
 
 public class PlayerInventory : MonoBehaviour
 {
+
     [HideInInspector] public List<ItemObjBase> UniqueItems = new List<ItemObjBase>();
-    List<ItemObjBase> InventoryItems = new List<ItemObjBase>();
+    [HideInInspector] public List<ItemObjBase> InventoryItems = new List<ItemObjBase>();
     PlayerStats m_PlayerStats;
 
     [Header("Hot bar Settings")]
@@ -36,7 +37,7 @@ public class PlayerInventory : MonoBehaviour
     [Tooltip("The distance between each slot")]
     public float SlotDistance = 90;
 
-    List<InventorySlot> inventorySlots = new List<InventorySlot>();
+    [HideInInspector] public List<InventorySlot> inventorySlots = new List<InventorySlot>();
     int currentInventoryCount;
     //public List<GameObject> InventorySlots = new List<GameObject>();
 

@@ -36,7 +36,7 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
 
     // Keep tracks of how long since an item was dropped
     // The longer the time, the higher the chance of an item drop
-    float elapsedTime = 0.0f;
+   // float elapsedTime = 0.0f;
 
     WeightedObject<GameObject> m_NormalItems = new WeightedObject<GameObject>();
     WeightedObject<GameObject> m_BossItems = new WeightedObject<GameObject>();
@@ -54,11 +54,11 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
 
         
 
-        float EmptyItemChance = 0;
+      //  float EmptyItemChance = 0;
         for (int i = 0; i < m_NormalItemList.Count; ++i)
         {
             m_NormalItems.AddEntry(m_NormalItemList[i].gameObject, m_NormalItemList[i].GetSetItemChance);
-            EmptyItemChance += m_NormalItemList[i].GetSetItemChance;
+          //  EmptyItemChance += m_NormalItemList[i].GetSetItemChance;
         }
 
         // Set the chance of receiving no items as half of the total accumulated chance to have an item
@@ -78,18 +78,8 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
     void Update()
     {
         // Elapsed time increment
-        elapsedTime += Time.deltaTime;
+        //elapsedTime += Time.deltaTime;
     }
-
-    //public Item GetNormalItem()
-    //{
-    //   return  m_NormalItems.GetRandom();
-    //}
-
-    //public Item GetBossItem()
-    //{
-    //    return m_BossItems.GetRandom();
-    //}
 
     /// <summary>
     /// When Enemies die, call for dropping a normal item
@@ -125,44 +115,6 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
 
             Debug.Log("Spawned Item : " + objBase.name);
         }
-
-        // No item dropped
-        //if (itemDrop == null)
-        //{
-        //    return;
-        //}
-        //else if (itemDrop.m_ItemType == ItemType.NOTHING)
-        //{
-        //    Debug.Log("No item dropped");
-
-        //    return;
-        //}
-        //else
-        //{
-        //    // Drop the items
-
-        //    //Create the sprite
-        //    //GameObject newItem = ObjectPooler.Instance.FetchGO("ItemGO");
-        //    GameObject newItem = Instantiate(item);
-
-        //    // Set the position of the item
-        //    newItem.transform.position = DropPosition;
-
-        //    // Change the sprite
-        //    newItem.GetComponent<SpriteRenderer>().sprite = itemDrop.m_ItemSprite;
-
-        //    // Add to the dictionary
-        //    //ActiveItems.Add(newItem, itemDrop);
-
-        //    Debug.Log("Spawned Item : " + itemDrop.name);
-
-        //    // If drop once is active
-        //    if (m_DropOnce)
-        //    {
-        //        // Function not working yet lol
-        //        // i do this later or never xd
-        //    }
-        //}
     }
 
 
