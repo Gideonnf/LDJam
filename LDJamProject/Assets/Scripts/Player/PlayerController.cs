@@ -46,30 +46,6 @@ public class PlayerController : SingletonBase<PlayerController>
         {
             m_PlayerCombat.Ranged();
         }
-
-        //if (Input.GetKeyUp(KeyCode.W))
-        //{
-        //    m_CurrDungeonRoomGridPos.y++;
-        //    ChangePlayerGridPosition(m_CurrDungeonRoomGridPos);
-        //}
-
-        //if (Input.GetKeyUp(KeyCode.S))
-        //{
-        //    m_CurrDungeonRoomGridPos.y--;
-        //    ChangePlayerGridPosition(m_CurrDungeonRoomGridPos);
-        //}
-
-        //if (Input.GetKeyUp(KeyCode.A))
-        //{
-        //    m_CurrDungeonRoomGridPos.x--;
-        //    ChangePlayerGridPosition(m_CurrDungeonRoomGridPos);
-        //}
-
-        //if (Input.GetKeyUp(KeyCode.D))
-        //{
-        //    m_CurrDungeonRoomGridPos.x++;
-        //    ChangePlayerGridPosition(m_CurrDungeonRoomGridPos);
-        //}
     }
 
 
@@ -96,5 +72,10 @@ public class PlayerController : SingletonBase<PlayerController>
 
         if (updateDungeon)
             DungeonGeneration.Instance.ChangeRoom(m_CurrDungeonRoomGridPos);
+    }
+
+    public Vector2Int GetPlayerCurrentGridPos()
+    {
+        return m_CurrDungeonRoomGridPos;
     }
 }
