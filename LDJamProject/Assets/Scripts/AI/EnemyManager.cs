@@ -54,6 +54,15 @@ public class EnemyManager : SingletonBase<EnemyManager>
         int tempIndex = m_indexes[(int)_type];
         ref int actualIndex = ref m_indexes[(int)_type];
         ref List<GameObject> selectedEnemyPool = ref m_enemyPool[(int)_type];
+        // If the pool size was 0 anyway
+        if (selectedEnemyPool.Count == 0)
+        {
+            var newPrefab = EnemyPrefabs[(int)_type].enemyPrefab;
+            for (int i = 0; i < EnemyPrefabs[(int)_type].amountToPool; ++i)
+            {
+                selectedEnemyPool.Add(Instantiate(newPrefab));
+            }
+        }
         // If the enemy is inactive and ready for deployment
         if (!selectedEnemyPool[tempIndex].gameObject.activeSelf)
         {
