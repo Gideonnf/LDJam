@@ -18,7 +18,7 @@ public class EnemyManager : SingletonBase<EnemyManager>
     // The prefab list of enemies
     [SerializeField] EnemyPooledObject[] EnemyPrefabs = new EnemyPooledObject[(int)EnemyType.NUM_ENEMY_TYPES];
     // The pool of objects
-    List<EnemyBase>[] m_enemyPool = new List<EnemyBase>[(int)EnemyType.NUM_ENEMY_TYPES];
+    List<GameObject>[] m_enemyPool = new List<GameObject>[(int)EnemyType.NUM_ENEMY_TYPES];
     int[] m_indexes = new int[(int)EnemyType.NUM_ENEMY_TYPES];
 
     private void Start()
@@ -32,10 +32,10 @@ public class EnemyManager : SingletonBase<EnemyManager>
         int currEnemyIndex = 0;
         foreach(EnemyPooledObject enemyInfo in EnemyPrefabs)
         {
-            m_enemyPool[currEnemyIndex] = new List<EnemyBase>();
+            m_enemyPool[currEnemyIndex] = new List<GameObject>();
             for (int i = 0; i < enemyInfo.startingAmount; ++i)
             {
-                EnemyBase newEnemy = Instantiate(enemyInfo.enemyPrefab);
+                GameObject newEnemy = Instantiate(enemyInfo.enemyPrefab);
                 newEnemy.gameObject.SetActive(false);
                 m_enemyPool[currEnemyIndex].Add(newEnemy);
             }
@@ -48,19 +48,19 @@ public class EnemyManager : SingletonBase<EnemyManager>
     /// </summary>
     /// <param name="_type"></param>
     /// <returns></returns>
-    public EnemyBase FetchEnemy(EnemyType _type)
+    public GameObject FetchEnemy(EnemyType _type)
     {
-        EnemyBase newEnemy = null; // The enemy to return
+        GameObject newEnemy = null; // The enemy to return
         int tempIndex = m_indexes[(int)_type];
         ref int actualIndex = ref m_indexes[(int)_type];
-        ref List<EnemyBase> selectedEnemyPool = ref m_enemyPool[(int)_type];
+        ref List<GameObject> selectedEnemyPool = ref m_enemyPool[(int)_type];
         // If the enemy is inactive and ready for deployment
         if (!selectedEnemyPool[tempIndex].gameObject.activeSelf)
         {
             if (++actualIndex == selectedEnemyPool.Count)
                 actualIndex = 0;    // Wrap back to 0 if the index reaches the end
             newEnemy = selectedEnemyPool[tempIndex]; // Init the enemy and return
-            newEnemy.Init();
+            newEnemy.GetComponent<EnemyBase>().Init();
             return newEnemy;
         }
         // Search for an enemy if inactive one wasn't found
@@ -74,7 +74,7 @@ public class EnemyManager : SingletonBase<EnemyManager>
                 if (actualIndex == selectedEnemyPool.Count)
                     actualIndex = 0;
                 int numberToCreate = EnemyPrefabs[(int)_type].amountToPool;
-                EnemyBase newPrefab = EnemyPrefabs[(int)_type].enemyPrefab;
+                GameObject newPrefab = EnemyPrefabs[(int)_type].enemyPrefab;
                 for (int i = 0; i < numberToCreate; ++i)
                 {
                     m_enemyPool[(int)_type].Add(Instantiate(newPrefab));
@@ -92,14 +92,14 @@ public class EnemyManager : SingletonBase<EnemyManager>
 
         }
         newEnemy.gameObject.SetActive(true);
-        newEnemy.Init();
+        newEnemy.GetComponent<EnemyBase>().Init();
         return newEnemy;
     }
 
     [System.Serializable]
     public struct EnemyPooledObject
     {
-        public EnemyBase enemyPrefab;
+        public GameObject enemyPrefab;
         public int startingAmount;
         public int amountToPool;
     }
