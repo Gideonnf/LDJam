@@ -137,9 +137,9 @@ TextureImporter:
       name: Character_L_Run_0
       rect:
         serializedVersion: 2
-        x: 18
+        x: 19
         y: 0
-        width: 30
+        width: 31
         height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -158,10 +158,10 @@ TextureImporter:
       name: Character_L_Run_1
       rect:
         serializedVersion: 2
-        x: 80
+        x: 81
         y: 0
-        width: 25
-        height: 41
+        width: 29
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,10 +179,10 @@ TextureImporter:
       name: Character_L_Run_2
       rect:
         serializedVersion: 2
-        x: 143
+        x: 142
         y: 0
-        width: 29
-        height: 42
+        width: 25
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,9 +200,9 @@ TextureImporter:
       name: Character_L_Run_3
       rect:
         serializedVersion: 2
-        x: 205
+        x: 204
         y: 0
-        width: 31
+        width: 30
         height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -220,7 +220,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1d6ef6ab8f4d9924eacee9cae7b89d57
+    spriteID: 1b78faa38fbdb784eb7392a1e61b2145
     internalID: 0
     vertices: []
     indices: 

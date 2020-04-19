@@ -137,10 +137,10 @@ TextureImporter:
       name: Character_L_Idle_0
       rect:
         serializedVersion: 2
-        x: 12
+        x: 11
         y: 0
-        width: 19
-        height: 46
+        width: 20
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,7 +182,7 @@ TextureImporter:
         x: 94
         y: 0
         width: 19
-        height: 45
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,10 +200,10 @@ TextureImporter:
       name: Character_L_Idle_3
       rect:
         serializedVersion: 2
-        x: 134
+        x: 135
         y: 0
-        width: 20
-        height: 45
+        width: 19
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -220,7 +220,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 91ba93d994b95b74282f087d7756758d
+    spriteID: d5f95363f2d5bf84aac20eeea1175c02
     internalID: 0
     vertices: []
     indices: 

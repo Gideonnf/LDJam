@@ -135,12 +135,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc6b55761ee7434da924778b8012538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ItemName: Mark of the Vampire
-  m_ItemDescription: A bracelet with bloodied fangs
+  m_ItemName: Vampiric Bat
+  m_ItemDescription: ' This bat follow you around, occasionally absorbing life force
+    from enemies you hit.'
   m_ItemSprite: {fileID: 0}
   m_ItemType: 4
+  Object: {fileID: 0}
   m_DamageBoost: 0
   m_SpeedBoost: 0
   m_HealthGain: 0
-  m_ItemChance: 56.5
+  m_ItemChance: 87
   UniqueAbility: 1
+  lifestealPet: {fileID: 1967637525528496196, guid: e43394f9dce38d2438ca5edfc99e890c,
+    type: 3}

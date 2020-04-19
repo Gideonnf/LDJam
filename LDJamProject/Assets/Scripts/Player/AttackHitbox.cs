@@ -14,6 +14,9 @@ public class AttackHitbox : MonoBehaviour
     [SerializeField] bool canHitMultipleTimes;
     [SerializeField] float timeBetweenEachHit;
     [SerializeField] bool posBasedOnMovementDir;
+    [SerializeField] bool nonPlayerAttack;
+    public Vector3 projectileDir;
+    public Vector3 spawnPos;
 
     GameObject player;
     List<GameObject> objsAttacked;
@@ -26,12 +29,20 @@ public class AttackHitbox : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         Vector3 dir;
         float angle;
-        if (posBasedOnMovementDir)
+        if (nonPlayerAttack)
+        {
+            transform.position = spawnPos;
+            dir = -projectileDir;
+            angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            angle += 90;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+        else if (posBasedOnMovementDir)
         {
             transform.position = player.transform.position - (player.GetComponent<PlayerMovement>().movementDir * distanceFromPlayer);
             dir = player.GetComponent<PlayerMovement>().movementDir;
             angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            angle += 90;
+            //angle += 90;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         else
@@ -43,7 +54,10 @@ public class AttackHitbox : MonoBehaviour
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         objsAttacked = new List<GameObject>();
-        direction = player.GetComponent<PlayerCombat>().playerLookDir;
+        if (nonPlayerAttack)
+            direction = projectileDir;
+        else
+            direction = player.GetComponent<PlayerCombat>().playerLookDir;
         timeBetweenEachHit_ = new List<float>();
     }
 
@@ -79,11 +93,13 @@ public class AttackHitbox : MonoBehaviour
                 }
             }
 
-            for (int i = 0; i < player.GetComponent<PlayerInventory>().UniqueItems.Count; ++i)
+            if (!nonPlayerAttack)
             {
-                player.GetComponent<PlayerInventory>().UniqueItems[i].WhenEnemyHit(other.gameObject);
+                for (int i = 0; i < player.GetComponent<PlayerInventory>().UniqueItems.Count; ++i)
+                {
+                    player.GetComponent<PlayerInventory>().UniqueItems[i].WhenEnemyHit(other.gameObject);
+                }
             }
-
             EquipmentManager.Instance.NormalItemDrop(gameObject.transform.position);
             Destroy(other.gameObject);
             if (projectileSpeed > 0 && !projectilePierce)
@@ -91,5 +107,12 @@ public class AttackHitbox : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        //if(other.gameObject.CompareTag("Wall"))
+        //{
+        //    if (projectileSpeed > 0) 
+        //    {
+        //        Destroy(gameObject);
+        //    }
+        //}
     }
 }

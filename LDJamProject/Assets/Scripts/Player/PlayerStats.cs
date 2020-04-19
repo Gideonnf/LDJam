@@ -47,6 +47,9 @@ public class PlayerStats : MonoBehaviour
     [Tooltip("Starting Attack Dash Time")]
     public float m_StartingAttackDashTime = 0.1f;
 
+    [Tooltip("Distance Between Each Pet")]
+    public float m_DistanceBetweenEachPet = 1f;
+
     // Current Stats after bonuses are applied from items
 
     public float m_CurrentDamage;
@@ -63,6 +66,7 @@ public class PlayerStats : MonoBehaviour
     public float m_CurrentAttackDashSpeed;
     public float m_CurrentAttackDashDistance;
     public float m_CurrentAttackDashTime;
+    public int m_NumOfPets;
 
 
     // Start is called before the first frame update
@@ -82,6 +86,7 @@ public class PlayerStats : MonoBehaviour
         m_CurrentAttackDashSpeed = m_StartingAttackDashSpeed;
         m_CurrentAttackDashDistance = m_StartingAttackDashDistance;
         m_CurrentAttackDashTime = m_StartingAttackDashTime;
+        m_NumOfPets = 0;
 }
 
     // Update is called once per frame

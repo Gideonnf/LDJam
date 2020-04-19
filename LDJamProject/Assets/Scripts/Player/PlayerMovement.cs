@@ -21,6 +21,14 @@ public class PlayerMovement : MonoBehaviour
     Animator playerAnimator;
 
     public bool isAttackDashing;
+    public enum FaceDirection
+    {
+        up,
+        down,
+        left,
+        right
+    }
+    public FaceDirection playerFaceDir;
     float distanceAttackDashed;
     float attackDashTimer;
     float idleTimer;
@@ -107,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
                 idleTimer = 0;
                 playerAnimator.SetBool("IsIdling", false);
             }
+            movement.Normalize();
         }
 
         if(numOfDash < playerStats.m_CurrentMaxDash && dashRechargeTime < playerStats.m_CurrentTimeToRechargeOneDash)

@@ -131,10 +131,10 @@ TextureImporter:
       name: Character_L_Dash_0
       rect:
         serializedVersion: 2
-        x: 16
+        x: 13
         y: 0
-        width: 36
-        height: 40
+        width: 42
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,10 +152,10 @@ TextureImporter:
       name: Character_L_Dash_1
       rect:
         serializedVersion: 2
-        x: 80
+        x: 78
         y: 0
-        width: 42
-        height: 42
+        width: 36
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,7 +172,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 09440fa8445dc67498cbdf275d7f2eb9
+    spriteID: eb04bfc39f708594fa86b36a15e9d660
     internalID: 0
     vertices: []
     indices: 
