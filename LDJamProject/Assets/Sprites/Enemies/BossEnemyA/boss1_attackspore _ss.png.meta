@@ -1,64 +1,34 @@
 fileFormatVersion: 2
-guid: f4ea672676dd5db468526370508fe266
+guid: 047bcd802e7d8dc46a723dd81cc95bb4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4185000582399143658
-    second: mon3_attack_ss_0
+      213: -4420818529431197759
+    second: boss1_attackspore _ss_0
   - first:
-      213: -5362964598221452688
-    second: mon3_attack_ss_1
+      213: 2319463856057733184
+    second: boss1_attackspore _ss_1
   - first:
-      213: -1181561170122457721
-    second: mon3_attack_ss_2
+      213: 2519544302324853434
+    second: boss1_attackspore _ss_2
   - first:
-      213: -7264843417458971571
-    second: mon3_attack_ss_3
+      213: 149421339919436143
+    second: boss1_attackspore _ss_3
   - first:
-      213: -3376071896812153178
-    second: mon3_attack_ss_4
+      213: -3091234220207927151
+    second: boss1_attackspore _ss_4
   - first:
-      213: 6224207345718404045
-    second: mon3_attack_ss_5
+      213: 8495475825212627958
+    second: boss1_attackspore _ss_5
   - first:
-      213: 337627914718530584
-    second: mon3_attack_ss_6
+      213: -4165302436889144289
+    second: boss1_attackspore _ss_6
   - first:
-      213: 445288219217390774
-    second: mon3_attack_ss_7
+      213: -5730818468473858450
+    second: boss1_attackspore _ss_7
   - first:
-      213: 1568208843028781279
-    second: mon3_attack_ss_8
-  - first:
-      213: 2818569636591735415
-    second: mon3_attack_ss_9
-  - first:
-      213: -8187104940751981654
-    second: mon3_attack_ss_10
-  - first:
-      213: 3030507326033606778
-    second: mon3_attack_ss_0
-  - first:
-      213: 2258773656304038849
-    second: mon3_attack_ss_1
-  - first:
-      213: 3088738096524325375
-    second: mon3_attack_ss_2
-  - first:
-      213: 4360715425184082263
-    second: mon3_attack_ss_3
-  - first:
-      213: 8640743869927851874
-    second: mon3_attack_ss_5
-  - first:
-      213: 6477489081554130651
-    second: mon3_attack_ss_4
-  - first:
-      213: -4824981195419637021
-    second: mon3_attack_ss_6
-  - first:
-      213: -7525431903540895149
-    second: mon3_attack_ss_7
+      213: -1684464878375945822
+    second: boss1_attackspore _ss_8
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -89,7 +59,7 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: 2
+    aniso: 1
     mipBias: -100
     wrapU: 1
     wrapV: 1
@@ -102,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 3
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -179,13 +149,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mon3_attack_ss_0
+      name: boss1_attackspore _ss_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 46
-        width: 42
-        height: 46
+        y: 66
+        width: 64
+        height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a78b3715b568e0a20800000000000000
-      internalID: 3030507326033606778
+      spriteID: 1c7e9c058f816a2c0800000000000000
+      internalID: -4420818529431197759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mon3_attack_ss_1
+      name: boss1_attackspore _ss_1
       rect:
         serializedVersion: 2
-        x: 42
-        y: 46
-        width: 42
-        height: 46
+        x: 64
+        y: 66
+        width: 64
+        height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c333044ca6c85f10800000000000000
-      internalID: 2258773656304038849
+      spriteID: 040dda98614603020800000000000000
+      internalID: 2319463856057733184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mon3_attack_ss_2
+      name: boss1_attackspore _ss_2
       rect:
         serializedVersion: 2
-        x: 84
-        y: 46
-        width: 42
-        height: 46
+        x: 128
+        y: 66
+        width: 64
+        height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff17c871fe66dda20800000000000000
-      internalID: 3088738096524325375
+      spriteID: abaaeef913837f220800000000000000
+      internalID: 2519544302324853434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mon3_attack_ss_3
+      name: boss1_attackspore _ss_3
       rect:
         serializedVersion: 2
-        x: 126
-        y: 46
-        width: 42
-        height: 46
+        x: 192
+        y: 66
+        width: 64
+        height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,20 +226,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 759e9ac339f548c30800000000000000
-      internalID: 4360715425184082263
+      spriteID: f69c2cfbae9d21200800000000000000
+      internalID: 149421339919436143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mon3_attack_ss_5
+      name: boss1_attackspore _ss_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 66
+        width: 64
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19099f2dadab915d0800000000000000
+      internalID: -3091234220207927151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1_attackspore _ss_5
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 42
-        height: 46
+        width: 64
+        height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -277,41 +268,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2670f22e4c61ae770800000000000000
-      internalID: 8640743869927851874
+      spriteID: 6fb97b7804ef5e570800000000000000
+      internalID: 8495475825212627958
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mon3_attack_ss_4
+      name: boss1_attackspore _ss_6
       rect:
         serializedVersion: 2
-        x: 168
-        y: 46
-        width: 42
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bd6518e100aa4e950800000000000000
-      internalID: 6477489081554130651
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mon3_attack_ss_6
-      rect:
-        serializedVersion: 2
-        x: 42
+        x: 64
         y: 0
-        width: 42
-        height: 46
+        width: 64
+        height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -319,20 +289,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3eaa217aa293a0db0800000000000000
-      internalID: -4824981195419637021
+      spriteID: f14572b908fd136c0800000000000000
+      internalID: -4165302436889144289
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mon3_attack_ss_7
+      name: boss1_attackspore _ss_7
       rect:
         serializedVersion: 2
-        x: 84
+        x: 128
         y: 0
-        width: 42
-        height: 46
+        width: 64
+        height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -340,20 +310,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 352ad002e8b409790800000000000000
-      internalID: -7525431903540895149
+      spriteID: e661e5257fa0870b0800000000000000
+      internalID: -5730818468473858450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mon3_attack_ss_8
+      name: boss1_attackspore _ss_8
       rect:
         serializedVersion: 2
-        x: 126
+        x: 192
         y: 0
-        width: 42
-        height: 46
+        width: 64
+        height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -361,8 +331,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd85b5e42a563c510800000000000000
-      internalID: 1568208843028781279
+      spriteID: 2a9b7c72e149f98e0800000000000000
+      internalID: -1684464878375945822
       vertices: []
       indices: 
       edges: []
@@ -370,7 +340,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5f0415d2e6bec9743913891234909cdd
+    spriteID: df6a88b99740b2645a1b4ac2044ebdf0
     internalID: 0
     vertices: []
     indices: 

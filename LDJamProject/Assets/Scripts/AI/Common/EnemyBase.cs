@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyBase : MonoBehaviour
 {
+
+    [SerializeField] protected float movespeed;
     protected Animator m_animator;
     #if UNITY_EDITOR
     public static bool g_debugMode = true;
@@ -14,11 +17,12 @@ public class EnemyBase : MonoBehaviour
 
     protected bool m_triggered = false;
 #endif
-
+    protected int health = 10;
     protected Vector3 m_nextPosition;
     protected Rigidbody2D m_rb;
     [SerializeField] float attack_range_sqr;
     public Transform DEBUG_TARGET;
+    protected bool m_dead;  // Does not update new path if true
     NavMeshAgent m_agent;
     // Start is called before the first frame update
     virtual public void Start()
@@ -28,14 +32,23 @@ public class EnemyBase : MonoBehaviour
         m_animator = GetComponentInChildren<Animator>();
         m_agent.updatePosition = false;
         m_agent.updateRotation = false;
+        Init();
+    }
+
+    virtual public void Init()
+    {
+        m_dead = false;
+        SetMoveSpeed(movespeed);
     }
 
     // Update is called once per frame
     virtual protected void Update()
     {
+        if (m_dead)
+            return;
         m_agent.SetDestination(DEBUG_TARGET.position);
         m_nextPosition = m_agent.nextPosition;
-        m_rb.position = m_agent.nextPosition;
+        m_rb.MovePosition(m_agent.nextPosition);
         transform.position = m_nextPosition;
         if ((m_nextPosition - DEBUG_TARGET.position).sqrMagnitude <= attack_range_sqr)
         {
@@ -75,5 +88,15 @@ public class EnemyBase : MonoBehaviour
 
     virtual protected void OnDeath()
     {
+        m_dead = true;
+        ClearPath();    // Stop it from moving
+    }
+
+    /// <summary>
+    /// Sets the gameobject inactive
+    /// </summary>
+    virtual public void Remove()
+    {
+        gameObject.SetActive(false);
     }
 }

@@ -17,8 +17,19 @@ public class RangedEnemyAAnimEvents : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Animation event called when the enemy shoots
+    /// </summary>
     public void Shoot()
     {
         enemy.ShootProjectile();
+    }
+
+    /// <summary>
+    /// Animation event called when the enemy shoots
+    /// </summary>
+    void DeathComplete()
+    {
+        enemy.Remove();
     }
 }
