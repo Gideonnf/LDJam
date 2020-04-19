@@ -93,6 +93,14 @@ public class EnemyBase : MonoBehaviour
         ClearPath();    // Stop it from moving
     }
 
+    public void Warp(Vector3 position)
+    {
+        if (m_agent)
+        {
+            m_agent.Warp(position);
+        }
+    }
+
     /// <summary>
     /// Sets the gameobject inactive
     /// </summary>
