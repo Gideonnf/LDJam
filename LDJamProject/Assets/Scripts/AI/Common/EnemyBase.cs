@@ -7,7 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyBase : MonoBehaviour
 {
-
+    SpriteRenderer spriteRenderer;
     [SerializeField] protected float movespeed;
     protected Animator m_animator;
     #if UNITY_EDITOR
@@ -33,6 +33,7 @@ public class EnemyBase : MonoBehaviour
         m_agent.updatePosition = false;
         m_agent.updateRotation = false;
         DEBUG_TARGET = PlayerController.Instance.gameObject.transform;
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         Init();
     }
 
@@ -45,6 +46,7 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     virtual protected void Update()
     {
+        spriteRenderer.sortingOrder = (int)(spriteRenderer.transform.position.y * -100);
         if (m_dead)
             return;
         m_agent.SetDestination(DEBUG_TARGET.position);
