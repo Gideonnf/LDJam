@@ -232,6 +232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movespeed: 5
-  attack_range_sqr: 0.117
+  attack_range_sqr: 2
   DEBUG_TARGET: {fileID: 0}
   attackDistance: 50

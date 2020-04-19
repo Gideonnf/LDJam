@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -741494307929599850, guid: d65459a949edbea4ebbdc243e593a6de,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -129,18 +129,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.19}
+  m_Offset: {x: 0.022928238, y: 0.033115566}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.3333335, y: 5.3333335}
+    oldSize: {x: 0.6666667, y: 0.6666667}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.6, y: 4.94}
+  m_Size: {x: 0.5897255, y: 0.71761453}
   m_EdgeRadius: 0
 --- !u!1 &1220848101459671780
 GameObject:
@@ -206,7 +206,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1220848101459671780}
   m_Enabled: 1
   m_AgentTypeID: -1372625422
-  m_Radius: 2
+  m_Radius: 0.25
   m_Speed: 3.5
   m_Acceleration: 1000
   avoidancePriority: 50
