@@ -129,18 +129,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1581825, y: 0.15939045}
+  m_Offset: {x: 0.022928238, y: 0.033115566}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 11.666667, y: 10.333333}
+    oldSize: {x: 1.4583334, y: 1.2916666}
     newSize: {x: 11.666667, y: 10.333333}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.7459946, y: 6.1458645}
+  m_Size: {x: 0.5897255, y: 0.71761453}
   m_EdgeRadius: 0
 --- !u!1 &8890762823898693805
 GameObject:
@@ -185,7 +185,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 8890762823898693805}
   m_Enabled: 1
   m_AgentTypeID: -1372625422
-  m_Radius: 2
+  m_Radius: 0.25
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
