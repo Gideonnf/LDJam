@@ -281,6 +281,9 @@ public class PlayerInventory : MonoBehaviour
         // Base amount is the player's currnet money count
         totalMoney = m_PlayerMoney;
 
+        // Add all the item money
+
+
         return totalMoney;
     }
 }
