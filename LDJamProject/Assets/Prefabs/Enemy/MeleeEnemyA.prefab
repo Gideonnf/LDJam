@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movespeed: 0
-  attack_range_sqr: 25
+  attack_range_sqr: 0.39
   DEBUG_TARGET: {fileID: 0}
   explosionRadius: 0
   explosionDamage: 0
