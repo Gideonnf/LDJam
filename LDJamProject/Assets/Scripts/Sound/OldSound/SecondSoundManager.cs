@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class SoundManager : SingletonBase<SoundManager>
+public class SecondSoundManager : SingletonBase<SecondSoundManager>
 {
     public Sound[] m_SoundClipList;
 

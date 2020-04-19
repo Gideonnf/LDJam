@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class AudioObject
-{
-    public string name;
-    public AudioClip audioFile;
-    public bool isLooping = false;
-    public bool isRepeatable = false;
-}
+//[System.Serializable]
+//public class AudioObject
+//{
+//    public string name;
+//    public AudioClip audioFile;
+//    public bool isLooping = false;
+//    public bool isRepeatable = false;
+//}
 
 public class SoundManager : SingletonBase<SoundManager>
 {
@@ -47,15 +47,17 @@ public class SoundManager : SingletonBase<SoundManager>
     /// <param name="audioName"> Audio to be played </param>
     /// <param name="audioSource"> Source to play on </param>
     /// <returns></returns>
-    public bool PlayAudio(string audioName, int audioSource)
+    public bool Play(string audioName, int audioSource)
     {
         foreach (AudioObject audio in ListOfAudioObjects)
         {
-            if (audio.name == audioName)
+            if (audio.m_AudioName == audioName)
             {
-                ListOfAudioSources[audioSource].clip = audio.audioFile;
+                ListOfAudioSources[audioSource].clip = audio.m_Clip;
 
-                ListOfAudioSources[audioSource].loop = audio.isLooping;
+                ListOfAudioSources[audioSource].loop = audio.m_Loop;
+
+                ListOfAudioSources[audioSource].volume = audio.m_Volume;
 
                 ListOfAudioSources[audioSource].Play();
             }
@@ -79,11 +81,11 @@ public class SoundManager : SingletonBase<SoundManager>
     {
         foreach (AudioObject audio in ListOfAudioObjects)
         {
-            if (audio.name == audioName)
+            if (audio.m_AudioName == audioName)
             {
-                ListOfAudioSources[audioSource].clip = audio.audioFile;
+                ListOfAudioSources[audioSource].clip = audio.m_Clip;
 
-                ListOfAudioSources[audioSource].loop = audio.isLooping;
+                ListOfAudioSources[audioSource].loop = audio.m_Loop;
 
                 // Rand a pitch for the audio source between 0.5 to 2.0f
                 ListOfAudioSources[audioSource].pitch = Random.Range(0.5f, 2.0f);
