@@ -29,10 +29,10 @@ public class ItemDrop : MonoBehaviour
             // Debug.Log("Collided with an item");
             
             // They can pick it up
-            if (Input.GetKeyDown(KeyCode.E))
-            {
+           // if (Input.GetKeyDown(KeyCode.E))
+           // {
                 EquipmentManager.Instance.PickupItem(gameObject);
-            }
+            //}
         }
     }
 

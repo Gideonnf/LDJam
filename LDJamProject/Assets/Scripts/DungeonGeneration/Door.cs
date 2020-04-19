@@ -6,12 +6,27 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        CheckPlayer(collision);
+    }
+
+    public void CheckPlayer(Collider2D collision)
+    {
         if (collision.tag == "Player")
         {
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.ChangePlayerGridPosition(player.GetPlayerCurrentGridPos() + GetNextRoomOffset());
+                PlayerMovement playerMovement = player.GetPlayerMovement();
+                if (playerMovement != null)
+                {
+                    Vector2Int roomOffset = GetNextRoomOffset();
+
+                    //check if its same direction
+                    if (Vector2.Dot(playerMovement.movementDir, roomOffset) > 0)
+                    {
+                        player.ChangePlayerGridPosition(player.GetPlayerCurrentGridPos() + roomOffset);
+                    }
+                }
             }
         }
     }

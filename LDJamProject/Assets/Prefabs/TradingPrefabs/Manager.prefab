@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1045452076919079731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1045452076919079732}
+  - component: {fileID: 1045452076919079733}
+  - component: {fileID: 1045452076919079730}
+  - component: {fileID: 1045452076919079735}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1045452076919079732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045452076919079731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.432991, y: -8.275849, z: 89.05884}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1045452076919079733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045452076919079731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e740974f9521ee47b3fb756dc9a52fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bDontDestroyOnLoad: 0
+  bUseRootTransform: 0
+  m_NormalItemList:
+  - {fileID: -303535858953330649, guid: 02f481e43e1904b40b53ea4608144d44, type: 3}
+  - {fileID: 2867979360169527573, guid: 500696f0ae86bf948a99809e4e051161, type: 3}
+  - {fileID: 3728915708958617934, guid: e55dee5e899624145ae140df0bac5767, type: 3}
+  - {fileID: 2867979360169527573, guid: 553c3fb74a005c542b8648cb82af8de8, type: 3}
+  - {fileID: 2867979360169527573, guid: a1284b4fd9bef37488a397ecb3f265bf, type: 3}
+  m_BossItemlist:
+  - {fileID: -303535858953330649, guid: 02f481e43e1904b40b53ea4608144d44, type: 3}
+  m_DropOnce: 0
+  m_MoneyDrop: 5
+--- !u!114 &1045452076919079730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045452076919079731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813a15df902d1f8459d0381b9f07229b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listOfPools: []
+--- !u!114 &1045452076919079735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045452076919079731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb2308dd671714409f1244e490fb7d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bDontDestroyOnLoad: 0
+  bUseRootTransform: 0
+  TradeMenuObject: {fileID: 0}
+  TradeItemSlot: {fileID: 8638278294739179662, guid: db4f8ef6d077a8f42922cbabe2706fca,
+    type: 3}
+  PlayerTradeSlot: {fileID: 0}
+  NPCTradeSlot: {fileID: 0}
+  PlayerItemStartingPos: {x: -500, y: -85}
+  PlayerSlotDistance: {x: 90, y: 95}
+  ColumnRow: {x: 4, y: 3}
+  NPCItemStartingPos: {x: 280, y: -275}
+  NPCSlotDistance: 120

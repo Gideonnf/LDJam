@@ -14,9 +14,9 @@ public class RangedEnemyA : EnemyBase
     int death_trigger;      // Death trigger
     #endregion
     // Start is called before the first frame update
-    new public void Start()
+    new public void Awake()
     {
-        base.Start();
+        base.Awake();
         moving_bool = Animator.StringToHash("moving");
         hit_trigger = Animator.StringToHash("hit");
         attack_trigger = Animator.StringToHash("attack");

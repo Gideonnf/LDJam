@@ -41,6 +41,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Environment
+    uniqueID: 828345511
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

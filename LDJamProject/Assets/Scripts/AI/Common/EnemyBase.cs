@@ -7,7 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyBase : MonoBehaviour
 {
-
+    SpriteRenderer spriteRenderer;
     [SerializeField] protected float movespeed;
     protected Animator m_animator;
     #if UNITY_EDITOR
@@ -25,7 +25,7 @@ public class EnemyBase : MonoBehaviour
     protected bool m_dead;  // Does not update new path if true
     NavMeshAgent m_agent;
     // Start is called before the first frame update
-    virtual public void Start()
+    virtual public void Awake()
     {
         m_rb = GetComponent<Rigidbody2D>();
         m_agent = GetComponent<NavMeshAgent>();
@@ -33,6 +33,7 @@ public class EnemyBase : MonoBehaviour
         m_agent.updatePosition = false;
         m_agent.updateRotation = false;
         DEBUG_TARGET = PlayerController.Instance.gameObject.transform;
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         Init();
     }
 
@@ -45,6 +46,7 @@ public class EnemyBase : MonoBehaviour
     // Update is called once per frame
     virtual protected void Update()
     {
+        spriteRenderer.sortingOrder = (int)(spriteRenderer.transform.position.y * -100);
         if (m_dead)
             return;
         m_agent.SetDestination(DEBUG_TARGET.position);
@@ -91,6 +93,14 @@ public class EnemyBase : MonoBehaviour
     {
         m_dead = true;
         ClearPath();    // Stop it from moving
+    }
+
+    public void Warp(Vector3 position)
+    {
+        if (m_agent)
+        {
+            m_agent.Warp(position);
+        }
     }
 
     /// <summary>

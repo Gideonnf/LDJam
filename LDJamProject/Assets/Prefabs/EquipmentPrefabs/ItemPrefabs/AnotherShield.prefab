@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6385744341626999093}
   - component: {fileID: 2867979360169527573}
   m_Layer: 0
-  m_Name: Shield
+  m_Name: AnotherShield
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec930158723ebc4eb3af71ab86f2ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ItemName: Not Unique Shield
+  m_ItemName: Another Shield
   m_ItemDescription: 
   m_ItemSprite: {fileID: 0}
   m_ItemType: 4
@@ -143,5 +143,5 @@ MonoBehaviour:
   m_DamageBoost: 0
   m_SpeedBoost: 0
   m_HealthGain: 0
-  m_ItemChance: 39
+  m_ItemChance: 43.9
   UniqueAbility: 0

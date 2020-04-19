@@ -24,8 +24,9 @@ public class InventorySlot
 
 public class PlayerInventory : MonoBehaviour
 {
+
     [HideInInspector] public List<ItemObjBase> UniqueItems = new List<ItemObjBase>();
-    List<ItemObjBase> InventoryItems = new List<ItemObjBase>();
+    [HideInInspector] public List<ItemObjBase> InventoryItems = new List<ItemObjBase>();
     PlayerStats m_PlayerStats;
 
     [Header("Hot bar Settings")]
@@ -36,7 +37,7 @@ public class PlayerInventory : MonoBehaviour
     [Tooltip("The distance between each slot")]
     public float SlotDistance = 90;
 
-    List<InventorySlot> inventorySlots = new List<InventorySlot>();
+    [HideInInspector] public List<InventorySlot> inventorySlots = new List<InventorySlot>();
     int currentInventoryCount;
     //public List<GameObject> InventorySlots = new List<GameObject>();
 
@@ -228,5 +229,38 @@ public class PlayerInventory : MonoBehaviour
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// for alvin <3
+    /// </summary>
+    /// <returns></returns>
+    public Sprite GetStrongestWeapon()
+    {
+        ItemObjBase currStrongestWeapon = null;
+        for (int i = 0; i < InventoryItems.Count; ++i)
+        {
+            // If the item is a sword
+            if (InventoryItems[i].m_ItemType == EquipmentManager.ItemType.SWORD)
+            {
+                if (currStrongestWeapon == null)
+                {
+                    // set the strongest weapon sprite to that weapon
+                    currStrongestWeapon = InventoryItems[i];
+                }
+                else
+                {
+                    // de item is stronger than de current item
+                    // hurr durr
+                    if (InventoryItems[i].GetSetItemDamage > currStrongestWeapon.GetSetItemDamage)
+                    {
+                        currStrongestWeapon = InventoryItems[i];
+                    }
+                }
+            }
+        }
+
+        // return the sprite lol
+        return currStrongestWeapon.m_ItemSprite;
     }
 }

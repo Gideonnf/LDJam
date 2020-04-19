@@ -13,9 +13,9 @@ public class MeleeEnemyB : EnemyBase
     #endregion
     [SerializeField] float attackDistance;
     // Start is called before the first frame update
-    new public void Start()
+    new public void Awake()
     {
-        base.Start();
+        base.Awake();
         moving_bool = Animator.StringToHash("moving");
         hit_trigger = Animator.StringToHash("hit");
         attack_trigger = Animator.StringToHash("attack");
@@ -55,7 +55,7 @@ public class MeleeEnemyB : EnemyBase
         hits = Physics2D.RaycastAll(m_rb.position, (Vector2)DEBUG_TARGET.position - m_rb.position, attackDistance);
         foreach(RaycastHit2D hit in hits)
         {
-            if (hit.collider.gameObject.GetComponent<EnemyBase>() != null)
+            if (hit.collider.gameObject.GetComponent<GameObject>() != null)
                 continue;
             else if (hit.collider.gameObject.CompareTag("Player"));
         }
