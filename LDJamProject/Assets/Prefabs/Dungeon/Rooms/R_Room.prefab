@@ -421,7 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PossibleEnemyPositions: []
   m_MinNumberEnemies: 1
-  m_3DCollidersParent: {fileID: 0}
+  m_3DCollidersParent: {fileID: 1560480480472984750}
   m_Doors: {fileID: 1306145634115572721}
   m_DoorBlocks: {fileID: 1306145635034987861}
   m_PlayerSpawnPosition: {fileID: 1665034473693104005}

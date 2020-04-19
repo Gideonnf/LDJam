@@ -509,6 +509,11 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         }
     }
 
+    public bool RoomExists(Vector2Int pos)
+    {
+        return m_RoomsBehaviour.ContainsKey(pos);
+    }
+
     public void ChangeRoom(Vector2Int playerNewPos)
     {
         //set room to active

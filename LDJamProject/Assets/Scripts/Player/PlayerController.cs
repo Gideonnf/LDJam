@@ -68,7 +68,10 @@ public class PlayerController : SingletonBase<PlayerController>
 
     public void ChangePlayerGridPosition(Vector2Int newPlayerPosition, bool updateDungeon = true)
     {
-        m_CurrDungeonRoomGridPos = newPlayerPosition;
+        if (DungeonGeneration.Instance.RoomExists(newPlayerPosition))
+            m_CurrDungeonRoomGridPos = newPlayerPosition;
+        else
+            return;
 
         if (updateDungeon)
             DungeonGeneration.Instance.ChangeRoom(m_CurrDungeonRoomGridPos);
@@ -77,5 +80,10 @@ public class PlayerController : SingletonBase<PlayerController>
     public Vector2Int GetPlayerCurrentGridPos()
     {
         return m_CurrDungeonRoomGridPos;
+    }
+
+    public PlayerMovement GetPlayerMovement()
+    {
+        return m_PlayerMovement;
     }
 }

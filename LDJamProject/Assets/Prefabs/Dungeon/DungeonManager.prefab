@@ -76,9 +76,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bDontDestroyOnLoad: 0
   bUseRootTransform: 0
+  m_NavMeshSurface: {fileID: 0}
   m_MinMaxRoomNumber: {x: 10, y: 12}
   m_RoomTypeData:
-  - m_RoomPrefab: {fileID: 3229350031805644906, guid: 5e919927dd295ed42b126901015dd3ce,
+  - m_RoomPrefab: {fileID: 4860655608413232431, guid: 032a02e0e594ade44a3f3e093dd719ee,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 0
@@ -87,7 +88,7 @@ MonoBehaviour:
       m_LeftOpening: 1
       m_UpOpening: 0
       m_DownOpening: 0
-  - m_RoomPrefab: {fileID: 6364564113572108646, guid: 64c16aa213ee1784fa9b2d95778cf6d4,
+  - m_RoomPrefab: {fileID: 1306145634489514545, guid: b4db75d1ae8848a4db329098caec033a,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 1
@@ -96,7 +97,7 @@ MonoBehaviour:
       m_LeftOpening: 0
       m_UpOpening: 0
       m_DownOpening: 0
-  - m_RoomPrefab: {fileID: 5378655740005334316, guid: 6b8a802cb901b234ba5064485815de35,
+  - m_RoomPrefab: {fileID: 7834466877432195618, guid: 8c7ba5f98c8e1a24ab576f9a20ba6a64,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 2
@@ -105,7 +106,7 @@ MonoBehaviour:
       m_LeftOpening: 0
       m_UpOpening: 1
       m_DownOpening: 0
-  - m_RoomPrefab: {fileID: 6628140020538486461, guid: 52e82e9e5fb9dfb4f8b4ee4d83c0fff2,
+  - m_RoomPrefab: {fileID: 2055540038390393092, guid: efeef562aa8261a4bab2edf5cc7ee25f,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 3
@@ -114,7 +115,7 @@ MonoBehaviour:
       m_LeftOpening: 0
       m_UpOpening: 0
       m_DownOpening: 1
-  - m_RoomPrefab: {fileID: 2116425406672614705, guid: 0c5ef55e1fdb7094d89715b12ee192f2,
+  - m_RoomPrefab: {fileID: 971462563070193949, guid: efa27e7adbdcd27448696347af3e1ac6,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 4
@@ -123,7 +124,7 @@ MonoBehaviour:
       m_LeftOpening: 1
       m_UpOpening: 0
       m_DownOpening: 0
-  - m_RoomPrefab: {fileID: 6143985040671560888, guid: 8df6af39035b51642b9a3c7d93553232,
+  - m_RoomPrefab: {fileID: 6242192452479424835, guid: 18e5b1f764228714dbba4dc92e8a2d74,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 5
@@ -132,7 +133,7 @@ MonoBehaviour:
       m_LeftOpening: 1
       m_UpOpening: 1
       m_DownOpening: 0
-  - m_RoomPrefab: {fileID: 1549781646248722476, guid: f14e3e8e27f0d8f4db85810657a86006,
+  - m_RoomPrefab: {fileID: 1865432553856511602, guid: f4bbdc9722c988344a2079013fc99b16,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 6
@@ -141,7 +142,7 @@ MonoBehaviour:
       m_LeftOpening: 1
       m_UpOpening: 0
       m_DownOpening: 1
-  - m_RoomPrefab: {fileID: 2248162442956418047, guid: fddda757ad36f16418f60fabd4194daa,
+  - m_RoomPrefab: {fileID: 6406604717311889510, guid: cbda808db10427c4aa06f65ef1cc2c02,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 7
@@ -150,7 +151,7 @@ MonoBehaviour:
       m_LeftOpening: 0
       m_UpOpening: 1
       m_DownOpening: 0
-  - m_RoomPrefab: {fileID: 5197538450568427176, guid: 80ab39c25adc4b34097a3091c3e04e1d,
+  - m_RoomPrefab: {fileID: 7080537763344042510, guid: 54e823f718c9ae04aafc152d08e06173,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 8
@@ -159,7 +160,7 @@ MonoBehaviour:
       m_LeftOpening: 0
       m_UpOpening: 0
       m_DownOpening: 1
-  - m_RoomPrefab: {fileID: 652826665986164111, guid: b56e8bf11f2ccdd4787e08939782f5bb,
+  - m_RoomPrefab: {fileID: 4935642410422309205, guid: 4d76e12ebe664b3489bd07cf09f8c39f,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 9
@@ -168,7 +169,7 @@ MonoBehaviour:
       m_LeftOpening: 0
       m_UpOpening: 1
       m_DownOpening: 1
-  - m_RoomPrefab: {fileID: 1763691837804466912, guid: 8c6c3c1baec678f4284ddc2fb551f349,
+  - m_RoomPrefab: {fileID: 4167725829917095261, guid: 2e96d23fdeaef4a49a700ecfee158b8c,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 10
@@ -177,7 +178,7 @@ MonoBehaviour:
       m_LeftOpening: 1
       m_UpOpening: 1
       m_DownOpening: 0
-  - m_RoomPrefab: {fileID: 5880750991640684401, guid: b4188ef279a9a9c40b359e08f4c622d5,
+  - m_RoomPrefab: {fileID: 5434758055820978296, guid: 2a30a24e824e22c4b8e236ceaaf5b093,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 11
@@ -186,7 +187,7 @@ MonoBehaviour:
       m_LeftOpening: 1
       m_UpOpening: 0
       m_DownOpening: 1
-  - m_RoomPrefab: {fileID: 2913840284237538885, guid: 76344ca4884abfd46aabc20eb735d8cc,
+  - m_RoomPrefab: {fileID: 3593212110497556853, guid: 1dc75b9a50b0ce347be5679c3cdf92c1,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 12
@@ -195,7 +196,7 @@ MonoBehaviour:
       m_LeftOpening: 0
       m_UpOpening: 1
       m_DownOpening: 1
-  - m_RoomPrefab: {fileID: 3245097308034227645, guid: 00a8aa34a0082334bb7fa807c7c5941d,
+  - m_RoomPrefab: {fileID: 1328849393612572583, guid: 8bd87cb44b2bd1c428fb8f2d5837ffb8,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 13
@@ -204,7 +205,7 @@ MonoBehaviour:
       m_LeftOpening: 1
       m_UpOpening: 1
       m_DownOpening: 1
-  - m_RoomPrefab: {fileID: 3188405523218436858, guid: cd9d5abd5ab0a754a9b3727beaeecca1,
+  - m_RoomPrefab: {fileID: 4167725829917095261, guid: 2e96d23fdeaef4a49a700ecfee158b8c,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 14
@@ -214,3 +215,4 @@ MonoBehaviour:
       m_UpOpening: 1
       m_DownOpening: 1
   m_RoomParent: {fileID: 447638065725612217}
+  m_CameraMoveSpeed: 5

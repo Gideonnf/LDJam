@@ -1638,7 +1638,7 @@ PrefabInstance:
     - target: {fileID: 8226401086316922916, guid: 42c7128bb32040343912a370c06c5f2a,
         type: 3}
       propertyPath: m_DoorDirection
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8226401086316922919, guid: 42c7128bb32040343912a370c06c5f2a,
         type: 3}

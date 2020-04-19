@@ -24,6 +24,7 @@ public class RoomBehaviour : MonoBehaviour
     public void Awake()
     {
         m_RoomComplete = false;
+        OpenBlocks(false);
     }
 
     public void RoomComplete()
@@ -31,9 +32,7 @@ public class RoomBehaviour : MonoBehaviour
         //open room
         m_RoomComplete = true;
 
-        if (m_DoorBlocks != null)
-            m_DoorBlocks.SetActive(false);
-
+        OpenBlocks(false);
         OpenDoors(true);
     }
 
@@ -41,6 +40,12 @@ public class RoomBehaviour : MonoBehaviour
     {
         if (m_Doors != null)
             m_Doors.SetActive(open);
+    }
+
+    public void OpenBlocks(bool open)
+    {
+        if (m_DoorBlocks != null)
+            m_DoorBlocks.SetActive(open);
     }
 
     public void SetupRoom()
@@ -119,6 +124,9 @@ public class RoomBehaviour : MonoBehaviour
     public void FinishBaking()
     {
         //remove all the 3D colliders
+        if (m_3DCollidersParent == null)
+            return;
+
         foreach(Transform child in m_3DCollidersParent.transform)
         {
             Destroy(child.gameObject);
