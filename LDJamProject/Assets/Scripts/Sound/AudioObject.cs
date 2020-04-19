@@ -10,7 +10,7 @@ public class AudioObject : ScriptableObject
     public AudioClip m_Clip;
 
     [Range(0f, 1f)]
-    public float m_Volume = 1;.0f
+    public float m_Volume = 1.0f;
     [Range(0.1f, 3f)]
     public float m_Pitch = 1.0f;
     [Range(0f, 1f)]

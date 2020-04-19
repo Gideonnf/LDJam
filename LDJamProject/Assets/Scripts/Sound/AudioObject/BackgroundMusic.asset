@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1668ff9b14de14693c1b2c5f2ce1bf, type: 3}
   m_Name: BackgroundMusic
   m_EditorClassIdentifier: 
-  m_Name: 
+  m_AudioName: 
   m_Clip: {fileID: 0}
   m_Volume: 0
-  m_Pitch: 0
+  m_Pitch: 3
   m_HearingBaseOnDist: 1
   m_Loop: 0
