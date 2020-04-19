@@ -1,25 +1,16 @@
 fileFormatVersion: 2
-guid: 8e6a4512ac2f1584cb4e973466ecae65
+guid: a3d579b80633faf4b8a21b760916221d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3858222106388504037
-    second: Caravan_R_Moving_0
+      213: -3935063806284945487
+    second: Caravan_R_Unride_Idle_0
   - first:
-      213: -6753025133202800166
-    second: Caravan_R_Moving_1
+      213: -4910628477374124141
+    second: Caravan_R_Unride_Idle_1
   - first:
-      213: -4592591730213375292
-    second: Caravan_R_Moving_2
-  - first:
-      213: -8414482436809293161
-    second: Caravan_R_Moving_3
-  - first:
-      213: 6593472860741293821
-    second: Caravan_R_Moving_4
-  - first:
-      213: -4445139629353898711
-    second: Caravan_R_Moving_5
+      213: -341439324283041858
+    second: Caravan_R_Unride_Idle_2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -140,13 +131,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Caravan_R_Moving_0
+      name: Caravan_R_Unride_Idle_0
       rect:
         serializedVersion: 2
         x: 3
         y: 1
         width: 99
-        height: 82
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,62 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b12672c9f67d47ac0800000000000000
-      internalID: -3858222106388504037
+      spriteID: 1b7a3e92158d369c0800000000000000
+      internalID: -3935063806284945487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Caravan_R_Moving_1
+      name: Caravan_R_Unride_Idle_1
       rect:
         serializedVersion: 2
-        x: 107
-        y: 1
-        width: 100
-        height: 83
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ad18920ab6f6842a0800000000000000
-      internalID: -6753025133202800166
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Caravan_R_Moving_2
-      rect:
-        serializedVersion: 2
-        x: 212
-        y: 1
-        width: 100
-        height: 83
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c23c3a6726d340c0800000000000000
-      internalID: -4592591730213375292
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Caravan_R_Moving_3
-      rect:
-        serializedVersion: 2
-        x: 318
+        x: 108
         y: 1
         width: 99
-        height: 82
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79208393ec0c93b80800000000000000
-      internalID: -8414482436809293161
+      spriteID: 39fa23eda61f9dbb0800000000000000
+      internalID: -4910628477374124141
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Caravan_R_Moving_4
+      name: Caravan_R_Unride_Idle_2
       rect:
         serializedVersion: 2
-        x: 422
+        x: 213
         y: 1
-        width: 100
-        height: 83
+        width: 99
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -238,29 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df6d9a412a8b08b50800000000000000
-      internalID: 6593472860741293821
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Caravan_R_Moving_5
-      rect:
-        serializedVersion: 2
-        x: 527
-        y: 1
-        width: 100
-        height: 82
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 92d6957fe01bf42c0800000000000000
-      internalID: -4445139629353898711
+      spriteID: eb782cb5eb6f24bf0800000000000000
+      internalID: -341439324283041858
       vertices: []
       indices: 
       edges: []

@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: 8e6a4512ac2f1584cb4e973466ecae65
+guid: 4d99ffaf711cfa04db117ec07cc69487
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3858222106388504037
-    second: Caravan_R_Moving_0
+      213: -4191477920173026920
+    second: Caravan_R_Unride_0
   - first:
-      213: -6753025133202800166
-    second: Caravan_R_Moving_1
+      213: -3346861446771241179
+    second: Caravan_R_Unride_1
   - first:
-      213: -4592591730213375292
-    second: Caravan_R_Moving_2
+      213: 3412859756729252096
+    second: Caravan_R_Unride_2
   - first:
-      213: -8414482436809293161
-    second: Caravan_R_Moving_3
-  - first:
-      213: 6593472860741293821
-    second: Caravan_R_Moving_4
-  - first:
-      213: -4445139629353898711
-    second: Caravan_R_Moving_5
+      213: 1092585958885531232
+    second: Caravan_R_Unride_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -140,7 +134,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Caravan_R_Moving_0
+      name: Caravan_R_Unride_0
       rect:
         serializedVersion: 2
         x: 3
@@ -154,20 +148,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b12672c9f67d47ac0800000000000000
-      internalID: -3858222106388504037
+      spriteID: 891913cf901e4d5c0800000000000000
+      internalID: -4191477920173026920
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Caravan_R_Moving_1
+      name: Caravan_R_Unride_1
       rect:
         serializedVersion: 2
-        x: 107
+        x: 108
         y: 1
-        width: 100
-        height: 83
+        width: 101
+        height: 81
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,20 +169,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad18920ab6f6842a0800000000000000
-      internalID: -6753025133202800166
+      spriteID: 52f00c02f3f8d81d0800000000000000
+      internalID: -3346861446771241179
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Caravan_R_Moving_2
+      name: Caravan_R_Unride_2
       rect:
         serializedVersion: 2
-        x: 212
+        x: 213
         y: 1
-        width: 100
-        height: 83
+        width: 99
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,20 +190,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c23c3a6726d340c0800000000000000
-      internalID: -4592591730213375292
+      spriteID: 009b21cddd9ec5f20800000000000000
+      internalID: 3412859756729252096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Caravan_R_Moving_3
+      name: Caravan_R_Unride_3
       rect:
         serializedVersion: 2
         x: 318
         y: 1
         width: 99
-        height: 82
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,50 +211,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79208393ec0c93b80800000000000000
-      internalID: -8414482436809293161
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Caravan_R_Moving_4
-      rect:
-        serializedVersion: 2
-        x: 422
-        y: 1
-        width: 100
-        height: 83
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df6d9a412a8b08b50800000000000000
-      internalID: 6593472860741293821
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Caravan_R_Moving_5
-      rect:
-        serializedVersion: 2
-        x: 527
-        y: 1
-        width: 100
-        height: 82
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 92d6957fe01bf42c0800000000000000
-      internalID: -4445139629353898711
+      spriteID: 06e93fd0425a92f00800000000000000
+      internalID: 1092585958885531232
       vertices: []
       indices: 
       edges: []
