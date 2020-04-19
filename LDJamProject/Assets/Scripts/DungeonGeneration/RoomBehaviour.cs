@@ -12,6 +12,7 @@ public class RoomBehaviour : MonoBehaviour
     public GameObject m_3DCollidersParent;
     public GameObject m_Doors;
     public GameObject m_DoorBlocks;
+    public Transform m_PlayerSpawnPosition; //if this is startRoom
 
     [Header("RealizationData")]
     public Transform m_CameraPos;
@@ -56,6 +57,15 @@ public class RoomBehaviour : MonoBehaviour
     {
         //just spawn player in middle
         PlayerController.Instance.ChangePlayerGridPosition(m_RoomGridPos, false);
+
+        //teleport player
+        PlayerController.Instance.gameObject.transform.position = m_PlayerSpawnPosition.position;
+
+        //teleport camera pos
+        Camera camera = Camera.main;
+        if (camera != null)
+            camera.transform.position = m_CameraPos.position;
+
         RoomComplete();
     }
 
@@ -63,6 +73,11 @@ public class RoomBehaviour : MonoBehaviour
     {
         //spawn enemies at possible locations
         //'lock' doors
+
+        //teleport camera pos
+        //Camera camera = Camera.main;
+        //if (camera != null)
+        //    camera.transform.position = m_CameraPos.position;
     }
 
     public void SetUpBossRoom()
@@ -80,14 +95,12 @@ public class RoomBehaviour : MonoBehaviour
         m_RoomGridPos = gridPos;
     }
 
-    public void InitRoom()
+    public void FinishBaking()
     {
         //remove all the 3D colliders
         foreach(Transform child in m_3DCollidersParent.transform)
         {
-            Destroy(child);
+            Destroy(child.gameObject);
         }
-
-
     }
 }

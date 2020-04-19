@@ -27,6 +27,10 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
     Vector2Int m_SpawnRoomGridPos = Vector2Int.zero;
     Vector2Int m_BossRoomGridPos = Vector2Int.zero;
 
+    //for room movement
+    Vector2Int m_PrevRoom = Vector2Int.zero;
+    Vector2Int m_CurrRoom = Vector2Int.zero;
+
     public void Start()
     {
         //sort the rooms accordingly
@@ -135,6 +139,8 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         {
             m_RoomsBehaviour[m_SpawnRoomGridPos].gameObject.SetActive(true);
             m_RoomsBehaviour[m_SpawnRoomGridPos].SetupRoom();
+
+            m_CurrRoom = m_PrevRoom = m_SpawnRoomGridPos;
         }
     }
 
@@ -470,6 +476,15 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         {
             m_NavMeshSurface.BuildNavMesh();
         }
+
+        foreach(KeyValuePair<Vector2Int, RoomBehaviour> room in m_RoomsBehaviour)
+        {
+            RoomBehaviour roomBehaviour = room.Value;
+            if (roomBehaviour != null)
+            {
+                roomBehaviour.FinishBaking();
+            }
+        }
     }
 
     public void SetAllRoomsInactive()
@@ -486,6 +501,9 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         if (m_RoomsBehaviour.ContainsKey(playerNewPos))
         {
             m_RoomsBehaviour[playerNewPos].gameObject.SetActive(true);
+
+            m_PrevRoom = m_CurrRoom;
+            m_CurrRoom = playerNewPos;
         }
 
         //DO THE CAMERA SWEEP
@@ -500,7 +518,10 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
     {
         //DO CAMERA SWEEP,
         //TURN PREV ROOM INACTIVE
-
+        if (m_RoomsBehaviour.ContainsKey(m_CurrRoom))
+        {
+            m_RoomsBehaviour[m_CurrRoom].SetupRoom();
+        }
 
         yield return null;
     }
