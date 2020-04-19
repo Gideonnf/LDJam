@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     [SerializeField] Slider staminaBar;
+    [SerializeField] float timeInactiveToBeIdle = 0.1f;
 
     PlayerStats playerStats;
     Rigidbody2D PlayerRB;
@@ -15,10 +16,12 @@ public class PlayerMovement : MonoBehaviour
     float distanceDashed;
     int numOfDash;
     float dashRechargeTime;
+    Animator playerAnimator;
 
     public bool isAttackDashing;
     float distanceAttackDashed;
     float attackDashTimer;
+    float idleTimer;
 
     public Vector3 movementDir;
 
@@ -34,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
         attackDashTimer = 0;
         numOfDash = playerStats.m_CurrentMaxDash;
         dashRechargeTime = 0;
+        idleTimer = 0;
+        playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -68,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     GetComponent<PlayerInventory>().UniqueItems[i].WhenDashEnds();
                 }
+                playerAnimator.SetBool("IsDashing", false);
             }
         }
         else
@@ -75,6 +81,19 @@ public class PlayerMovement : MonoBehaviour
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
             movementDir = movement;
+            playerAnimator.SetFloat("XSpeed", movement.x);
+            playerAnimator.SetFloat("YSpeed", movement.y);
+            if(movement == Vector2.zero)
+            {
+                idleTimer += Time.deltaTime;
+                if (idleTimer >= timeInactiveToBeIdle)
+                    playerAnimator.SetBool("IsIdling", true);
+            }
+            else
+            {
+                idleTimer = 0;
+                playerAnimator.SetBool("IsIdling", false);
+            }
         }
 
         if(numOfDash < playerStats.m_CurrentMaxDash && dashRechargeTime < playerStats.m_CurrentTimeToRechargeOneDash)
@@ -103,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
             playerStats.m_CurrentSpeed = playerStats.m_CurrentDashSpeed;
             distanceDashed = 0;
             numOfDash--;
+            playerAnimator.SetBool("IsDashing", true);
         }
     }
 

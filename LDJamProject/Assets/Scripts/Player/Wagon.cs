@@ -23,7 +23,7 @@ public class Wagon : MonoBehaviour
     {
         if(playerPullingWagon)
         {
-            if (player.GetComponent<PlayerMovement>().movementDir != new Vector3(0, 0, 0))
+            if (player.GetComponent<PlayerMovement>().movementDir != Vector3.zero)
             {
                 transform.position = player.transform.position - (player.GetComponent<PlayerMovement>().movementDir * distanceFromPlayer);
                 Vector3 dir = player.GetComponent<PlayerMovement>().movementDir;
