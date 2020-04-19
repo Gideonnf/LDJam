@@ -14,6 +14,9 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
     public List<Room> m_RoomTypeData = new List<Room>();
     public GameObject m_RoomParent;
 
+    [Header("Camera stuff")]
+    public float m_CameraMoveSpeed = 5.0f;
+
     Dictionary<RoomOpeningTypes, RoomOpeningInfo> m_RoomOpeningsData = new Dictionary<RoomOpeningTypes, RoomOpeningInfo>();
     Dictionary<RoomOpeningTypes, GameObject> m_RoomObjectData = new Dictionary<RoomOpeningTypes, GameObject>();
 
@@ -26,8 +29,11 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
     //impt room locations
     Vector2Int m_SpawnRoomGridPos = Vector2Int.zero;
     Vector2Int m_BossRoomGridPos = Vector2Int.zero;
-
-    //for room movement
+    
+    //for room and camera movement
+    Camera m_MainCamera;
+    Vector3 m_NextCameraPos = Vector2.zero;
+    float m_CurrentCameraLerp = 0.0f;
     Vector2Int m_PrevRoom = Vector2Int.zero;
     Vector2Int m_CurrRoom = Vector2Int.zero;
 
@@ -51,6 +57,7 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
             m_RoomTileWidthHeight = new Vector2(spriteRenderer.bounds.size.x, spriteRenderer.bounds.size.y);
 
         m_NavMeshSurface = FindObjectOfType<NavMeshSurface>();
+        m_MainCamera = Camera.main;
 
         GenerateLevel();
     }
@@ -63,9 +70,16 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         //}
     }
 
+    public void FixedUpdate()
+    {
+        m_CurrentCameraLerp += m_CameraMoveSpeed * Time.fixedDeltaTime;
+        m_CurrentCameraLerp = Mathf.Clamp(m_CurrentCameraLerp, 0.0f, 1.1f);
+    }
+
     public void GenerateLevel()
     {
         m_Taken.Clear();
+        m_RoomsBehaviour.Clear();
         foreach (Transform child in m_RoomParent.transform)
         {
             Destroy(child.gameObject);
@@ -435,10 +449,10 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         }
 
         //set the boss room type
-        if (m_RoomsBehaviour.ContainsKey(m_BossRoomGridPos))
-        {
-            m_RoomsBehaviour[m_BossRoomGridPos].SetRoomType(RoomTypes.BOSS_ROOM);
-        }
+        //if (m_RoomsBehaviour.ContainsKey(m_BossRoomGridPos))
+        //{
+        //    m_RoomsBehaviour[m_BossRoomGridPos].SetRoomType(RoomTypes.BOSS_ROOM);
+        //}
     }
 
     //get rooms with a certain number of 'openings'
@@ -501,13 +515,24 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         if (m_RoomsBehaviour.ContainsKey(playerNewPos))
         {
             m_RoomsBehaviour[playerNewPos].gameObject.SetActive(true);
+            m_NextCameraPos = m_RoomsBehaviour[playerNewPos].m_CameraPos.position;
 
             m_PrevRoom = m_CurrRoom;
             m_CurrRoom = playerNewPos;
         }
+        else
+        {
+            return;
+        }
+
+        if (m_RoomsBehaviour.ContainsKey(m_PrevRoom))
+        {
+            m_RoomsBehaviour[playerNewPos].LeaveRoom();
+        }
 
         //DO THE CAMERA SWEEP
         //WHEN CAMERA IS FULLY SWEEPED, SET GAMEOBJECT TO INACTIVE
+        m_CurrentCameraLerp = 0.0f;
         StartCoroutine(ChangeRoomAnim());
 
         //UPDATE UI
@@ -517,10 +542,21 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
     IEnumerator ChangeRoomAnim()
     {
         //DO CAMERA SWEEP,
-        //TURN PREV ROOM INACTIVE
+        while (m_CurrentCameraLerp <= 1.0f)
+        {
+            m_MainCamera.transform.position = Vector3.Lerp(m_MainCamera.transform.position, m_NextCameraPos, m_CurrentCameraLerp);
+            yield return null;
+        }
+
+        //TURN PREV ROOM INACTIVE and set up current room
         if (m_RoomsBehaviour.ContainsKey(m_CurrRoom))
         {
             m_RoomsBehaviour[m_CurrRoom].SetupRoom();
+        }
+
+        if (m_RoomsBehaviour.ContainsKey(m_PrevRoom) && m_PrevRoom != m_CurrRoom)
+        {
+            m_RoomsBehaviour[m_PrevRoom].gameObject.SetActive(false);
         }
 
         yield return null;

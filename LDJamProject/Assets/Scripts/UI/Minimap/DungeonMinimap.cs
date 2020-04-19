@@ -36,7 +36,7 @@ public class DungeonMinimap : SingletonBase<DungeonMinimap>
 
     Vector2Int m_CurrHighlightedRoom = new Vector2Int(0,0);
 
-    public void Start()
+    public void Awake()
     {
         foreach(RoomTypeUI uiData in m_RoomUIData)
         {

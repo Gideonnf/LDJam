@@ -21,6 +21,11 @@ public class RoomBehaviour : MonoBehaviour
     bool m_RoomComplete = false;
     Vector2Int m_RoomGridPos = Vector2Int.zero;
 
+    public void Awake()
+    {
+        m_RoomComplete = false;
+    }
+
     public void RoomComplete()
     {
         //open room
@@ -29,15 +34,23 @@ public class RoomBehaviour : MonoBehaviour
         if (m_DoorBlocks != null)
             m_DoorBlocks.SetActive(false);
 
+        OpenDoors(true);
+    }
+
+    public void OpenDoors(bool open)
+    {
         if (m_Doors != null)
-            m_Doors.SetActive(true);
+            m_Doors.SetActive(open);
     }
 
     public void SetupRoom()
     {
         //if room is already completed, ignore this
         if (m_RoomComplete)
+        {
+            OpenDoors(true);
             return;
+        }
 
         switch (m_RoomType)
         {
@@ -61,6 +74,8 @@ public class RoomBehaviour : MonoBehaviour
         //teleport player
         PlayerController.Instance.gameObject.transform.position = m_PlayerSpawnPosition.position;
 
+        Debug.Log(PlayerController.Instance.gameObject.transform.position + "   " + m_PlayerSpawnPosition.position);
+
         //teleport camera pos
         Camera camera = Camera.main;
         if (camera != null)
@@ -73,11 +88,17 @@ public class RoomBehaviour : MonoBehaviour
     {
         //spawn enemies at possible locations
         //'lock' doors
+        OpenDoors(true);
 
         //teleport camera pos
         //Camera camera = Camera.main;
         //if (camera != null)
         //    camera.transform.position = m_CameraPos.position;
+    }
+
+    public void LeaveRoom()
+    {
+        OpenDoors(false);
     }
 
     public void SetUpBossRoom()
