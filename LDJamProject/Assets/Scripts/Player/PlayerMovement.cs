@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Slider staminaBar;
     [SerializeField] float timeInactiveToBeIdle = 0.1f;
+    [SerializeField] GameObject ghostDash;
+    [SerializeField] float timeBeforeGhostSpawn;
 
     PlayerStats playerStats;
     Rigidbody2D PlayerRB;
@@ -22,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     float distanceAttackDashed;
     float attackDashTimer;
     float idleTimer;
+
+    float ghostSpawnTimer;
 
     public Vector3 movementDir;
 
@@ -39,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         dashRechargeTime = 0;
         idleTimer = 0;
         playerAnimator = GetComponent<Animator>();
+        ghostSpawnTimer = 0;
     }
 
     // Update is called once per frame
@@ -65,6 +70,14 @@ public class PlayerMovement : MonoBehaviour
         else if (isDashing)
         {
             distanceDashed += playerStats.m_CurrentDashSpeed * Time.deltaTime;
+            ghostSpawnTimer += Time.deltaTime;
+            if(ghostSpawnTimer >= timeBeforeGhostSpawn)
+            {
+                ghostSpawnTimer = 0;
+                GameObject temp = Instantiate(ghostDash, transform.position, Quaternion.identity);
+                temp.GetComponent<SpriteRenderer>().sprite = GetComponent<SpriteRenderer>().sprite;
+                Destroy(temp, 0.2f);
+            }
             if(distanceDashed >= playerStats.m_CurrentDashDistance)
             {
                 isDashing = false;

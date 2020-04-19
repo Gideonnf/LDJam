@@ -10,11 +10,15 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] GameObject rangedAttackHitbox;
     [SerializeField] Slider meleeBar;
     [SerializeField] Slider rangedBar;
+    [SerializeField] GameObject meleeWeapon;
+    [SerializeField] Animator meleeWeaponAnimator;
+    [SerializeField] GameObject meleeAttackParticles;
 
     PlayerStats playerStats;
     PlayerMovement playerMovement;
     float meleeAttackSpeed_;
     float rangedAttackSpeed_;
+    bool attack1Animation;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +27,7 @@ public class PlayerCombat : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         meleeAttackSpeed_ = playerStats.m_CurrentMeleeAttackSpeed;
         rangedAttackSpeed_ = playerStats.m_CurrentRangedAttackSpeed;
+        attack1Animation = false;
     }
 
     // Update is called once per frame
@@ -36,6 +41,8 @@ public class PlayerCombat : MonoBehaviour
         worldMousePos.z = 0;
         playerLookDir = worldMousePos - GetComponent<Transform>().position;
         playerLookDir.Normalize();
+        meleeWeapon.transform.rotation = Quaternion.identity;
+        meleeWeapon.transform.Rotate(new Vector3(0, 0, Mathf.Rad2Deg * Mathf.Atan2(playerLookDir.y, playerLookDir.x)));
 
         meleeBar.value = meleeAttackSpeed_ / playerStats.m_CurrentMeleeAttackSpeed;
         rangedBar.value = rangedAttackSpeed_ / playerStats.m_CurrentRangedAttackSpeed;
@@ -45,6 +52,12 @@ public class PlayerCombat : MonoBehaviour
     {
         if(meleeAttackSpeed_ >= playerStats.m_CurrentMeleeAttackSpeed && !playerMovement.isDashing && !playerMovement.isAttackDashing)
         {
+            attack1Animation = !attack1Animation;
+            meleeWeaponAnimator.SetBool("Attack1", attack1Animation);
+
+            meleeAttackParticles.SetActive(true);
+            meleeAttackParticles.GetComponent<ParticleSystem>().Play();
+
             playerMovement.MeleeAttackDash();
             for (int i = 0; i < GetComponent<PlayerInventory>().UniqueItems.Count; ++i)
             {
