@@ -37,8 +37,11 @@ public class PlayerInventory : MonoBehaviour
     [Tooltip("The distance between each slot")]
     public float SlotDistance = 90;
 
+    [HideInInspector] public float m_PlayerMoney;
+
     [HideInInspector] public List<InventorySlot> inventorySlots = new List<InventorySlot>();
     int currentInventoryCount;
+
     //public List<GameObject> InventorySlots = new List<GameObject>();
 
 
@@ -93,6 +96,8 @@ public class PlayerInventory : MonoBehaviour
         // Items that give health dont remove them
         //m_PlayerStats.m_CurrentHealth -= removedItem.GetSetItemHealth;
     }
+
+     // I READ FANFICTION FOR ABIT
 
     public void AddToInventory(GameObject itemToAdd)
     {
@@ -232,7 +237,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
     /// <summary>
-    /// for alvin <3
+    /// for alvin :cry:
     /// </summary>
     /// <returns></returns>
     public Sprite GetStrongestWeapon()
@@ -262,5 +267,20 @@ public class PlayerInventory : MonoBehaviour
 
         // return the sprite lol
         return currStrongestWeapon.m_ItemSprite;
+    }
+
+    /// <summary>
+    /// For Angie :cry:
+    /// Gives the current money added with the item money value
+    /// </summary>
+    /// <returns></returns>
+    public float GetTotalMoney()
+    {
+        float totalMoney = 0;
+
+        // Base amount is the player's currnet money count
+        totalMoney = m_PlayerMoney;
+
+        return totalMoney;
     }
 }

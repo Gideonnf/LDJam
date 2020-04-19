@@ -19,7 +19,8 @@ public class ItemObjBase : MonoBehaviour
     [Tooltip("Type of item")]
     public EquipmentManager.ItemType m_ItemType;
 
-    public MonoBehaviour Object;
+    [Tooltip("Price of the item")]
+    public float m_ItemPrice;
 
     [Tooltip("Damage Boost of the item")]
     [SerializeField] float m_DamageBoost;
