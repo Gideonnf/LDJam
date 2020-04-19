@@ -25,7 +25,7 @@ public class EnemyBase : MonoBehaviour
     protected bool m_dead;  // Does not update new path if true
     NavMeshAgent m_agent;
     // Start is called before the first frame update
-    virtual public void Start()
+    virtual public void Awake()
     {
         m_rb = GetComponent<Rigidbody2D>();
         m_agent = GetComponent<NavMeshAgent>();
