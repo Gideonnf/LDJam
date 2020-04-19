@@ -8,6 +8,14 @@ public class RoomBehaviour : MonoBehaviour
     public List<Transform> m_PossibleEnemyPositions = new List<Transform>();
     public int m_MinNumberEnemies = 1;
 
+    [Header("Room data")]
+    public GameObject m_3DCollidersParent;
+    public GameObject m_Doors;
+    public GameObject m_DoorBlocks;
+
+    [Header("RealizationData")]
+    public Transform m_CameraPos;
+
     RoomTypes m_RoomType = RoomTypes.NORMAL_ROOM;
     bool m_RoomComplete = false;
     Vector2Int m_RoomGridPos = Vector2Int.zero;
@@ -16,6 +24,12 @@ public class RoomBehaviour : MonoBehaviour
     {
         //open room
         m_RoomComplete = true;
+
+        if (m_DoorBlocks != null)
+            m_DoorBlocks.SetActive(false);
+
+        if (m_Doors != null)
+            m_Doors.SetActive(true);
     }
 
     public void SetupRoom()
@@ -42,7 +56,7 @@ public class RoomBehaviour : MonoBehaviour
     {
         //just spawn player in middle
         PlayerController.Instance.ChangePlayerGridPosition(m_RoomGridPos, false);
-
+        RoomComplete();
     }
 
     public void SetUpNormalRoom()
@@ -64,5 +78,16 @@ public class RoomBehaviour : MonoBehaviour
     public void SetRoomGridPos(Vector2Int gridPos)
     {
         m_RoomGridPos = gridPos;
+    }
+
+    public void InitRoom()
+    {
+        //remove all the 3D colliders
+        foreach(Transform child in m_3DCollidersParent.transform)
+        {
+            Destroy(child);
+        }
+
+
     }
 }

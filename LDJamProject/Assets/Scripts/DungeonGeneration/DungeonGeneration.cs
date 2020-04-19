@@ -5,6 +5,11 @@ using UnityEngine.AI;
 
 public class DungeonGeneration : SingletonBase<DungeonGeneration>
 {
+    [Header("AI")]
+    //for navmesh
+    public NavMeshSurface m_NavMeshSurface = null;
+
+    [Header("Room Info")]
     public Vector2Int m_MinMaxRoomNumber = new Vector2Int(10,12);
     public List<Room> m_RoomTypeData = new List<Room>();
     public GameObject m_RoomParent;
@@ -21,9 +26,6 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
     //impt room locations
     Vector2Int m_SpawnRoomGridPos = Vector2Int.zero;
     Vector2Int m_BossRoomGridPos = Vector2Int.zero;
-
-    //for navmesh
-    NavMeshSurface m_NavMeshSurface = null;
 
     public void Start()
     {
