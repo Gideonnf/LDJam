@@ -141,7 +141,7 @@ MonoBehaviour:
   m_ItemType: 2
   Object: {fileID: 0}
   m_DamageBoost: 5
-  m_SpeedBoost: 5
+  m_SpeedBoost: 0
   m_HealthGain: 5
   m_ItemChance: 43.9
   UniqueAbility: 1

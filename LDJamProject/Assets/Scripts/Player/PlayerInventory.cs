@@ -230,4 +230,37 @@ public class PlayerInventory : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// for alvin <3
+    /// </summary>
+    /// <returns></returns>
+    public Sprite GetStrongestWeapon()
+    {
+        ItemObjBase currStrongestWeapon = null;
+        for (int i = 0; i < InventoryItems.Count; ++i)
+        {
+            // If the item is a sword
+            if (InventoryItems[i].m_ItemType == EquipmentManager.ItemType.SWORD)
+            {
+                if (currStrongestWeapon == null)
+                {
+                    // set the strongest weapon sprite to that weapon
+                    currStrongestWeapon = InventoryItems[i];
+                }
+                else
+                {
+                    // de item is stronger than de current item
+                    // hurr durr
+                    if (InventoryItems[i].GetSetItemDamage > currStrongestWeapon.GetSetItemDamage)
+                    {
+                        currStrongestWeapon = InventoryItems[i];
+                    }
+                }
+            }
+        }
+
+        // return the sprite lol
+        return currStrongestWeapon.m_ItemSprite;
+    }
 }

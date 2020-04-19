@@ -13,6 +13,7 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
         AMULET,
         ARMOR,
         SHIELD,
+        POTION,
         TOTAL_ITEMS
     }
 
@@ -126,14 +127,23 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
         // If they manage to pick up the item
         if (Item != null)
         {
-            // Add it to player inventory
-            // Call player class here later
-            PlayerController.Instance.m_PlayerInventory.AddToInventory(Item);
+            // If its a potion
+            if (Item.GetComponent<ItemObjBase>().m_ItemType == ItemType.POTION)
+            {
+                // Use it immediately
+                PlayerController.Instance.m_PlayerInventory.AddStats(Item);
+            }
+            else
+            {
+                // Add it to player inventory
+                // Call player class here later
+                PlayerController.Instance.m_PlayerInventory.AddToInventory(Item);
+            }
 
             // Remove it from the list and set active to false
             //ActiveItems.Remove(Item);
 
-           // Destroy(Item);
+            // Destroy(Item);
         }
 
     }

@@ -60,6 +60,10 @@ public class TradeManager : SingletonBase<TradeManager>
         {
             TestInventory();
         }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CloseTrade();
+        }
     }
 
     /// <summary>
