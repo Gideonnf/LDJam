@@ -32,6 +32,7 @@ public class EnemyBase : MonoBehaviour
         m_animator = GetComponentInChildren<Animator>();
         m_agent.updatePosition = false;
         m_agent.updateRotation = false;
+        DEBUG_TARGET = PlayerController.Instance.gameObject.transform;
         Init();
     }
 
