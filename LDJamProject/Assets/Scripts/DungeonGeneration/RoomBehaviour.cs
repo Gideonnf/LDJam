@@ -109,12 +109,12 @@ public class RoomBehaviour : MonoBehaviour
 
         for (int i =0; i < numberOfEnemiesToSpawn; ++i)
         {
-            EnemyManager.EnemyType enemyType = (EnemyManager.EnemyType)Random.Range((int)EnemyManager.EnemyType.MELEE_A, (int)EnemyManager.EnemyType.RANGED_A);
+            EnemyManager.EnemyType enemyType = (EnemyManager.EnemyType)Random.Range((int)EnemyManager.EnemyType.MELEE_A, (int)EnemyManager.EnemyType.RANGED_A + 1);
             GameObject enemy = EnemyManager.Instance.FetchEnemy(enemyType);
 
             if (enemy != null)
             {
-                int randomLocationIndex = Random.Range(0, m_PossibleEnemySpawnPosition.childCount - 1);
+                int randomLocationIndex = Random.Range(0, m_PossibleEnemySpawnPosition.childCount);
 
                 enemy.SetActive(true);
                 EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
