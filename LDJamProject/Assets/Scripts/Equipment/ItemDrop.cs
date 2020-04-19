@@ -26,8 +26,8 @@ public class ItemDrop : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             // They can pick it up
-           // Debug.Log("Collided with an item");
-
+            // Debug.Log("Collided with an item");
+            
             // They can pick it up
             if (Input.GetKeyDown(KeyCode.E))
             {
