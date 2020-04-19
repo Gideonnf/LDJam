@@ -139,8 +139,9 @@ MonoBehaviour:
   m_ItemDescription: 
   m_ItemSprite: {fileID: 0}
   m_ItemType: 3
+  Object: {fileID: 0}
   m_DamageBoost: 0
   m_SpeedBoost: 5
   m_HealthGain: 0
-  m_ItemChance: 0
+  m_ItemChance: 52.5
   UniqueAbility: 1

@@ -41,7 +41,7 @@ public class ItemDrop : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             // They can pick it up
-            Debug.Log("Collided with an item");
+          //  Debug.Log("Collided with an item");
         }
     }
 
@@ -50,7 +50,7 @@ public class ItemDrop : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             // They can pick it up
-            Debug.Log("Left Collided with an item");
+           // Debug.Log("Left Collided with an item");
         }
     }
 

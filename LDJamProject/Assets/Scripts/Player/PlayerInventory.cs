@@ -3,34 +3,68 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public class InventorySlot
+{
+    public GameObject SlotUI;
+    public ItemObjBase ItemStored;
+    public int Quantity;
+
+    public InventorySlot()
+    {
+
+    }
+
+    public InventorySlot(GameObject _SlotUI, ItemObjBase _ItemStored, int _Quantity)
+    {
+        SlotUI = _SlotUI;
+        ItemStored = _ItemStored;
+        Quantity = _Quantity;
+    }
+}
+
 public class PlayerInventory : MonoBehaviour
 {
     [HideInInspector] public List<ItemObjBase> UniqueItems = new List<ItemObjBase>();
     List<ItemObjBase> InventoryItems = new List<ItemObjBase>();
     PlayerStats m_PlayerStats;
 
+    [Header("Hot bar Settings")]
+    [Tooltip("Reference to the object that the UI slots are parented under")]
     public GameObject InventoryBarReference;
-    public List<GameObject> InventorySlots = new List<GameObject>();
+    [Tooltip("Reference to the prefab for the UI Slots")]
+    public GameObject UISlotPrefab;
+    [Tooltip("The distance between each slot")]
+    public float SlotDistance = 90;
 
-    Dictionary<int, ItemObjBase> ItemSlotTracker = new Dictionary<int, ItemObjBase>();
+    List<InventorySlot> inventorySlots = new List<InventorySlot>();
+    int currentInventoryCount;
+    //public List<GameObject> InventorySlots = new List<GameObject>();
+
+
+    //Dictionary<int, ItemObjBase> ItemSlotTracker = new Dictionary<int, ItemObjBase>();
     // Start is called before the first frame update
     void Start()
     {
         m_PlayerStats = GetComponent<PlayerStats>();
 
-        foreach (Transform child in InventoryBarReference.transform)
-        {
-            InventorySlots.Add(child.gameObject);
-            child.gameObject.SetActive(false);
-        }
+        //foreach (Transform child in InventoryBarReference.transform)
+        //{
+        //    InventorySlots.Add(child.gameObject);
+        //    child.gameObject.SetActive(false);
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < UniqueItems.Count; ++i)
+        //for (int i = 0; i < UniqueItems.Count; ++i)
+        //{
+        //    UniqueItems[i].PassiveEffect();
+        //}
+
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            UniqueItems[i].PassiveEffect();
+            RemoveFromUI(inventorySlots[1].ItemStored);
         }
     }
 
@@ -79,9 +113,10 @@ public class PlayerInventory : MonoBehaviour
             UniqueItems.Add(ItemBase);
         }
 
+        // Add the item stat bonuses to the player
         AddStats(itemToAdd);
-
-        AddToUI(ItemBase);
+        // Add the item into the UI Hotbar
+        AddToUI(itemToAdd);
 
         Destroy(itemToAdd);
 
@@ -110,23 +145,41 @@ public class PlayerInventory : MonoBehaviour
     /// Called when adding an item to the UI Bar
     /// </summary>
     /// <param name="itemToAdd"></param>
-    public void AddToUI(ItemObjBase itemToAdd)
+    public void AddToUI(GameObject itemToAdd)
     {
-        for (int i = 0; i < InventorySlots.Count; ++i)
-        {
-            // Takes the first inactive item
-            if (InventorySlots[i].activeSelf == false)
-            {
-                // Set the item slot to active
-                InventorySlots[i].SetActive(true);
-                // Change the sprite
-                InventorySlots[i].GetComponent<Image>().sprite = itemToAdd.m_ItemSprite;
-                // Store it in the dictionary to keep track 
-                ItemSlotTracker.Add(i, itemToAdd);
+        ItemObjBase itemAdded = itemToAdd.GetComponent<ItemObjBase>();
 
-                break;
+        for(int i = 0; i < inventorySlots.Count; ++i)
+        {
+            // If the item exist in the current inventory slot
+            if (inventorySlots[i].ItemStored.GetSetItemName == itemAdded.GetSetItemName)
+            {
+                // Add it to the current inventory slot
+                // Debug.Log("item already in hotbar");
+                inventorySlots[i].Quantity++;
+                // change the quantity number on the object
+                inventorySlots[i].SlotUI.GetComponentInChildren<Text>().text = inventorySlots[i].Quantity.ToString();
+
+                return;
             }
         }
+
+        // else then it isnt inside and it has to be added
+        GameObject newUISlot = Instantiate(UISlotPrefab, InventoryBarReference.transform);
+        //Adjust the position of the UI Slot
+        Vector2 UISlotPosition = newUISlot.GetComponent<RectTransform>().anchoredPosition;
+        // Set the new position of hte UI Slot
+        UISlotPosition.x += (SlotDistance * currentInventoryCount);
+        // Change to the new position
+        newUISlot.GetComponent<RectTransform>().anchoredPosition = UISlotPosition;
+
+
+        // Create a new inventory slot
+        InventorySlot inventorySlot = new InventorySlot(newUISlot, itemAdded, 1);
+        //Add it to the list
+        inventorySlots.Add(inventorySlot);
+        // Increment the count
+        currentInventoryCount++;
     }
 
     /// <summary>
@@ -134,42 +187,46 @@ public class PlayerInventory : MonoBehaviour
     /// Called if the player picks up too many items or sells an item
     /// </summary>
     /// <param name="itemToRemove"></param>
-    public void RemoveFromtUI(ItemObjBase itemToRemove)
+    public void RemoveFromUI(ItemObjBase itemToRemove)
     {
-        //TODO: Find a way to coordinate item slots with the item its holding(?)
-        // So when the player removes it can remove an item in the middle for example
-        // then shift all the items down
-    }
+        for (int i = 0; i < inventorySlots.Count; ++i)
+        {
+            // If the item exist in the inventory
+            if (inventorySlots[i].ItemStored.GetSetItemName == itemToRemove.GetSetItemName)
+            {
+                // if there are more than 1 quantity of the item
+                if (inventorySlots[i].Quantity > 1)
+                {
+                    // Just reduce the quantity
+                    inventorySlots[i].Quantity--;
+                    inventorySlots[i].SlotUI.GetComponentInChildren<Text>().text = inventorySlots[i].Quantity.ToString();
+                }
+                else
+                {
+                    // Tricky part
+                    // Delete the item from the hot bar and shift the remaining
+                    // Destroy the UI element first
+                    Destroy(inventorySlots[i].SlotUI);
 
-    /// <summary>
-    /// Might have issue
-    /// When the player collides with the object and picks it up
-    /// it will call the equipment manager
-    /// this is so I dont have to make an entire new script to handle picking up items internally 
-    /// </summary>
-    /// <param name="collision">Object it is colliding with</param>
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        // If player is colliding with an item on the ground
-        //if (collision.gameObject.tag  == "Item")
-        //{
-        //    // They can pick it up
-        //    Debug.Log("Collided with an item");
+                    // Shift everything down
+                    // Start from the element after the item slot that is being deleted
+                    for (int x = i + 1; x < inventorySlots.Count; ++x)
+                    {
+                        // If the current slot is empty already
+                        // in the case of deleting the last item, the next item is null already
+                        if (inventorySlots[x] == null)
+                            continue;
 
-        //    // They can pick it up
-        //    if (Input.GetKeyDown("E"))
-        //    {
-        //        EquipmentManager.Instance.PickupItem(collision.gameObject);
-        //    }
-        //}
-    }
+                        Vector2 newUISlot = inventorySlots[x].SlotUI.GetComponent<RectTransform>().anchoredPosition;
+                        newUISlot.x -= SlotDistance; // Shift to the left
+                        inventorySlots[x].SlotUI.GetComponent<RectTransform>().anchoredPosition = newUISlot;
+                    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //if (collision.gameObject.tag == "Item")
-        //{
-        //    // They can pick it up
-        //    Debug.Log("Collided with an item");
-        //}
+                    // Remove from list
+                    inventorySlots.Remove(inventorySlots[i]);
+                    return;
+                }
+            }
+        }
     }
 }
