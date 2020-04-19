@@ -114,14 +114,15 @@ public class RoomBehaviour : MonoBehaviour
 
             if (enemy != null)
             {
+                int randomLocationIndex = Random.Range(0, m_PossibleEnemySpawnPosition.childCount - 1);
+
                 enemy.SetActive(true);
                 EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
                 if (enemyBase)
+                {
                     enemyBase.Init();
-
-                //spawn at a random location
-                int randomLocationIndex = Random.Range(0, m_PossibleEnemySpawnPosition.childCount - 1);
-                enemy.transform.position = m_PossibleEnemySpawnPosition.GetChild(randomLocationIndex).position;
+                    enemyBase.Warp(m_PossibleEnemySpawnPosition.GetChild(randomLocationIndex).position); //spawn at a random location
+                }
             }
         }
     }
