@@ -10,6 +10,12 @@ public class TradeManager : SingletonBase<TradeManager>
     [Tooltip("Prefab for the item slot")]
     public GameObject TradeItemSlot;
 
+    [Tooltip("Prefab for NPC item slot")]
+    public GameObject NPCTradeItemSlot;
+
+    [Tooltip("Sprite to show selected objects")]
+    public Sprite SelectedObjectSprite;
+
     [Tooltip("When the player selects an item to trade, this is the UI Item slot")]
     public GameObject PlayerTradeSlot;
 
@@ -21,18 +27,18 @@ public class TradeManager : SingletonBase<TradeManager>
     public Vector2 PlayerItemStartingPos;
 
     [Tooltip("Distance Between each item slots")]
-    public Vector2 PlayerSlotDistance = new Vector2(90, 95);
+    public Vector2 PlayerSlotDistance = new Vector2(75, 100);
 
 
     [Tooltip("How many rows and columns")]
-    public Vector2 ColumnRow = new Vector2(4, 3);
+    public Vector2 ColumnRow = new Vector2(6, 2);
 
     [Header("Inventory Configuration for NPC")]
     [Tooltip("Starting position of the NPC's first item slot")]
     public Vector2 NPCItemStartingPos;
 
     [Tooltip("Distance between each item slots")]
-    public float NPCSlotDistance = 120;
+    public float NPCSlotDistance = 95;
 
     // Keep track of their inventory
     // Inventory slot is created in player Inventory
@@ -40,9 +46,6 @@ public class TradeManager : SingletonBase<TradeManager>
     List<InventorySlot> NPCInventorySlots = new List<InventorySlot>();
 
     PlayerInventory m_playerInventoryRef;
-
-   
-
 
     // Start is called before the first frame update
     void Start()
@@ -102,7 +105,7 @@ public class TradeManager : SingletonBase<TradeManager>
         // Set up NPC Sprite
 
         // Set up NPC Inventory
-        CreateNPCInventory();
+        CreateNPCInventory(NPCToTrade);
     }
 
     public void CreatePlayerInventory()
@@ -146,7 +149,7 @@ public class TradeManager : SingletonBase<TradeManager>
 
                 //Debug.Log("Item " + m_playerInventoryRef.InventoryItems[currentActiveSlots].name + " with " + m_playerInventoryRef.InventoryItems[currentActiveSlots].Quantity);
                 
-                Debug.Log("Item " + m_playerInventoryRef.inventorySlots[currentActiveSlots].ItemStored.GetSetItemName + " with " + m_playerInventoryRef.inventorySlots[currentActiveSlots].Quantity);
+                //Debug.Log("Item " + m_playerInventoryRef.inventorySlots[currentActiveSlots].ItemStored.GetSetItemName + " with " + m_playerInventoryRef.inventorySlots[currentActiveSlots].Quantity);
 
                 // Create an inventory slot
                 InventorySlot newInventorySlot = new InventorySlot(newUISlot, itemAdded, Quantity);
@@ -161,9 +164,37 @@ public class TradeManager : SingletonBase<TradeManager>
 
     }
 
-    public void CreateNPCInventory()
+    public void CreateNPCInventory(GameObject NPCToTrade)
     {
+        // Reference to the trade npc script for creating the inventory
+        TradeNPC tradeNPC = NPCToTrade.GetComponent<TradeNPC>();
 
+        // Loop through the NPC's item list
+        // NPCs will only have 3 items 
+        // dont have to check if it goes more than 3 xd
+        for(int i = 0; i < tradeNPC.m_NPCItemList.Count; ++i)
+        {
+            ItemObjBase NPCItem = tradeNPC.m_NPCItemList[i];
+
+            // Create the NPC's item slot
+            GameObject newUISlot = Instantiate(NPCTradeItemSlot, TradeMenuObject.transform);
+            
+            // Change the position
+            Vector2 newUISlotPos = newUISlot.GetComponent<RectTransform>().anchoredPosition;
+            
+            // Set to the starting position
+            newUISlotPos = NPCItemStartingPos;
+
+            //Adjust the position
+            newUISlotPos.x += NPCSlotDistance * i;
+
+            newUISlot.GetComponent<RectTransform>().anchoredPosition = newUISlotPos;
+
+            //Create the inventory slot
+            InventorySlot newInventorySlot = new InventorySlot(newUISlot, tradeNPC.m_NPCItemList[i], 1);
+
+            NPCInventorySlots.Add(newInventorySlot);
+        }
     }
 
     public void SelectPlayerItem(ItemObjBase itemSelected)
@@ -184,5 +215,36 @@ public class TradeManager : SingletonBase<TradeManager>
     public void TradeItem(ItemObjBase ItemComingIn, ItemObjBase ItemGoingOut)
     {
 
+    }
+
+    void CloseTrade()
+    {
+        ClearNPCInventory();
+        ClearPlayerInventory();
+
+        PlayerTradeSlot.SetActive(false);
+        NPCTradeSlot.SetActive(false);
+
+        TradeMenuObject.SetActive(false);
+    }
+
+    void ClearPlayerInventory()
+    {
+        for(int i = 0; i < PlayerInventorySlots.Count; ++i)
+        {
+            Destroy(PlayerInventorySlots[i].SlotUI);
+        }
+
+        PlayerInventorySlots.Clear();
+    }
+
+    void ClearNPCInventory()
+    {
+        for (int i = 0; i < NPCInventorySlots.Count; ++i)
+        {
+            Destroy(NPCInventorySlots[i].SlotUI);
+        }
+
+        NPCInventorySlots.Clear();
     }
 }
