@@ -11,10 +11,14 @@ public class PlayerMovement : MonoBehaviour
     PlayerStats playerStats;
     Rigidbody2D PlayerRB;
     Vector2 movement;
-    bool isDashing;
+    public bool isDashing;
     float distanceDashed;
     int numOfDash;
     float dashRechargeTime;
+
+    public bool isAttackDashing;
+    float distanceAttackDashed;
+    float attackDashTimer;
 
     public Vector3 movementDir;
 
@@ -24,7 +28,10 @@ public class PlayerMovement : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         PlayerRB = GetComponent<Rigidbody2D>();
         isDashing = false;
+        isAttackDashing = false;
         distanceDashed = 0;
+        distanceAttackDashed = 0;
+        attackDashTimer = 0;
         numOfDash = playerStats.m_CurrentMaxDash;
         dashRechargeTime = 0;
     }
@@ -32,7 +39,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isDashing)
+        if(isAttackDashing)
+        {
+            if (distanceAttackDashed >= playerStats.m_CurrentAttackDashDistance)
+            {
+                playerStats.m_CurrentSpeed = playerStats.m_CurrentMovementSpeed;
+                movement = Vector3.zero;
+            }
+            else
+            {
+                distanceAttackDashed += playerStats.m_CurrentAttackDashSpeed * Time.deltaTime;
+            }
+
+            attackDashTimer += Time.deltaTime;
+            if(attackDashTimer >= playerStats.m_CurrentAttackDashTime)
+            {
+                isAttackDashing = false;
+            }
+        }
+        else if (isDashing)
         {
             distanceDashed += playerStats.m_CurrentDashSpeed * Time.deltaTime;
             if(distanceDashed >= playerStats.m_CurrentDashDistance)
@@ -72,12 +97,22 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dash()
     {
-        if (numOfDash > 0) 
+        if (numOfDash > 0 && !isAttackDashing) 
         {
             isDashing = true;
             playerStats.m_CurrentSpeed = playerStats.m_CurrentDashSpeed;
             distanceDashed = 0;
             numOfDash--;
         }
+    }
+
+    public void MeleeAttackDash()
+    {
+        isAttackDashing = true;
+        playerStats.m_CurrentSpeed = playerStats.m_CurrentAttackDashSpeed;
+        distanceAttackDashed = 0;
+        attackDashTimer = 0;
+        movement = GetComponent<PlayerCombat>().playerLookDir;
+        movement.Normalize();
     }
 }

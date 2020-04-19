@@ -12,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] Slider rangedBar;
 
     PlayerStats playerStats;
+    PlayerMovement playerMovement;
     float meleeAttackSpeed_;
     float rangedAttackSpeed_;
 
@@ -19,6 +20,7 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         playerStats = GetComponent<PlayerStats>();
+        playerMovement = GetComponent<PlayerMovement>();
         meleeAttackSpeed_ = playerStats.m_CurrentMeleeAttackSpeed;
         rangedAttackSpeed_ = playerStats.m_CurrentRangedAttackSpeed;
     }
@@ -41,8 +43,9 @@ public class PlayerCombat : MonoBehaviour
 
     public void Melee()
     {
-        if(meleeAttackSpeed_ >= playerStats.m_CurrentMeleeAttackSpeed)
+        if(meleeAttackSpeed_ >= playerStats.m_CurrentMeleeAttackSpeed && !playerMovement.isDashing && !playerMovement.isAttackDashing)
         {
+            playerMovement.MeleeAttackDash();
             for (int i = 0; i < GetComponent<PlayerInventory>().UniqueItems.Count; ++i)
             {
                 GetComponent<PlayerInventory>().UniqueItems[i].MeleeAttack();
@@ -54,7 +57,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void Ranged()
     {
-        if (rangedAttackSpeed_ >= playerStats.m_CurrentRangedAttackSpeed)
+        if (rangedAttackSpeed_ >= playerStats.m_CurrentRangedAttackSpeed && !playerMovement.isDashing && !playerMovement.isAttackDashing)
         {
             Instantiate(rangedAttackHitbox);
             rangedAttackSpeed_ = 0;

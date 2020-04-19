@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour
     [Tooltip("Starting Dash Speed")]
     public float m_StartingDashSpeed = 12f;
 
-    [Tooltip("Starting Dash Dsitance")]
+    [Tooltip("Starting Dash Distance")]
     public float m_StartingDashDistance = 1.5f;
 
     [Tooltip("Starting Health")]
@@ -38,8 +38,17 @@ public class PlayerStats : MonoBehaviour
     [Tooltip("Starting Max Amount Of Dashes")]
     public int m_StartingMaxDash = 4;
 
+    [Tooltip("Starting Attack Dash Speed")]
+    public float m_StartingAttackDashSpeed = 12f;
+
+    [Tooltip("Starting Attack Dash Distance")]
+    public float m_StartingAttackDashDistance = 0.1f;
+
+    [Tooltip("Starting Attack Dash Time")]
+    public float m_StartingAttackDashTime = 0.1f;
+
     // Current Stats after bonuses are applied from items
-    
+
     public float m_CurrentDamage;
     public float m_CurrentSpeed;
     public float m_CurrentMovementSpeed;
@@ -51,6 +60,9 @@ public class PlayerStats : MonoBehaviour
     public float m_CurrentRangedAttackSpeed;
     public float m_CurrentTimeToRechargeOneDash;
     public int m_CurrentMaxDash;
+    public float m_CurrentAttackDashSpeed;
+    public float m_CurrentAttackDashDistance;
+    public float m_CurrentAttackDashTime;
 
 
     // Start is called before the first frame update
@@ -67,7 +79,10 @@ public class PlayerStats : MonoBehaviour
         m_CurrentRangedAttackSpeed = m_StartingRangedAttackSpeed;
         m_CurrentTimeToRechargeOneDash = m_StartingTimeToRechargeOneDash;
         m_CurrentMaxDash = m_StartingMaxDash;
-    }
+        m_CurrentAttackDashSpeed = m_StartingAttackDashSpeed;
+        m_CurrentAttackDashDistance = m_StartingAttackDashDistance;
+        m_CurrentAttackDashTime = m_StartingAttackDashTime;
+}
 
     // Update is called once per frame
     void Update()
