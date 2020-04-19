@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DungeonGeneration : SingletonBase<DungeonGeneration>
 {
@@ -20,6 +22,9 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
     Vector2Int m_SpawnRoomGridPos = Vector2Int.zero;
     Vector2Int m_BossRoomGridPos = Vector2Int.zero;
 
+    //for navmesh
+    NavMeshSurface m_NavMeshSurface = null;
+
     public void Start()
     {
         //sort the rooms accordingly
@@ -38,6 +43,8 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
 
         if (spriteRenderer != null)
             m_RoomTileWidthHeight = new Vector2(spriteRenderer.bounds.size.x, spriteRenderer.bounds.size.y);
+
+        m_NavMeshSurface = FindObjectOfType<NavMeshSurface>();
 
         GenerateLevel();
     }
@@ -115,13 +122,18 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
             }
         }
 
-        InstantiateRooms();
-        DecideAndInitRoomType();
-        InitUI();
+        InstantiateRooms(); //spawn and instantiate rooms
+        DecideAndInitRoomType(); //decide which room type it should have
+        BuildNavMesh();
+        SetAllRoomsInactive();
+        InitUI(); //init the minimap stuff
 
         //setup initial start room
         if (m_RoomsBehaviour.ContainsKey(m_SpawnRoomGridPos))
+        {
+            m_RoomsBehaviour[m_SpawnRoomGridPos].gameObject.SetActive(true);
             m_RoomsBehaviour[m_SpawnRoomGridPos].SetupRoom();
+        }
     }
 
     public bool AddToTaken(Vector2Int pos, RoomOpeningTypes type)
@@ -450,13 +462,44 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         DungeonMinimap.Instance.InitMiniMap(m_Taken, m_SpawnRoomGridPos, m_BossRoomGridPos);
     }
 
+    public void BuildNavMesh()
+    {
+        if (m_NavMeshSurface != null)
+        {
+            m_NavMeshSurface.BuildNavMesh();
+        }
+    }
+
+    public void SetAllRoomsInactive()
+    {
+        foreach (Transform child in m_RoomParent.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+    }
+
     public void ChangeRoom(Vector2Int playerNewPos)
     {
-        //TODO:: SET ROOM TO ACTIVE
+        //set room to active
+        if (m_RoomsBehaviour.ContainsKey(playerNewPos))
+        {
+            m_RoomsBehaviour[playerNewPos].gameObject.SetActive(true);
+        }
+
         //DO THE CAMERA SWEEP
         //WHEN CAMERA IS FULLY SWEEPED, SET GAMEOBJECT TO INACTIVE
-        //UPDATE UI
+        StartCoroutine(ChangeRoomAnim());
 
+        //UPDATE UI
         DungeonMinimap.Instance.PlayerChangeRoom(playerNewPos);
+    }
+
+    IEnumerator ChangeRoomAnim()
+    {
+        //DO CAMERA SWEEP,
+        //TURN PREV ROOM INACTIVE
+
+
+        yield return null;
     }
 }
