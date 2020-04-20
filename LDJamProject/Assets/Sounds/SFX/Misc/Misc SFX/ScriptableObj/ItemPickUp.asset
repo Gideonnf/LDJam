@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1668ff9b14de14693c1b2c5f2ce1bf, type: 3}
   m_Name: ItemPickUp
   m_EditorClassIdentifier: 
-  m_AudioName: 
-  m_Clip: {fileID: 0}
-  isSFX: 0
+  m_AudioName: ItemPickUp
+  m_Clip: {fileID: 8300000, guid: 89867ef7ad4ff93448bb0d5f3387fe5f, type: 3}
+  isSFX: 1
   m_Volume: 1
   m_Pitch: 1
   m_Loop: 0

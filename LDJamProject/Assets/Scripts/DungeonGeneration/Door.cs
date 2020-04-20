@@ -20,6 +20,15 @@ public class Door : MonoBehaviour
         CheckPlayer(collision);
     }
 
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            if (DungeonGeneration.Instance.m_LeaveRoomText != null)
+                DungeonGeneration.Instance.m_LeaveRoomText.SetActive(false);
+        }
+    }
+
     public void CheckPlayer(Collider2D collision)
     {
         if (m_Entered)
@@ -46,6 +55,8 @@ public class Door : MonoBehaviour
                         else
                         {
                             //show the is not pulling caravan UI
+                            if (DungeonGeneration.Instance.m_LeaveRoomText != null)
+                                DungeonGeneration.Instance.m_LeaveRoomText.SetActive(true);
                         }
                     }
                 }
