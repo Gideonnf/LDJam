@@ -148,12 +148,10 @@ public class TradeManager : SingletonBase<TradeManager>
 
                 newUISlot.GetComponent<RectTransform>().anchoredPosition = UISlotPosition;
 
+                newUISlot.GetComponent<TradeItemSlot>().PrepareSlot(itemAdded);
+
                 // take the same amount of quantity from the inventory slots as well
                 int Quantity = m_playerInventoryRef.inventorySlots[currentActiveSlots].Quantity;
-
-                //Debug.Log("Item " + m_playerInventoryRef.InventoryItems[currentActiveSlots].name + " with " + m_playerInventoryRef.InventoryItems[currentActiveSlots].Quantity);
-                
-                //Debug.Log("Item " + m_playerInventoryRef.inventorySlots[currentActiveSlots].ItemStored.GetSetItemName + " with " + m_playerInventoryRef.inventorySlots[currentActiveSlots].Quantity);
 
                 // Create an inventory slot
                 InventorySlot newInventorySlot = new InventorySlot(newUISlot, itemAdded, Quantity);
@@ -193,6 +191,8 @@ public class TradeManager : SingletonBase<TradeManager>
             newUISlotPos.x += NPCSlotDistance * i;
 
             newUISlot.GetComponent<RectTransform>().anchoredPosition = newUISlotPos;
+
+            newUISlot.GetComponent<TradeItemSlot>().PrepareSlot(NPCItem);
 
             //Create the inventory slot
             InventorySlot newInventorySlot = new InventorySlot(newUISlot, tradeNPC.m_NPCItemList[i], 1);
