@@ -10,7 +10,7 @@ public class Wagon : MonoBehaviour
     [SerializeField] float yDistanceFromPlayer;
 
     public bool playerNearWagon;
-    public bool playerPullingWagon;
+
 
     PlayerMovement playerMovement;
     Animator wagonAnimator;
@@ -19,7 +19,6 @@ public class Wagon : MonoBehaviour
     void Start()
     {
         playerNearWagon = false;
-        playerPullingWagon = false;
         wagonAnimator = GetComponent<Animator>();
         playerMovement = player.GetComponent<PlayerMovement>();
     }
@@ -27,7 +26,7 @@ public class Wagon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerPullingWagon)
+        if(playerMovement.isPullingCaravan)
         {
             if (player.GetComponent<PlayerMovement>().movementDir != Vector3.zero)
             {
@@ -77,7 +76,7 @@ public class Wagon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == player && !playerPullingWagon)
+        if (collision.gameObject == player && !playerMovement.isPullingCaravan)
         {
             playerNearWagon = true;
             instructionText.SetActive(true);
@@ -86,7 +85,7 @@ public class Wagon : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == player && !playerPullingWagon)
+        if (collision.gameObject == player && !playerMovement.isPullingCaravan)
         {
             playerNearWagon = false;
             instructionText.SetActive(false);
@@ -94,8 +93,8 @@ public class Wagon : MonoBehaviour
     }
     public void Interact()
     {
-        playerPullingWagon = !playerPullingWagon;
-        if (playerPullingWagon)
+        playerMovement.isPullingCaravan = !playerMovement.isPullingCaravan;
+        if (playerMovement.isPullingCaravan)
         {
             instructionText.SetActive(false);
             wagonAnimator.SetBool("PlayerPulling", true);

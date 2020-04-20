@@ -34,15 +34,15 @@ public class PlayerController : SingletonBase<PlayerController>
         {
             Interact();
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !wagon.playerPullingWagon)
+        if (Input.GetKeyDown(KeyCode.Space) && !m_PlayerMovement.isPullingCaravan)
         {
             m_PlayerMovement.Dash();
         }
-        if (Input.GetMouseButton(0) && !wagon.playerPullingWagon)
+        if (Input.GetMouseButton(0) && !m_PlayerMovement.isPullingCaravan)
         {
             m_PlayerCombat.Melee();
         }
-        if (Input.GetMouseButton(1) && !wagon.playerPullingWagon)
+        if (Input.GetMouseButton(1) && !m_PlayerMovement.isPullingCaravan)
         {
             m_PlayerCombat.Ranged();
         }

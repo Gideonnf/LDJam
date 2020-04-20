@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     float dashRechargeTime;
     Animator playerAnimator;
 
+    public bool isPullingCaravan;
     public bool isAttackDashing;
     public enum FaceDirection
     {
@@ -52,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         idleTimer = 0;
         playerAnimator = GetComponent<Animator>();
         ghostSpawnTimer = 0;
+        isPullingCaravan = false;
     }
 
     // Update is called once per frame
