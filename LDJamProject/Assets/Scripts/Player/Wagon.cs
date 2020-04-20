@@ -11,9 +11,11 @@ public class Wagon : MonoBehaviour
 
     public bool playerNearWagon;
 
-
     PlayerMovement playerMovement;
     Animator wagonAnimator;
+
+    GameObject wagonMoveSFX;
+    bool isIdling;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,7 @@ public class Wagon : MonoBehaviour
         playerNearWagon = false;
         wagonAnimator = GetComponent<Animator>();
         playerMovement = player.GetComponent<PlayerMovement>();
+        isIdling = false;
     }
 
     // Update is called once per frame
@@ -30,6 +33,11 @@ public class Wagon : MonoBehaviour
         {
             if (player.GetComponent<PlayerMovement>().movementDir != Vector3.zero)
             {
+                if(isIdling)
+                {
+                    isIdling = false;
+                    wagonMoveSFX = SoundManager.Instance.Play("CaravanMove");
+                }
                 Vector3 dir = Vector3.zero;
                 switch (playerMovement.playerFaceDir)
                 {
@@ -70,6 +78,24 @@ public class Wagon : MonoBehaviour
                 float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                 //angle += 90;
                 //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            }
+            else
+            {
+                if (!isIdling)
+                {
+                    isIdling = true;
+                    if (wagonMoveSFX != null)
+                        wagonMoveSFX.GetComponent<AudioSource>().Stop();
+                }
+            }
+        }
+        else
+        {
+            if (!isIdling)
+            {
+                isIdling = true;
+                if (wagonMoveSFX != null)
+                    wagonMoveSFX.GetComponent<AudioSource>().Stop();
             }
         }
     }

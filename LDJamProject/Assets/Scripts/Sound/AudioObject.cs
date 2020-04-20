@@ -9,16 +9,16 @@ public class AudioObject : ScriptableObject
 
     public AudioClip m_Clip;
 
-    public SoundManager.AudioSourceType AudioSourceType;
+    public bool isSFX;
 
     [Range(0f, 1f)]
     public float m_Volume = 1.0f;
     [Range(0.1f, 3f)]
     public float m_Pitch = 1.0f;
-    [Range(0f, 1f)]
-    public float m_HearingBaseOnDist = 1.0f;
+    //[Range(0f, 1f)]
+    //public float m_HearingBaseOnDist = 1.0f;
 
     public bool m_Loop = false;
 
-    [HideInInspector] public AudioSource m_audioSource;
+    //[HideInInspector] public AudioSource m_audioSource;
 }

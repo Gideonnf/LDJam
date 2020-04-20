@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce1668ff9b14de14693c1b2c5f2ce1bf, type: 3}
-  m_Name: Combat
+  m_Name: PlayerRun3
   m_EditorClassIdentifier: 
-  m_AudioName: Combat
-  m_Clip: {fileID: 8300000, guid: 027b8a0f1e3670844a2b35b44de42fda, type: 3}
-  AudioSourceType: 0
-  m_Volume: 0.2
+  m_AudioName: PlayerRun3
+  m_Clip: {fileID: 8300000, guid: 456ac1ad8cb883c44a85e332334c3ee6, type: 3}
+  isSFX: 1
+  m_Volume: 1
   m_Pitch: 1
-  m_HearingBaseOnDist: 1
-  m_Loop: 1
-  m_audioSource: {fileID: 0}
+  m_Loop: 0
