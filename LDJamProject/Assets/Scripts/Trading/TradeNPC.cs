@@ -60,7 +60,7 @@ public class TradeNPC : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Colliding with player");
+            DungeonGeneration.Instance.m_InteractText.SetActive(true);
 
             PlayerInRange = true;
         }
@@ -78,6 +78,8 @@ public class TradeNPC : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            DungeonGeneration.Instance.m_InteractText.SetActive(false);
+
             PlayerInRange = false;
 
         }
