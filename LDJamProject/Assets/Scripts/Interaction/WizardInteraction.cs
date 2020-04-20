@@ -11,12 +11,12 @@ public class WizardInteraction : NPCTextInteraction
 
     //Wizardmenu
     bool ConversationStarted = false;
-   // bool m_PlayerNearby = false;
+    // bool m_PlayerNearby = false;
     bool EnoughMonies = false;
     // im just hard coding shit lol
     bool TriggeredFirstDialogue = false;
     bool TriggeredSecondDialogue = false;
-    
+
 
     public override void Awake()
     {
@@ -46,6 +46,10 @@ public class WizardInteraction : NPCTextInteraction
 
         if (m_DialogueManager == null)
             return;
+
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+            spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
 
         // Check if the player has enough monies
         if (PlayerController.Instance.m_PlayerInventory.m_PlayerMoney >= 1000)
@@ -89,7 +93,10 @@ public class WizardInteraction : NPCTextInteraction
                 ConversationStarted = false;
                 // Set the flag for first dialogue end to true
                 TriggeredFirstDialogue = true;
+            }
 
+            if (!EnoughMonies && TriggeredFirstDialogue && m_DialogueManager.m_Talking)
+            {
                 // Start the UI screen
                 WizardMenu.Instance.OpenUI();
             }
@@ -106,16 +113,16 @@ public class WizardInteraction : NPCTextInteraction
                     SceneManager.LoadScene("EndScene");
             }
 
-           
+
 
             //// if npc is done talking
             //// and first dialogue is done
             //if (TriggeredFirstDialogue && TriggerSecondDialogue)
             //{
-               
+
             //}
         }
-        
+
         //if(TriggeredFirstDialogue)
         //{
         //    TriggerSecondDialogue = true;
