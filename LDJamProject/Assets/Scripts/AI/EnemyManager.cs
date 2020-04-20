@@ -10,7 +10,7 @@ public class EnemyManager : SingletonBase<EnemyManager>
         MELEE_B,        // Big boi but slow boi
 
         RANGED_A,       // Ranged shooting creatures
-        //BOSS_A,         // The boss
+        BOSS_A,         // The boss
         //BOSS_MINION_A,  // The boss' minion
         NUM_ENEMY_TYPES
     }
