@@ -97,6 +97,7 @@ public class WizardMenu : MonoBehaviour
 
                 // Prepare the item slot (i.e add the sprite to it)
                 //newUISlot.GetComponent<>();
+                newUISlot.GetComponent<WizardTradeSlot>().PrepareSlot(itemAdded);
 
                 int Quantity = m_Inventory.inventorySlots[currentActiveSlots].Quantity;
                 // Create a inventory slot
