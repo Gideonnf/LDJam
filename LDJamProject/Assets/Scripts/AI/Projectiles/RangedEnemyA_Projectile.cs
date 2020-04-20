@@ -43,9 +43,9 @@ public class RangedEnemyA_Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Wagon wagon = null;
+        WagonCollisionChecker wagon = null;
         PlayerController player = null;
-        wagon = collision.gameObject.GetComponent<Wagon>();
+        wagon = collision.gameObject.GetComponent<WagonCollisionChecker>();
         if (wagon != null)
         {
             // Damage wagon
