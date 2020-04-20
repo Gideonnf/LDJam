@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 9106058306348112293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.1623335, y: -8.608644, z: 22.386951}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,7 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -3443323624618707527, guid: 6bcec0c02ae99304990e61ffd8c133b5,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,9 +100,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 0.15, y: 0.14}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -137,13 +138,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ItemName: Chicken
   m_ItemDescription: This chicken seems angry
-  m_ItemSprite: {fileID: 0}
+  m_ItemSprite: {fileID: -3443323624618707527, guid: 6bcec0c02ae99304990e61ffd8c133b5,
+    type: 3}
   m_ItemType: 1
-  m_ItemPrice: 0
+  m_ItemPrice: 250
   m_DamageBoost: 0
   m_SpeedBoost: 0
   m_HealthGain: 0
-  m_ItemChance: 59.7
+  m_ItemChance: 60
   UniqueAbility: 1
   shooterPet: {fileID: 603034031166549955, guid: ae519788af013d84e992c6d3e51e41ea,
     type: 3}
