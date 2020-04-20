@@ -13,6 +13,8 @@ public class Wagon : MonoBehaviour
     [SerializeField] float timeItTakesToPickUpCaravan;
     [SerializeField] GameObject upDownHitbox;
     [SerializeField] GameObject leftRightHitbox;
+    [SerializeField] GameObject upDownHitboxChecker;
+    [SerializeField] GameObject leftRightHitboxChecker;
 
     public bool playerNearWagon;
 
@@ -72,6 +74,8 @@ public class Wagon : MonoBehaviour
                         transform.position = player.transform.position - (Vector3.up * yDistanceFromPlayer);
                         upDownHitbox.SetActive(true);
                         leftRightHitbox.SetActive(false);
+                        upDownHitboxChecker.SetActive(true);
+                        leftRightHitboxChecker.SetActive(false);
                         break;
                     case PlayerMovement.FaceDirection.down:
                         wagonAnimator.SetBool("FaceUp", false);
@@ -82,6 +86,8 @@ public class Wagon : MonoBehaviour
                         transform.position = player.transform.position + (Vector3.up * yDistanceFromPlayer);
                         upDownHitbox.SetActive(true);
                         leftRightHitbox.SetActive(false);
+                        upDownHitboxChecker.SetActive(true);
+                        leftRightHitboxChecker.SetActive(false);
                         break;
                     case PlayerMovement.FaceDirection.left:
                         wagonAnimator.SetBool("FaceUp", false);
@@ -92,6 +98,8 @@ public class Wagon : MonoBehaviour
                         transform.position = player.transform.position + (Vector3.right * xDistanceFromPlayer);
                         upDownHitbox.SetActive(false);
                         leftRightHitbox.SetActive(true);
+                        upDownHitboxChecker.SetActive(false);
+                        leftRightHitboxChecker.SetActive(true);
                         break;
                     case PlayerMovement.FaceDirection.right:
                         wagonAnimator.SetBool("FaceUp", false);
@@ -102,6 +110,8 @@ public class Wagon : MonoBehaviour
                         dir = Vector3.right;
                         upDownHitbox.SetActive(false);
                         leftRightHitbox.SetActive(true);
+                        upDownHitboxChecker.SetActive(false);
+                        leftRightHitboxChecker.SetActive(true);
                         break;
                 }
                
