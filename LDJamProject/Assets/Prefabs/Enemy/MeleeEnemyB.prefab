@@ -231,6 +231,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3de5d21ad8fa3459312f1f356cc295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitColor:
+    serializedVersion: 2
+    rgba: 4280228079
+  normalColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  hitFlashTimer: 0.1
   movespeed: 5
   attack_range_sqr: 2
   DEBUG_TARGET: {fileID: 0}

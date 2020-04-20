@@ -50,7 +50,7 @@ public class BossEnemyA : EnemyBase
             Attack();
             m_countdown = attackCooldown;
         }
-        //base.Update();
+        base.Update();
     }
 
     /// <summary>
