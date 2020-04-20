@@ -29,7 +29,7 @@ public class TradeNPC : MonoBehaviour
     {
         if (PlayerInRange)
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 TradeManager.Instance.EnableTrading(this.gameObject);
             }
