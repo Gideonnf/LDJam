@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 3416626133933697772}
   - component: {fileID: 80163279135217551}
   - component: {fileID: 6095661}
+  - component: {fileID: 6095673}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -547,6 +548,7 @@ MonoBehaviour:
   m_StartingDashSpeed: 11
   m_StartingDashDistance: 2
   m_StartingHealth: 5
+  m_StartingCaravanHealth: 5
   m_StartingMeleeAttackSpeed: 0.5
   m_FastestMeleeAttackSpeed: 0.05
   m_StartingRangedAttackSpeed: 10
@@ -564,6 +566,8 @@ MonoBehaviour:
   m_CurrentDashDistance: 0
   m_CurrentHealth: 0
   m_MaxHealth: 0
+  m_CurrentCaravanHealth: 0
+  m_MaxCaravanHealth: 0
   m_CurrentMeleeAttackSpeed: 0
   m_CurrentRangedAttackSpeed: 0
   m_CurrentTimeToRechargeOneDash: 0
@@ -641,7 +645,7 @@ MonoBehaviour:
   - {x: -4.0636363, y: 0.448143, z: 0}
   m_ShapePathHash: 1823486170
   m_Mesh: {fileID: 0}
-  m_InstanceId: -340588
+  m_InstanceId: -420822
 --- !u!114 &6095661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,6 +662,18 @@ MonoBehaviour:
   bUseRootTransform: 0
   cameraOriPos: {x: 0, y: 1, z: -10}
   cameraScale: 0.01
+--- !u!114 &6095673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3416626133933697782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52960877547b72b4698f1485408fff26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3416626134381552545
 GameObject:
   m_ObjectHideFlags: 0
