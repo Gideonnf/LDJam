@@ -65,9 +65,9 @@ public class MeleeEnemyA : EnemyBase
         foreach(Collider2D col in colliders)
         {
             // Check if it has the player script. If it does, deal damage
-            Wagon wagon = null;
+            WagonCollisionChecker wagon = null;
             PlayerController player = null;
-            wagon = col.gameObject.GetComponent<Wagon>();
+            wagon = col.gameObject.GetComponent<WagonCollisionChecker>();
             if (wagon != null)
             {
                 // Damage wagon
