@@ -761,7 +761,7 @@ MonoBehaviour:
   UniqueItems: []
   InventoryItems: []
   InventoryBarReference: {fileID: 0}
-  UISlotPrefab: {fileID: 5958950492926139781, guid: de86f4e5b05213f45908975c933c5fbd,
+  UISlotPrefab: {fileID: 3222832185117220027, guid: 56908e50368bdb545985abf5fb300d44,
     type: 3}
   SlotDistance: 90
   m_PlayerMoney: 0

@@ -183,18 +183,20 @@ public class PlayerInventory : MonoBehaviour
         // Change to the new position
         newUISlot.GetComponent<RectTransform>().anchoredPosition = UISlotPosition;
 
-        newUISlot.GetComponent<Image>().sprite = itemAdded.m_ItemSprite;
+        newUISlot.transform.GetChild(0).GetComponent<Image>().sprite = itemAdded.m_ItemSprite;
+        //newUISlot.GetComponent<Image>().sprite = itemAdded.m_ItemSprite;
 
         // if its a sword, rotate it a tad
         if (itemAdded.m_ItemType == EquipmentManager.ItemType.SWORD)
         {
-            newUISlot.GetComponent<RectTransform>().Rotate(new Vector3(0, 0, -45));
-            //Quaternion newQuaternion = newUISlot.GetComponent<RectTransform>().rotation;
-            //newQuaternion.eulerAngles.Set(0, 0, 45);
-            //newUISlot.GetComponent<RectTransform>().rotation = newQuaternion;
+            newUISlot.transform.GetChild(0).GetComponent<RectTransform>().Rotate(new Vector3(0, 0, -45));
+          //  newUISlot.GetComponent<RectTransform>().Rotate(new Vector3(0, 0, -45));
+          //Quaternion newQuaternion = newUISlot.GetComponent<RectTransform>().rotation;
+          //newQuaternion.eulerAngles.Set(0, 0, 45);
+          //newUISlot.GetComponent<RectTransform>().rotation = newQuaternion;
           //  Vector3 NewRotation = newUISlot.GetComponent<RectTransform>().rotation.eulerAngles;
-            //NewRotation.z = -45;
-            //newUISlot.GetComponent<RectTransform>().rotation.eulerAngles.Set(0, 0, -45);
+          //NewRotation.z = -45;
+          //newUISlot.GetComponent<RectTransform>().rotation.eulerAngles.Set(0, 0, -45);
         }
 
         // Create a new inventory slot

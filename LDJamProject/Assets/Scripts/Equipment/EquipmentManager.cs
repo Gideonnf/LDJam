@@ -64,16 +64,16 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
           //  EmptyItemChance += m_NormalItemList[i].GetSetItemChance;
         }
 
-        for (int i = 0; i < m_NormalItems.entries.Count; ++i)
-        {
-            Debug.Log(m_NormalItems.entries[i].accumulatedWeight);
+        //for (int i = 0; i < m_NormalItems.entries.Count; ++i)
+        //{
+        //    Debug.Log(m_NormalItems.entries[i].accumulatedWeight);
 
-        }
+        //}
 
         // Set the chance of receiving no items as half of the total accumulated chance to have an item
         //itemObjBase.GetSetItemChance = (EmptyItemChance / 2);
         // Add the empty item into the item list
-       // m_NormalItems.AddEntry(EmptyItem, itemObjBase.GetSetItemChance);
+        // m_NormalItems.AddEntry(EmptyItem, itemObjBase.GetSetItemChance);
 
         // No empty items for bosses as boss will always drop an item
         //for (int i = 0; i < m_BossItemlist.Count; ++i)
@@ -148,7 +148,7 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
     /// <param name="DropPosition">The Enemy position when he is killed is where the item will drop</param>
     public void NormalItemDrop(Vector3 DropPosition)
     {
-        GameObject item = GetRandom();
+        GameObject item = m_NormalItems.GetRandom();
 
         if (item == null)
         {
