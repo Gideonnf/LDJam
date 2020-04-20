@@ -214,5 +214,14 @@ MonoBehaviour:
       m_LeftOpening: 1
       m_UpOpening: 1
       m_DownOpening: 1
+  - m_RoomPrefab: {fileID: 2913840284237538885, guid: 76344ca4884abfd46aabc20eb735d8cc,
+      type: 3}
+    m_RoomOpeningInfo:
+      m_RoomOpeningType: 15
+      m_NumberOfOpenings: 0
+      m_RightOpening: 0
+      m_LeftOpening: 0
+      m_UpOpening: 0
+      m_DownOpening: 0
   m_RoomParent: {fileID: 447638065725612217}
   m_CameraMoveSpeed: 5

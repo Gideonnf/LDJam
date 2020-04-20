@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class RoomBehaviour : MonoBehaviour
 {
@@ -19,11 +20,32 @@ public class RoomBehaviour : MonoBehaviour
     RoomTypes m_RoomType = RoomTypes.NORMAL_ROOM;
     bool m_RoomComplete = false;
     Vector2Int m_RoomGridPos = Vector2Int.zero;
+    List<GameObject> m_EnemiesInRoom = new List<GameObject>();
+    bool m_RoomEnemyStarted = false;
 
     public void Awake()
     {
         m_RoomComplete = false;
+        m_RoomEnemyStarted = false;
         OpenBlocks(false);
+    }
+
+    public void Update()
+    {
+        if (m_RoomComplete)
+            return;
+
+        //check if enemies are still alive
+        if (m_RoomType == RoomTypes.NORMAL_ROOM && m_RoomEnemyStarted)
+        {
+            foreach(GameObject enemy in m_EnemiesInRoom)
+            {
+                if (enemy.activeSelf) //if one enemy is active dont bother
+                    return;
+            }
+
+            RoomComplete(); //no more enemies alive, that means room completed
+        }
     }
 
     public void RoomComplete()
@@ -91,7 +113,9 @@ public class RoomBehaviour : MonoBehaviour
     public void SetUpNormalRoom()
     {
         //spawn enemies at possible locations
+        m_EnemiesInRoom.Clear();
         SpawnEnemies();
+        m_RoomEnemyStarted = true;
 
         //blocks activate
         OpenBlocks(true);
@@ -124,6 +148,9 @@ public class RoomBehaviour : MonoBehaviour
                 {
                     enemyBase.Init();
                     enemyBase.Warp(m_PossibleEnemySpawnPosition.GetChild(randomLocationIndex).position); //spawn at a random location
+                    m_EnemiesInRoom.Add(enemy);
+
+                    Debug.Log(randomLocationIndex);
                 }
             }
         }
