@@ -43,7 +43,7 @@ public class SoundManager : SingletonBase<SoundManager>
             audio.m_audioSource.volume = audio.m_Volume;
         }
 
-        ///Play("Ambient");
+        //Play("Ambient");
        // Play("Combat");
     }
 

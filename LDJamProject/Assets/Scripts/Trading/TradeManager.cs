@@ -16,11 +16,16 @@ public class TradeManager : SingletonBase<TradeManager>
     [Tooltip("Sprite to show selected objects")]
     public Sprite SelectedObjectSprite;
 
+    //[Tooltip("Sprite for unselected objects")]
+
     [Tooltip("When the player selects an item to trade, this is the UI Item slot")]
     public GameObject PlayerTradeSlot;
 
     [Tooltip("When the player selects an item from the NPC, this is the NPC's trade slot")]
     public GameObject NPCTradeSlot;
+
+    [Tooltip("NPC Sprite to change")]
+    public GameObject NPCSprite;
 
     [Header("Inventory Configuration for Player")]
     [Tooltip("Starting position of the first item slot")]
@@ -39,6 +44,10 @@ public class TradeManager : SingletonBase<TradeManager>
 
     [Tooltip("Distance between each item slots")]
     public float NPCSlotDistance = 95;
+
+    [HideInInspector]
+    public GameObject currentActivePlayerButton = null;
+    public GameObject currentActiveNPCButton = null;
 
     // Keep track of their inventory
     // Inventory slot is created in player Inventory
@@ -201,14 +210,21 @@ public class TradeManager : SingletonBase<TradeManager>
         }
     }
 
-    public void SelectPlayerItem(ItemObjBase itemSelected)
+    public void SelectPlayerItem(GameObject itemSelected)
     {
-        // Change the trade sprite
+        for(int i = 0; i < PlayerInventorySlots.Count; ++i)
+        {
+
+        }
+
     }
 
-    public void SelectNPCItem(ItemObjBase itemSelected)
+    public void SelectNPCItem(GameObject itemSelected)
     {
-        // Change the trade sprite
+        for (int i = 0; i < NPCInventorySlots.Count; ++i)
+        {
+
+        }
     }
 
     /// <summary>

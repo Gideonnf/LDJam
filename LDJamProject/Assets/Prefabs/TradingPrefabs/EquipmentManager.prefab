@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1045452076919079732}
   - component: {fileID: 1045452076919079733}
-  - component: {fileID: 1045452076919079730}
   - component: {fileID: 1045452076919079735}
   m_Layer: 0
-  m_Name: Manager
+  m_Name: EquipmentManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,19 +56,6 @@ MonoBehaviour:
   - {fileID: -303535858953330649, guid: 02f481e43e1904b40b53ea4608144d44, type: 3}
   m_DropOnce: 0
   m_MoneyDrop: 5
---- !u!114 &1045452076919079730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045452076919079731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 813a15df902d1f8459d0381b9f07229b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listOfPools: []
 --- !u!114 &1045452076919079735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,10 +73,13 @@ MonoBehaviour:
   TradeMenuObject: {fileID: 0}
   TradeItemSlot: {fileID: 8638278294739179662, guid: db4f8ef6d077a8f42922cbabe2706fca,
     type: 3}
+  NPCTradeItemSlot: {fileID: 4206899801128916204, guid: 0f0c7e55d6ab3134cb1e6575929c98b5,
+    type: 3}
+  SelectedObjectSprite: {fileID: 0}
   PlayerTradeSlot: {fileID: 0}
   NPCTradeSlot: {fileID: 0}
-  PlayerItemStartingPos: {x: -500, y: -85}
-  PlayerSlotDistance: {x: 90, y: 95}
-  ColumnRow: {x: 4, y: 3}
-  NPCItemStartingPos: {x: 280, y: -275}
-  NPCSlotDistance: 120
+  PlayerItemStartingPos: {x: -528, y: -125}
+  PlayerSlotDistance: {x: 75, y: 100}
+  ColumnRow: {x: 6, y: 2}
+  NPCItemStartingPos: {x: 288, y: -228}
+  NPCSlotDistance: 95
