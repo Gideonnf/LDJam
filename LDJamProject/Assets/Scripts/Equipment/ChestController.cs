@@ -24,6 +24,7 @@ public class ChestController : MonoBehaviour
     public void ChestOpened()
     {
         EquipmentManager.Instance.AlwaysGetItemDrop(gameObject.transform.position);
+        SoundManager.Instance.Play("ChestOpen");
         Destroy(gameObject);
     }
 }
