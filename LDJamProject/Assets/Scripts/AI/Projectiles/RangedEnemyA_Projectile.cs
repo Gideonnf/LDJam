@@ -58,5 +58,6 @@ public class RangedEnemyA_Projectile : MonoBehaviour
             // Damage player
             return;
         }
+        gameObject.SetActive(false);
     }
 }
