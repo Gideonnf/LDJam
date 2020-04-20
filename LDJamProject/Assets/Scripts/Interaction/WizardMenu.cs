@@ -132,4 +132,28 @@ public class WizardMenu : MonoBehaviour
             }
         }
     }
+
+    public void SellItems()
+    {
+        float moneyGain = 0;
+
+        // go through all the selected items
+        for (int i = 0; i < SelectedItems.Count; ++i)
+        {
+            // Remove it form the inventory
+            m_Inventory.RemoveFromInventory(SelectedItems[i]);
+            moneyGain += SelectedItems[i].m_ItemPrice;
+        }
+
+        m_Inventory.m_PlayerMoney += moneyGain;
+
+        // After removing from inventory
+        // Clear the selec ted items list
+        SelectedItems.Clear();
+        // Clear the inventory
+        ClearInventory();
+        // Recreate inventory
+        CreateInventory();
+
+    }
 }

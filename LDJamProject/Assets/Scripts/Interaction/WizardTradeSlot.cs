@@ -11,7 +11,7 @@ public class WizardTradeSlot : MonoBehaviour
 
     ItemObjBase storedItem;
 
-    bool itemSelected = false;
+    [HideInInspector] public bool itemSelected = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,11 +55,5 @@ public class WizardTradeSlot : MonoBehaviour
 
             this.gameObject.GetComponent<Image>().sprite = wizardMenu.UnselectedObjectSprite;
         }
-    }
-
-    
-    public void TradeItems()
-    {
-
     }
 }
