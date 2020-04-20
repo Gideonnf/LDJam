@@ -93,8 +93,10 @@ public class RoomBehaviour : MonoBehaviour
         //spawn enemies at possible locations
         SpawnEnemies();
 
+        //blocks activate
+        OpenBlocks(true);
         //'lock' doors
-        OpenDoors(true);
+        OpenDoors(false);
     }
 
     public void SpawnEnemies()
