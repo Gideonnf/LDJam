@@ -441,7 +441,12 @@ MonoBehaviour:
     m_Name: 
   m_DialogueSound: 
   m_DialogueManager: {fileID: 3558530680943515462}
-  WizardMenuReference: {fileID: 0}
+  m_EndDialogue:
+    m_Sentences:
+    - Dis the end
+    - pee pee poo poo
+    - Alvin drink piss
+    m_Name: 
 --- !u!114 &3558530680943515462
 MonoBehaviour:
   m_ObjectHideFlags: 0
