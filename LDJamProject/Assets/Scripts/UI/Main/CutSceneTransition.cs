@@ -7,6 +7,7 @@ public class CutSceneTransition : MonoBehaviour
     public Dialogue[] m_DialogueTexts;
     public GameObject[] m_CutScenes;
     public GameObject m_StoryText;
+    public GameObject m_BacxkgroundText;
     public Animator m_FadeOutInAnimator;
     public CutSceneDialogue m_CutSceneDialogue;
 
@@ -44,6 +45,7 @@ public class CutSceneTransition : MonoBehaviour
         else if (m_CurrentDialogue == m_CutScenes.Length - 1)
         {
             m_StoryText.SetActive(false);
+            m_BacxkgroundText.SetActive(false);
         }
 
         m_CutScenes[m_CurrentDialogue].SetActive(true);
@@ -53,7 +55,10 @@ public class CutSceneTransition : MonoBehaviour
     public void FadeInFinish()
     {
         if (m_CurrentDialogue < m_CutScenes.Length - 1)
+        {
             m_StoryText.SetActive(true);
+            m_BacxkgroundText.SetActive(true);
+        }
 
         m_CutSceneDialogue.StartDialogue(m_DialogueTexts[m_CurrentDialogue]);
 

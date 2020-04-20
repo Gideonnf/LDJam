@@ -45,6 +45,7 @@ public class RoomBehaviour : MonoBehaviour
                     return;
             }
 
+            BGMController.Instance.ChangeMusic("NonCombatBGM");
             RoomComplete(); //no more enemies alive, that means room completed
         }
     }
@@ -96,8 +97,8 @@ public class RoomBehaviour : MonoBehaviour
                 SetUpStartRoom();
                 break;
             case RoomTypes.NORMAL_ROOM:
-                RoomComplete();
-                //SetUpNormalRoom();
+                //RoomComplete();
+                SetUpNormalRoom();
                 break;
             case RoomTypes.BOSS_ROOM:
                 SetUpBossRoom();
@@ -183,6 +184,8 @@ public class RoomBehaviour : MonoBehaviour
                 }
             }
         }
+
+        BGMController.Instance.ChangeMusic("CombatBGM");
     }
 
     public void LeaveRoom()
@@ -194,6 +197,8 @@ public class RoomBehaviour : MonoBehaviour
     {
         if (m_PossibleEnemySpawnPosition == null)
             return;
+
+        BGMController.Instance.ChangeMusic("CombatBGM");
 
         //SPAWN BOSS
         Vector3 pos = m_PossibleEnemySpawnPosition.GetChild(0).position;
