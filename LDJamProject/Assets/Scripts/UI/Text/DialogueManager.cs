@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[System.Serializable]
 public class DialogueManager : MonoBehaviour
 {
     [HideInInspector]
     public Queue<string> m_Sentences;
 
+    [HideInInspector]
+    public bool m_Talking = false;
+
     [Header("Dialogue UI")]
-    public TextMeshProUGUI m_NameText;
-    public TextMeshProUGUI m_DialogueText;
+    public TextMeshPro m_NameText;
+    public TextMeshPro m_DialogueText;
     public GameObject m_TextBox;
     public GameObject m_ArrowText; //only shown when the speech is done
     private Animator m_DialogueAnimator;
@@ -38,7 +42,8 @@ public class DialogueManager : MonoBehaviour
 
     public void Talk(Dialogue dialogue)
     {
-        m_NameText.text = dialogue.m_Name;
+        if (m_NameText != null)
+            m_NameText.text = dialogue.m_Name;
 
         m_Sentences.Clear();
 
@@ -47,6 +52,7 @@ public class DialogueManager : MonoBehaviour
             m_Sentences.Enqueue(sentence);
         }
 
+        m_Talking = true;
         DisplaySpeech();
     }
 
@@ -86,6 +92,8 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        m_Talking = false;
+
         //does animation
         ShowSpeechUI(false);
     }
