@@ -470,7 +470,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -562,7 +562,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce51cccdaf71e6648a216cf1aff649bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staminaBar: {fileID: 0}
+  staminaBarFill1: {fileID: 0}
+  staminaBarFill2: {fileID: 0}
+  staminaBarFill3: {fileID: 0}
+  staminaBarFill4: {fileID: 0}
   timeInactiveToBeIdle: 0.1
   ghostDash: {fileID: 3144734294903339422, guid: acb27c406eb0f7e4189b6b598049f8e1,
     type: 3}
@@ -596,6 +599,7 @@ MonoBehaviour:
   meleeWeapon: {fileID: 3416626133526714097}
   meleeWeaponAnimator: {fileID: 3416626132418124498}
   meleeAttackParticles: {fileID: 3416626134381552545}
+  attack360: 0
 --- !u!114 &3416626133933697768
 MonoBehaviour:
   m_ObjectHideFlags: 0

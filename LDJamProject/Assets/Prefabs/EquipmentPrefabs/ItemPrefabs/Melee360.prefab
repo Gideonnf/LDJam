@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6091134737354150929}
   - component: {fileID: 5303554852695560074}
   m_Layer: 0
-  m_Name: Sword 1
+  m_Name: Melee360
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_ItemDescription: Ring with runes from the land of Demacia
   m_ItemSprite: {fileID: 0}
   m_ItemType: 1
-  Object: {fileID: 0}
+  m_ItemPrice: 0
   m_DamageBoost: 0
   m_SpeedBoost: 0
   m_HealthGain: 0
