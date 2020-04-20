@@ -37,7 +37,7 @@ public class RoomBehaviour : MonoBehaviour
             return;
 
         //check if enemies are still alive
-        if (m_RoomType == RoomTypes.NORMAL_ROOM && m_RoomEnemyStarted)
+        if ((m_RoomType == RoomTypes.NORMAL_ROOM || m_RoomType == RoomTypes.BOSS_ROOM) && m_RoomEnemyStarted)
         {
             foreach(GameObject enemy in m_EnemiesInRoom)
             {
@@ -90,6 +90,7 @@ public class RoomBehaviour : MonoBehaviour
                 SetUpStartRoom();
                 break;
             case RoomTypes.NORMAL_ROOM:
+                //RoomComplete();
                 SetUpNormalRoom();
                 break;
             case RoomTypes.BOSS_ROOM:
@@ -186,11 +187,22 @@ public class RoomBehaviour : MonoBehaviour
 
     public void SetUpBossRoom()
     {
-        //spawn boss
-        //RoomComplete();
+        if (m_PossibleEnemySpawnPosition == null)
+            return;
 
         //SPAWN BOSS
         Vector3 pos = m_PossibleEnemySpawnPosition.GetChild(0).position;
+        GameObject enemy = EnemyManager.Instance.FetchEnemy(EnemyManager.EnemyType.BOSS_A);
+        if (enemy != null)
+        {
+            enemy.transform.position = pos;
+            m_EnemiesInRoom.Add(enemy);
+        }
+        else //if for some reason no boss
+        {
+            RoomComplete();
+        }
+
         m_RoomEnemyStarted = true;
 
         OpenBlocks(true);
