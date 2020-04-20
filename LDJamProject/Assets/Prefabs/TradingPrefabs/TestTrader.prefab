@@ -151,6 +151,8 @@ MonoBehaviour:
   - {fileID: 2867979360169527573, guid: a1284b4fd9bef37488a397ecb3f265bf, type: 3}
   - {fileID: 2867979360169527573, guid: 500696f0ae86bf948a99809e4e051161, type: 3}
   - {fileID: -303535858953330649, guid: 02f481e43e1904b40b53ea4608144d44, type: 3}
+  NPCSprite: {fileID: -182402051963392767, guid: 17792facb4d813c488c6dddb107fd575,
+    type: 3}
 --- !u!58 &2294553451413724466
 CircleCollider2D:
   m_ObjectHideFlags: 0

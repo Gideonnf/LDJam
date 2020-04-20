@@ -15,7 +15,7 @@ public class WizardInteraction : NPCTextInteraction
     bool EnoughMonies = false;
     // im just hard coding shit lol
     bool TriggeredFirstDialogue = false;
-    bool TriggerSecondDialogue = false;
+    bool TriggeredSecondDialogue = false;
     
 
     public override void Awake()
@@ -71,9 +71,30 @@ public class WizardInteraction : NPCTextInteraction
                 if (Input.GetKeyDown(KeyCode.E))
                     TriggerDialogue();
             }
-            // if npc is done talking
-            // and first dialogue is done
-            if (TriggeredFirstDialogue && TriggerSecondDialogue)
+
+            // 2nd conversation started
+            // first dialogue ended
+            if (ConversationStarted == true && TriggeredFirstDialogue == true)
+            {
+                // Set 2nd dialogue flag to true
+                TriggeredSecondDialogue = true;
+                ConversationStarted = false;
+            }
+
+            // First conversation started
+            // First Dialogue flag is still false
+            if (ConversationStarted == true && TriggeredFirstDialogue == false)
+            {
+                // Reset the boolean flag
+                ConversationStarted = false;
+                // Set the flag for first dialogue end to true
+                TriggeredFirstDialogue = true;
+
+                // Start the UI screen
+                WizardMenu.Instance.OpenUI();
+            }
+
+            if (ConversationStarted == false && TriggeredFirstDialogue == true && TriggeredSecondDialogue == true)
             {
                 Animator animator = GetComponent<Animator>();
                 if (animator != null)
@@ -84,26 +105,35 @@ public class WizardInteraction : NPCTextInteraction
                 else
                     SceneManager.LoadScene("EndScene");
             }
+
+           
+
+            //// if npc is done talking
+            //// and first dialogue is done
+            //if (TriggeredFirstDialogue && TriggerSecondDialogue)
+            //{
+               
+            //}
         }
         
-        if(TriggeredFirstDialogue)
-        {
-            TriggerSecondDialogue = true;
-        }
+        //if(TriggeredFirstDialogue)
+        //{
+        //    TriggerSecondDialogue = true;
+        //}
 
-        // If the player started hte conversation with the wizard
-        if (ConversationStarted == true && EnoughMonies == false)
-        {
-            // If the conversation have ended, m_talking is false
-            if (m_DialogueManager.m_Talking == false)
-            {
-                TriggeredFirstDialogue = true;
+        //// If the player started hte conversation with the wizard
+        //if (ConversationStarted == true && EnoughMonies == false)
+        //{
+        //    // If the conversation have ended, m_talking is false
+        //    if (m_DialogueManager.m_Talking == false)
+        //    {
+        //        TriggeredFirstDialogue = true;
 
-                ConversationStarted = false;
-                // Start the UI Screen for the trading
-                WizardMenu.Instance.OpenUI();
-            }
-        }
+        //        ConversationStarted = false;
+        //        // Start the UI Screen for the trading
+        //        WizardMenu.Instance.OpenUI();
+        //    }
+        //}
     }
 
 
@@ -123,9 +153,9 @@ public class WizardInteraction : NPCTextInteraction
             m_DialogueManager.StartDialogue(m_Dialogue);
             SoundManager.Instance.Play(m_DialogueSound);
 
-            ConversationStarted = true;
         }
 
+        ConversationStarted = true;
     }
 
     public override void NextLine()
