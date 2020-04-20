@@ -7,6 +7,9 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyBase : MonoBehaviour
 {
+    public Color32 hitColor;
+    public Color32 normalColor;
+    public float hitFlashTimer;
     SpriteRenderer spriteRenderer;
     [SerializeField] protected float movespeed;
     protected Animator m_animator;
@@ -30,6 +33,9 @@ public class EnemyBase : MonoBehaviour
     //protected bool m_dead;  // Does not update new path if true
     NavMeshAgent m_agent;
     // Start is called before the first frame update
+
+    float hitFlashTimer_;
+
     virtual public void Awake()
     {
         m_rb = GetComponent<Rigidbody2D>();
@@ -41,6 +47,7 @@ public class EnemyBase : MonoBehaviour
         m_dead_BoolHash = Animator.StringToHash("dead");
         health = maxHealth;
         Init();
+        hitFlashTimer_ = 0;
     }
 
     virtual public void Init()
@@ -76,6 +83,15 @@ public class EnemyBase : MonoBehaviour
         else
             m_triggered = false;
            
+        if(transform.GetChild(0).GetComponent<SpriteRenderer>().color != normalColor)
+        {
+            hitFlashTimer_ += Time.deltaTime;
+            Debug.Log(hitFlashTimer_);
+            if(hitFlashTimer_ >= hitFlashTimer)
+            {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().color = normalColor;
+            }
+        }
 #if UNITY_EDITOR
         Debug.DrawLine(transform.position, DEBUG_TARGET.position, m_triggered ? line_triggered : line_normal);
 #endif
@@ -103,6 +119,8 @@ public class EnemyBase : MonoBehaviour
     virtual public bool TakeDamage(int dmg)
     {
         health -= dmg;
+        hitFlashTimer_ = 0;
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = hitColor;
         if (health <= 0) 
         {
             return true;
