@@ -62,7 +62,7 @@ public class BossEnemyA : EnemyBase
         BossEnemyA_Attack bullet = Instantiate(attackPrefab).GetComponent<BossEnemyA_Attack>();
         bullet.transform.position = shootPosition.position;
         bullet.Init(((Vector2)DEBUG_TARGET.position - m_rb.position).normalized);
-        SoundManager.Instance.Play("MushBossDamaged");
+        SoundManager.Instance.Play("MushSporeCloud");
         // m_animator.SetTrigger(attack_trigger);
     }
 
