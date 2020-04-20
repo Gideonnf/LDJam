@@ -238,7 +238,9 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   hitFlashTimer: 0.1
-  movespeed: 5
+  movespeed: 1.2
+  canBeKnocked: 1
+  knockbackDuration: 0.5
   attack_range_sqr: 2
   DEBUG_TARGET: {fileID: 0}
   attackDistance: 50

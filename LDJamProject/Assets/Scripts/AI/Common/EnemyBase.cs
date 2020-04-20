@@ -19,7 +19,13 @@ public class EnemyBase : MonoBehaviour
     static Color32 line_triggered = new Color32(255, 0, 0, 255);
 
     protected bool m_triggered = false;
-    #endif
+#endif
+
+    // Values for knockback on damage
+    [SerializeField] bool canBeKnocked;
+    [SerializeField] float knockbackDuration = 0.5f;
+    float m_knockbackCountdown;
+    bool stunned;
 
     // The hash for the animator's dead bool
     protected int m_dead_BoolHash;
@@ -48,6 +54,8 @@ public class EnemyBase : MonoBehaviour
         health = maxHealth;
         Init();
         hitFlashTimer_ = 0;
+        stunned = false;
+        m_knockbackCountdown = 0f;
     }
 
     virtual public void Init()
@@ -70,11 +78,21 @@ public class EnemyBase : MonoBehaviour
     virtual protected void Update()
     {
         spriteRenderer.sortingOrder = (int)(spriteRenderer.transform.position.y * -100);
+        m_nextPosition = m_agent.nextPosition;
+        m_rb.MovePosition(m_agent.nextPosition);
+        if (stunned)
+        {
+            m_knockbackCountdown -= Time.deltaTime;
+            if (m_knockbackCountdown <= 0f)
+            {
+                stunned = false;
+            }
+            else
+                return;
+        }
         if (m_animator.GetBool(m_dead_BoolHash))
             return;
         m_agent.SetDestination(DEBUG_TARGET.position);
-        m_nextPosition = m_agent.nextPosition;
-        m_rb.MovePosition(m_agent.nextPosition);
         transform.position = m_nextPosition;
         if ((m_nextPosition - DEBUG_TARGET.position).sqrMagnitude <= attack_range_sqr)
         {
@@ -124,6 +142,15 @@ public class EnemyBase : MonoBehaviour
         if (health <= 0) 
         {
             return true;
+        }
+        // If can be stunned, enable stun logic
+        if (canBeKnocked)
+        {
+            stunned = true;
+            m_knockbackCountdown = knockbackDuration;
+            Vector3 newDestination = transform.position + (transform.position - DEBUG_TARGET.position);
+            m_agent.SetDestination(newDestination);
+            m_agent.velocity = Vector3.zero;
         }
         return false;
     }
