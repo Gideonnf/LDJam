@@ -661,6 +661,7 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         while (m_CurrentCameraLerp <= 1.0f)
         {
             m_MainCamera.transform.position = Vector3.Lerp(m_MainCamera.transform.position, m_NextCameraPos, m_CurrentCameraLerp);
+            CameraMovement.Instance.cameraOriPos = m_MainCamera.transform.position;
             yield return null;
         }
 

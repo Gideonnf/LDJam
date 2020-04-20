@@ -111,6 +111,8 @@ public class RoomBehaviour : MonoBehaviour
         if (camera != null)
             camera.transform.position = m_CameraPos.position;
 
+        CameraMovement.Instance.cameraOriPos = m_CameraPos.position;
+
         RoomComplete();
     }
 
