@@ -78,6 +78,10 @@ MonoBehaviour:
       type: 3}
     amountToCreate: 100
     amountToAdd: 5
+  - prefabToCreate: {fileID: 6226798595973445948, guid: ddc6e721fdc420048a8f5b9bc84720a5,
+      type: 3}
+    amountToCreate: 100
+    amountToAdd: 5
 --- !u!114 &450430490762928718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +167,7 @@ MonoBehaviour:
       type: 3}
     startingAmount: 0
     amountToPool: 2
-  - enemyPrefab: {fileID: 625579389791766987, guid: f28cdb9702c3024429b9ee9f4602afe7,
+  - enemyPrefab: {fileID: 7277716997503437400, guid: f28cdb9702c3024429b9ee9f4602afe7,
       type: 3}
     startingAmount: 0
     amountToPool: 1

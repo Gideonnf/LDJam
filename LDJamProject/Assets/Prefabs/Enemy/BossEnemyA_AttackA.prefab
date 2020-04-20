@@ -65,6 +65,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32f03cb5425fb94a957708064707b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionRadius: 0.75
+  explosionRadius: 0.5
   sleepTimer: 0.1
   maxIterations: 10

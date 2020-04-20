@@ -22,7 +22,6 @@ public class BossEnemyA_Attack : MonoBehaviour
         explosionRadius *= 2f;   // Actually gonna use it as a diameter instead on runtime :P
         m_rb = GetComponent<Rigidbody2D>();
         poolerInstance = ObjectPooler.Instance;
-        Init(new Vector2(0f, 1f));
     }
 
     public void Init(Vector2 _dir)

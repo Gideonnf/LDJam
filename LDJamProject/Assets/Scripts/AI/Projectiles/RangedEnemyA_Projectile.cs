@@ -40,4 +40,23 @@ public class RangedEnemyA_Projectile : MonoBehaviour
         m_animator.SetTrigger(shoot_Trigger);
         m_moveDir = _dir;
     }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Wagon wagon = null;
+        PlayerController player = null;
+        wagon = collision.gameObject.GetComponent<Wagon>();
+        if (wagon != null)
+        {
+            // Damage wagon
+            return;
+        }
+        player = collision.gameObject.GetComponent<PlayerController>();
+        if (player != null)
+        {
+            // Damage player
+            return;
+        }
+    }
 }

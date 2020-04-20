@@ -50,14 +50,25 @@ public class MeleeEnemyB : EnemyBase
     public void AttackPlayer()
     {
         // Check distance between player and enemy. Deals damage if the player is close enough to the enemy.
-        Collider2D[] colliders;
+        //Collider2D[] colliders;
         RaycastHit2D[] hits;
         hits = Physics2D.RaycastAll(m_rb.position, (Vector2)DEBUG_TARGET.position - m_rb.position, attackDistance);
         foreach(RaycastHit2D hit in hits)
         {
             if (hit.collider.gameObject.GetComponent<GameObject>() != null)
                 continue;
-            else if (hit.collider.gameObject.CompareTag("Player"));
+            Wagon wagon = null;
+            PlayerController player = null;
+            if (wagon != null)
+            {
+                // Damage wagon
+                return;
+            }
+            else if (player != null)
+            {
+                // Damage player
+                return;
+            }
         }
     }
 

@@ -83,6 +83,42 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
     }
 
     /// <summary>
+    /// If somethig dies and ytou want a guranteed item drop call this function
+    /// </summary>
+    /// <param name="DropPosition">position of the item whe nit spawns</param>
+    public void AlwaysGetItemDrop(Vector3 DropPosition)
+    {
+        GameObject item = m_NormalItems.GetRandomAlways();
+
+        if (item == null)
+        {
+            Debug.Log("No item was found");
+            return;
+        }
+
+        ItemObjBase objBase = item.GetComponent<ItemObjBase>();
+
+        if (objBase.m_ItemType == ItemType.NOTHING)
+        {
+            // Tehres no item
+            return;
+        }
+        else
+        {
+            // Drop the item
+            // Create the game object
+            // Cant use object pooler cause theres too many different items
+            GameObject newItem = Instantiate(item);
+
+            // Set the position
+            newItem.transform.position = DropPosition;
+
+            Debug.Log("Spawned Item : " + objBase.name);
+        }
+
+    }
+
+    /// <summary>
     /// When Enemies die, call for dropping a normal item
     /// If the random chance returns nothing, no item is dropped
     /// </summary>
