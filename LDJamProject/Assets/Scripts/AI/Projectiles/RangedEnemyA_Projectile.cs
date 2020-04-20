@@ -39,6 +39,7 @@ public class RangedEnemyA_Projectile : MonoBehaviour
         m_countdown = lifetime;
         m_animator.SetTrigger(shoot_Trigger);
         m_moveDir = _dir;
+        GetComponent<Rigidbody2D>().SetRotation(Mathf.Rad2Deg * (Mathf.Atan2(_dir.y, _dir.x)));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
