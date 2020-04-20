@@ -186,6 +186,8 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
         // If they manage to pick up the item
         if (Item != null)
         {
+            SoundManager.Instance.Play("ItemPickup");
+
             // If its a potion
             if (Item.GetComponent<ItemObjBase>().m_ItemType == ItemType.POTION)
             {

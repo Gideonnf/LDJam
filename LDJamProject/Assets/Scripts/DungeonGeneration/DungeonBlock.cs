@@ -8,11 +8,6 @@ public class DungeonBlock : MonoBehaviour
     public float m_Force = 1.0f;
     public PushDirection m_PushDirection;
 
-    public void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawSphere(transform.position, m_MaxRadius);
-    }
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player")
