@@ -123,7 +123,8 @@ public class TradeManager : SingletonBase<TradeManager>
         NPCSprite.SetActive(true);
 
         // Set up NPC Sprite
-
+        NPCSprite.GetComponent<Image>().sprite = NPCToTrade.GetComponent<TradeNPC>().NPCSprite;
+        
         // Set up Player Inventory
         CreatePlayerInventory();
 

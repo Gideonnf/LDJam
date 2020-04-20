@@ -7,6 +7,9 @@ public class TradeNPC : MonoBehaviour
     [Tooltip("Inventory of the NPC")]
     public List<ItemObjBase> m_NPCItemList = new List<ItemObjBase>();
 
+    [Tooltip("Sprite of the NPC")]
+    public Sprite NPCSprite;
+
     // For the randomisation
     WeightedObject<ItemObjBase> m_NPCItems = new WeightedObject<ItemObjBase>();
 
