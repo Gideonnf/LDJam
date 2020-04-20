@@ -10,6 +10,8 @@ public class Wagon : MonoBehaviour
     [SerializeField] float xDistanceFromPlayer;
     [SerializeField] float yDistanceFromPlayer;
     [SerializeField] float timeItTakesToPickUpCaravan;
+    [SerializeField] GameObject upDownHitbox;
+    [SerializeField] GameObject leftRightHitbox;
 
     public bool playerNearWagon;
 
@@ -59,6 +61,8 @@ public class Wagon : MonoBehaviour
                         wagonAnimator.SetBool("FaceRight", false);
                         dir = Vector3.up;
                         transform.position = player.transform.position - (Vector3.up * yDistanceFromPlayer);
+                        upDownHitbox.SetActive(true);
+                        leftRightHitbox.SetActive(false);
                         break;
                     case PlayerMovement.FaceDirection.down:
                         wagonAnimator.SetBool("FaceUp", false);
@@ -67,6 +71,8 @@ public class Wagon : MonoBehaviour
                         wagonAnimator.SetBool("FaceRight", false);
                         dir = -Vector3.up;
                         transform.position = player.transform.position + (Vector3.up * yDistanceFromPlayer);
+                        upDownHitbox.SetActive(true);
+                        leftRightHitbox.SetActive(false);
                         break;
                     case PlayerMovement.FaceDirection.left:
                         wagonAnimator.SetBool("FaceUp", false);
@@ -75,6 +81,8 @@ public class Wagon : MonoBehaviour
                         wagonAnimator.SetBool("FaceRight", false);
                         dir = -Vector3.right;
                         transform.position = player.transform.position + (Vector3.right * xDistanceFromPlayer);
+                        upDownHitbox.SetActive(false);
+                        leftRightHitbox.SetActive(true);
                         break;
                     case PlayerMovement.FaceDirection.right:
                         wagonAnimator.SetBool("FaceUp", false);
@@ -83,6 +91,8 @@ public class Wagon : MonoBehaviour
                         wagonAnimator.SetBool("FaceRight", true);
                         transform.position = player.transform.position - (Vector3.right * xDistanceFromPlayer);
                         dir = Vector3.right;
+                        upDownHitbox.SetActive(false);
+                        leftRightHitbox.SetActive(true);
                         break;
                 }
                
