@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TradeManager : SingletonBase<TradeManager>
 {
@@ -27,6 +28,15 @@ public class TradeManager : SingletonBase<TradeManager>
     [Tooltip("NPC Sprite to change")]
     public GameObject NPCSprite;
 
+    [Tooltip("Player Sprite")]
+    public GameObject PlayerSprite;
+
+    [Tooltip("Confirm Button Sprite")]
+    public GameObject ConfirmSprite;
+
+    //[Tooltip("Close Button Sprite")]
+    //public GameObject CloseSprite;
+
     [Header("Inventory Configuration for Player")]
     [Tooltip("Starting position of the first item slot")]
     public Vector2 PlayerItemStartingPos;
@@ -45,9 +55,9 @@ public class TradeManager : SingletonBase<TradeManager>
     [Tooltip("Distance between each item slots")]
     public float NPCSlotDistance = 95;
 
-    [HideInInspector]
-    public GameObject currentActivePlayerButton = null;
-    public GameObject currentActiveNPCButton = null;
+
+    [HideInInspector] public GameObject currentActivePlayerButton = null;
+    [HideInInspector] public GameObject currentActiveNPCButton = null;
 
     // Keep track of their inventory
     // Inventory slot is created in player Inventory
@@ -55,6 +65,8 @@ public class TradeManager : SingletonBase<TradeManager>
     List<InventorySlot> NPCInventorySlots = new List<InventorySlot>();
 
     PlayerInventory m_playerInventoryRef;
+    ItemObjBase PlayerItemToTrade;
+    ItemObjBase NPCItemToTrade;
 
     // Start is called before the first frame update
     void Start()
@@ -65,13 +77,10 @@ public class TradeManager : SingletonBase<TradeManager>
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.X))
+        // If both items are active
+        if (PlayerTradeSlot.activeSelf == true && NPCTradeSlot.activeSelf == true)
         {
-            TestInventory();
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            CloseTrade();
+            ConfirmSprite.SetActive(true);
         }
     }
 
@@ -110,12 +119,13 @@ public class TradeManager : SingletonBase<TradeManager>
     /// <param name="NPCToTrade">The npc that is trading with the player</param>
     void SetUpTrading(GameObject NPCToTrade)
     {
-        // Set up Player Sprite
+        PlayerSprite.SetActive(true);
+        NPCSprite.SetActive(true);
+
+        // Set up NPC Sprite
 
         // Set up Player Inventory
         CreatePlayerInventory();
-
-        // Set up NPC Sprite
 
         // Set up NPC Inventory
         CreateNPCInventory(NPCToTrade);
@@ -214,16 +224,27 @@ public class TradeManager : SingletonBase<TradeManager>
     {
         for(int i = 0; i < PlayerInventorySlots.Count; ++i)
         {
-
+            if (PlayerInventorySlots[i].SlotUI == itemSelected)
+            {
+                // Swap the sprite
+                PlayerTradeSlot.GetComponent<Image>().sprite = PlayerInventorySlots[i].ItemStored.m_ItemSprite;
+                PlayerTradeSlot.SetActive(true);
+                PlayerItemToTrade = PlayerInventorySlots[i].ItemStored;
+            }
         }
-
     }
 
     public void SelectNPCItem(GameObject itemSelected)
     {
         for (int i = 0; i < NPCInventorySlots.Count; ++i)
         {
-
+            if(NPCInventorySlots[i].SlotUI == itemSelected)
+            {
+                //Swap the sprite
+                NPCTradeSlot.GetComponent<Image>().sprite = NPCInventorySlots[i].ItemStored.m_ItemSprite;
+                NPCTradeSlot.SetActive(true);
+                NPCItemToTrade = NPCInventorySlots[i].ItemStored;
+            }
         }
     }
 
@@ -232,18 +253,41 @@ public class TradeManager : SingletonBase<TradeManager>
     /// </summary>
     /// <param name="ItemComingIn"> The NPC's item that the player is getting</param>
     /// <param name="ItemGoingOut"> The Player's Item that the player is losing to the NPC</param>
-    public void TradeItem(ItemObjBase ItemComingIn, ItemObjBase ItemGoingOut)
+    void TradeItem(ItemObjBase ItemComingIn, ItemObjBase ItemGoingOut)
     {
+        PlayerTradeSlot.SetActive(false);
+        NPCTradeSlot.SetActive(false);
 
+        // Add the item coming in to the player inventory
+        m_playerInventoryRef.AddToInventory(ItemComingIn.gameObject, false);
+        // Remove the item that is going out
+        m_playerInventoryRef.RemoveFromInventory(ItemGoingOut);
+        // Remove item from NPC
+
+        // Refresh the TradeUI inventories
+        ClearPlayerInventory();
+
+        CreatePlayerInventory();
     }
 
-    void CloseTrade()
+    /// <summary>
+    /// Just for the button press onclick event
+    /// </summary>
+    public void ConfirmButtonClick()
+    {
+        TradeItem(NPCItemToTrade, PlayerItemToTrade);
+    }
+
+    public void CloseTrade()
     {
         ClearNPCInventory();
         ClearPlayerInventory();
 
         PlayerTradeSlot.SetActive(false);
         NPCTradeSlot.SetActive(false);
+
+        PlayerSprite.SetActive(false);
+        NPCSprite.SetActive(false);
 
         TradeMenuObject.SetActive(false);
     }

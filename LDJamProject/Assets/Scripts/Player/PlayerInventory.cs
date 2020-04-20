@@ -66,10 +66,10 @@ public class PlayerInventory : MonoBehaviour
         //    UniqueItems[i].PassiveEffect();
         //}
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            RemoveFromUI(inventorySlots[1].ItemStored);
-        }
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    RemoveFromUI(inventorySlots[1].ItemStored);
+        //}
     }
 
 
@@ -99,7 +99,7 @@ public class PlayerInventory : MonoBehaviour
 
      // I READ FANFICTION FOR ABIT
 
-    public void AddToInventory(GameObject itemToAdd)
+    public void AddToInventory(GameObject itemToAdd, bool DestroyObject = true)
     {
         // Add item to inventory
 
@@ -124,7 +124,8 @@ public class PlayerInventory : MonoBehaviour
         // Add the item into the UI Hotbar
         AddToUI(itemToAdd);
 
-        Destroy(itemToAdd);
+        if(DestroyObject)
+            Destroy(itemToAdd);
 
         Debug.Log("item Added" + itemToAdd.name);
 
@@ -145,6 +146,8 @@ public class PlayerInventory : MonoBehaviour
             //Remove any bonuses to stats that were places before
             itemToRemove.OnRemove();
         }
+
+        RemoveFromUI(itemToRemove);
     }
 
     /// <summary>
@@ -240,6 +243,8 @@ public class PlayerInventory : MonoBehaviour
                         newUISlot.x -= SlotDistance; // Shift to the left
                         inventorySlots[x].SlotUI.GetComponent<RectTransform>().anchoredPosition = newUISlot;
                     }
+
+                    currentInventoryCount--;
 
                     // Remove from list
                     inventorySlots.Remove(inventorySlots[i]);
