@@ -108,7 +108,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             m_DialogueText.text += letter;
-            SoundManager.Instance.Play(m_LetterSound, (int)SoundManager.AudioSourceType.ExtraSource);
+            SoundManager.Instance.Play(m_LetterSound);
             yield return null;
         }
 

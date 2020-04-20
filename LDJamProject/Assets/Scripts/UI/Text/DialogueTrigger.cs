@@ -21,7 +21,7 @@ public class DialogueTrigger : MonoBehaviour
             m_DialogueManager.StartDialogue(m_Dialogue);
 
             //Play Sound
-            SoundManager.Instance.Play(m_DialogueSound, (int)SoundManager.AudioSourceType.ExtraSource);
+            SoundManager.Instance.Play(m_DialogueSound);
         }
     }
 }

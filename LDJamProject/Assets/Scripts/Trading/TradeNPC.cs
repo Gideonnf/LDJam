@@ -10,6 +10,8 @@ public class TradeNPC : MonoBehaviour
     // For the randomisation
     WeightedObject<ItemObjBase> m_NPCItems = new WeightedObject<ItemObjBase>();
 
+    bool PlayerInRange = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,16 +24,43 @@ public class TradeNPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (PlayerInRange)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                TradeManager.Instance.EnableTrading(this.gameObject);
+            }
+        }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    // If the player is in collision with the NPC's interaction range
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        Debug.Log("Colliding with player");
+    //        PlayerInRange = true;
+    //        // If a key is pressed
+    //        //if(Input.GetKeyDown(KeyCode.F))
+    //        //{
+    //        //    TradeManager.Instance.EnableTrading(this.gameObject);
+    //        //}
+    //        // Enable trade
+    //    }
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        // If the player is in collision with the NPC's interaction range
         if (collision.gameObject.tag == "Player")
         {
-            // If a key is pressed
-            // Enable trade
+           // Debug.Log("Colliding with player");
+
+            PlayerInRange = true;
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        PlayerInRange = false;
     }
 }
