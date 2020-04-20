@@ -30,19 +30,21 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
     [SerializeField] bool m_DropOnce = false;
 
     [Tooltip("Money drop from enemies")]
-    [SerializeField] float m_MoneyDrop; 
+    [SerializeField] float m_MoneyDrop;
 
     // Any other configuration I can think of will go here later
 
 
+
     // Keep tracks of how long since an item was dropped
     // The longer the time, the higher the chance of an item drop
-   // float elapsedTime = 0.0f;
-
-    WeightedObject<GameObject> m_NormalItems = new WeightedObject<GameObject>();
-    WeightedObject<GameObject> m_BossItems = new WeightedObject<GameObject>();
-   // WeightedObject<Item> m_TradeItems = new WeightedObject<Item>();
-
+    // float elapsedTime = 0.0f;
+    //[HideInInspector] public Unity.Random rand = new System.Random();
+    //WeightedObject<GameObject> m_NormalItems = new WeightedObject<GameObject>();
+    // WeightedObject<GameObject> m_BossItems = new WeightedObject<GameObject>();
+    // WeightedObject<Item> m_TradeItems = new WeightedObject<Item>();
+    Weight m_NormalItems = new Weight();
+    //Weight m_BossItems = new Weight();
      //Dictionary<GameObject, Item> ActiveItems = new Dictionary<GameObject, Item>();
 
     // Start is called before the first frame update
@@ -62,16 +64,22 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
           //  EmptyItemChance += m_NormalItemList[i].GetSetItemChance;
         }
 
+        for (int i = 0; i < m_NormalItems.entries.Count; ++i)
+        {
+            Debug.Log(m_NormalItems.entries[i].accumulatedWeight);
+
+        }
+
         // Set the chance of receiving no items as half of the total accumulated chance to have an item
         //itemObjBase.GetSetItemChance = (EmptyItemChance / 2);
         // Add the empty item into the item list
        // m_NormalItems.AddEntry(EmptyItem, itemObjBase.GetSetItemChance);
 
         // No empty items for bosses as boss will always drop an item
-        for (int i = 0; i < m_BossItemlist.Count; ++i)
-        {
-            m_BossItems.AddEntry(m_BossItemlist[i].gameObject, m_BossItemlist[i].GetSetItemChance);
-        }
+        //for (int i = 0; i < m_BossItemlist.Count; ++i)
+        //{
+        //    m_BossItems.AddEntry(m_BossItemlist[i].gameObject, m_BossItemlist[i].GetSetItemChance);
+        //}
 
     }
 
@@ -82,13 +90,28 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
         //elapsedTime += Time.deltaTime;
     }
 
+    public GameObject GetRandom()
+    {
+        float r = Random.Range(0.0f, m_NormalItems.accumulatedWeight);
+        //float r = Random.Random(0, m_NormalItems.accumulatedWeight);
+        for (int i = 0; i < m_NormalItems.entries.Count; ++i)
+        {
+            if (m_NormalItems.entries[i].accumulatedWeight >= r)
+            {
+                return m_NormalItems.entries[i].item;
+            }
+        }
+
+        return null;
+    }
+
     /// <summary>
     /// If somethig dies and ytou want a guranteed item drop call this function
     /// </summary>
     /// <param name="DropPosition">position of the item whe nit spawns</param>
     public void AlwaysGetItemDrop(Vector3 DropPosition)
     {
-        GameObject item = m_NormalItems.GetRandomAlways();
+        GameObject item = m_NormalItems.GetRandom();
 
         if (item == null)
         {
@@ -125,7 +148,7 @@ public class EquipmentManager : SingletonBase<EquipmentManager>
     /// <param name="DropPosition">The Enemy position when he is killed is where the item will drop</param>
     public void NormalItemDrop(Vector3 DropPosition)
     {
-        GameObject item = m_NormalItems.GetRandom();
+        GameObject item = GetRandom();
 
         if (item == null)
         {

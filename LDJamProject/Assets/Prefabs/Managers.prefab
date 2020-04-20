@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 450430490762928719}
-  - component: {fileID: 450430490762928716}
   - component: {fileID: 450430490762928717}
   - component: {fileID: 450430490762928718}
   - component: {fileID: 1701834184}
@@ -34,33 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &450430490762928716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 450430490762928706}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e740974f9521ee47b3fb756dc9a52fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bDontDestroyOnLoad: 0
-  bUseRootTransform: 0
-  m_NormalItemList:
-  - {fileID: 3728915708958617934, guid: e55dee5e899624145ae140df0bac5767, type: 3}
-  - {fileID: -303535858953330649, guid: 02f481e43e1904b40b53ea4608144d44, type: 3}
-  - {fileID: 2867979360169527573, guid: 500696f0ae86bf948a99809e4e051161, type: 3}
-  - {fileID: 5303554852695560074, guid: 217476b997a14fb4f9e7dfd824efbcf4, type: 3}
-  - {fileID: 2035214141903821824, guid: 741b4019460389b45876128bfb0b04d7, type: 3}
-  - {fileID: 5064279694873679198, guid: 9601af05a1f3da5419a643aa7f151931, type: 3}
-  - {fileID: 4665410675029819197, guid: ab750006cba8b6641abf62b3872fe596, type: 3}
-  - {fileID: -6494079845464431481, guid: 4ec11a851bcf16048a96c4936859e420, type: 3}
-  m_BossItemlist:
-  - {fileID: -303535858953330649, guid: 02f481e43e1904b40b53ea4608144d44, type: 3}
-  m_DropOnce: 0
-  m_MoneyDrop: 5
 --- !u!114 &450430490762928717
 MonoBehaviour:
   m_ObjectHideFlags: 0
