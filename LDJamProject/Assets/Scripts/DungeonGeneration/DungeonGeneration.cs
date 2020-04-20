@@ -9,6 +9,9 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
     //for navmesh
     public NavMeshSurface m_NavMeshSurface = null;
 
+    [Header("Wizard")]
+    public GameObject m_Wizard;
+
     [Header("Room Info")]
     public Vector2Int m_MinMaxRoomNumber = new Vector2Int(10,12);
     public List<Room> m_RoomTypeData = new List<Room>();
