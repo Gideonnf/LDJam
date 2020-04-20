@@ -74,7 +74,7 @@ public class WizardInteraction : NPCTextInteraction
 
             // 2nd conversation started
             // first dialogue ended
-            if (ConversationStarted == true && TriggeredFirstDialogue == true)
+            if (ConversationStarted == true && TriggeredFirstDialogue == true && EnoughMonies)
             {
                 // Set 2nd dialogue flag to true
                 TriggeredSecondDialogue = true;

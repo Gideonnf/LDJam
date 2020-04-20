@@ -2226,7 +2226,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestTrader (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2294553451413724471, guid: 3903dda33219c10438c2ef455c0751a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2294553451413724469, guid: 3903dda33219c10438c2ef455c0751a8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3903dda33219c10438c2ef455c0751a8, type: 3}
 --- !u!4 &530167601680753509 stripped
 Transform:
@@ -2841,7 +2847,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestTrader
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2294553451413724471, guid: 3903dda33219c10438c2ef455c0751a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2294553451413724469, guid: 3903dda33219c10438c2ef455c0751a8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3903dda33219c10438c2ef455c0751a8, type: 3}
 --- !u!4 &6805031443451558718 stripped
 Transform:

@@ -27,6 +27,10 @@ public class TradeNPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+            spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
+
         if (PlayerInRange)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -56,9 +60,17 @@ public class TradeNPC : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-           // Debug.Log("Colliding with player");
+            Debug.Log("Colliding with player");
 
             PlayerInRange = true;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            Debug.Log("OINAIOGNHIOAGOASGIOADSGHB");
         }
     }
 
