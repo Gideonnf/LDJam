@@ -38,6 +38,25 @@ class WeightedObject<T>
         }
     }
 
+    public T GetRandomAlways()
+    {
+        double r = rand.NextDouble() * accumulatedWeight;
+
+        //double r = accumulatedWeight; // for testing
+        // Loop through all the objects in the list
+        foreach (Entry entry in entries)
+        {
+            // if the accumulated weight is more than or equal to R
+            // it'll trigger
+            // if not then r is too big and it will look for the next item
+            if (entry.accumulatedWeight >= r)
+            {
+                return entry.item;
+            }
+        }
+        return default(T); // Only if there are no entries
+    }
+
     // To get random event
     public T GetRandom()
     {
