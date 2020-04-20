@@ -20,6 +20,9 @@ public class PlayerStats : MonoBehaviour
     [Tooltip("Starting Health")]
     public int m_StartingHealth = 5;
 
+    [Tooltip("Starting Caravan Health")]
+    public int m_StartingCaravanHealth = 5;
+
     [Tooltip("Starting Melee Attack Speed")]
     public float m_StartingMeleeAttackSpeed = 0.5f;
 
@@ -59,6 +62,8 @@ public class PlayerStats : MonoBehaviour
     public float m_CurrentDashDistance;
     public float m_CurrentHealth;
     public float m_MaxHealth;
+    public float m_CurrentCaravanHealth;
+    public float m_MaxCaravanHealth;
     public float m_CurrentMeleeAttackSpeed;
     public float m_CurrentRangedAttackSpeed;
     public float m_CurrentTimeToRechargeOneDash;
@@ -78,6 +83,8 @@ public class PlayerStats : MonoBehaviour
         m_CurrentDashSpeed = m_StartingDashSpeed;
         m_CurrentDashDistance = m_StartingDashDistance;
         m_CurrentHealth = m_StartingHealth;
+        m_MaxCaravanHealth = m_StartingCaravanHealth;
+        m_CurrentCaravanHealth = m_StartingCaravanHealth;
         m_MaxHealth = m_StartingHealth;
         m_CurrentMeleeAttackSpeed = m_StartingMeleeAttackSpeed;
         m_CurrentRangedAttackSpeed = m_StartingRangedAttackSpeed;
@@ -92,6 +99,9 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(m_CurrentHealth <= 0 || m_CurrentCaravanHealth <= 0)
+        {
+            //death screen
+        }
     }
 }
