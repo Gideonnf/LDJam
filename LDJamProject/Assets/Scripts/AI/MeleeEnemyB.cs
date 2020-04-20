@@ -60,13 +60,13 @@ public class MeleeEnemyB : EnemyBase
             WagonCollisionChecker wagon = null;
             PlayerController player = null;
             wagon = hit.collider.gameObject.GetComponent<WagonCollisionChecker>();
+            player = hit.collider.gameObject.GetComponent<PlayerController>();
             if (wagon != null)
             {
                 // Damage wagon
                 PlayerController.Instance.m_PlayerStats.CaravanTakeDamage(1);
                 return;
             }
-            player = hit.collider.gameObject.GetComponent<PlayerController>();
             else if (player != null)
             {
                 // Damage player
