@@ -45,6 +45,7 @@ public class EnemyBase : MonoBehaviour
 
     virtual public void Init()
     {
+        m_rb.isKinematic = false;
         m_animator.SetBool(m_dead_BoolHash, false);
         health = maxHealth;
         SetMoveSpeed(movespeed);
@@ -115,6 +116,7 @@ public class EnemyBase : MonoBehaviour
         m_animator.SetBool(m_dead_BoolHash, true);
         m_agent.acceleration = 0f;
         m_agent.velocity = Vector3.zero;
+        m_rb.isKinematic = true;
         ClearPath();    // Stop it from moving
     }
 
