@@ -45,7 +45,9 @@ public class RoomBehaviour : MonoBehaviour
                     return;
             }
 
-            BGMController.Instance.ChangeMusic("NonCombatBGM");
+            if (m_RoomType == RoomTypes.BOSS_ROOM)
+                BGMController.Instance.ChangeMusic("NonCombatBGM");
+
             SoundManager.Instance.Play("RoomClear");
             RoomComplete(); //no more enemies alive, that means room completed
         }
@@ -185,8 +187,6 @@ public class RoomBehaviour : MonoBehaviour
                 }
             }
         }
-
-        BGMController.Instance.ChangeMusic("CombatBGM");
     }
 
     public void LeaveRoom()
