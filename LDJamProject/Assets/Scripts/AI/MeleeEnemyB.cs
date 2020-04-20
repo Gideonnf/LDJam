@@ -62,11 +62,13 @@ public class MeleeEnemyB : EnemyBase
             if (wagon != null)
             {
                 // Damage wagon
+                PlayerController.Instance.m_PlayerStats.CaravanTakeDamage(1);
                 return;
             }
             else if (player != null)
             {
                 // Damage player
+                PlayerController.Instance.m_PlayerStats.PlayerTakeDamage(1);
                 return;
             }
         }

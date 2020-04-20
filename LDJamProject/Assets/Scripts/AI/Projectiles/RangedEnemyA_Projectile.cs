@@ -50,14 +50,17 @@ public class RangedEnemyA_Projectile : MonoBehaviour
         if (wagon != null)
         {
             // Damage wagon
+            PlayerController.Instance.m_PlayerStats.CaravanTakeDamage(1);
+            gameObject.SetActive(false);
             return;
         }
         player = collision.gameObject.GetComponent<PlayerController>();
         if (player != null)
         {
             // Damage player
+            PlayerController.Instance.m_PlayerStats.PlayerTakeDamage(1);
+            gameObject.SetActive(false);
             return;
         }
-        gameObject.SetActive(false);
     }
 }
