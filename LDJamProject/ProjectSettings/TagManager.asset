@@ -9,6 +9,7 @@ TagManager:
   - PetSpawnPos
   - Wagon
   - Chest
+  - Wizard
   layers:
   - Default
   - TransparentFX

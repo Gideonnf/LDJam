@@ -57,9 +57,15 @@ public class RoomBehaviour : MonoBehaviour
         OpenBlocks(false);
         OpenDoors(true);
 
+        //spawn wizard once its done
         if (m_RoomType == RoomTypes.BOSS_ROOM)
         {
-            //GET THE WIZARD
+            GameObject wizard = DungeonGeneration.Instance.m_Wizard;
+            if (wizard != null)
+            {
+                wizard.SetActive(true);
+                wizard.transform.position = m_PossibleEnemySpawnPosition.GetChild(0).position;
+            }
         }
     }
 
@@ -90,7 +96,6 @@ public class RoomBehaviour : MonoBehaviour
                 SetUpStartRoom();
                 break;
             case RoomTypes.NORMAL_ROOM:
-                //RoomComplete();
                 SetUpNormalRoom();
                 break;
             case RoomTypes.BOSS_ROOM:
@@ -99,7 +104,6 @@ public class RoomBehaviour : MonoBehaviour
             case RoomTypes.TRADE_ROOM:
                 SetUpTradeRoom();
                 break;
-
         }
     }
 

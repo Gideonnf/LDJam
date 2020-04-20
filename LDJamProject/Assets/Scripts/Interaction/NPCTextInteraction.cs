@@ -9,7 +9,7 @@ public class NPCTextInteraction : MonoBehaviour
     [Header("Dialogue UI")]
     public DialogueManager m_DialogueManager;
 
-    bool m_PlayerNearby = false;
+    [HideInInspector] public bool m_PlayerNearby = false;
 
     public virtual void Awake()
     {

@@ -1,34 +1,40 @@
 fileFormatVersion: 2
-guid: 957da46fff881d44790f7f231e143ebf
+guid: b9577b37629987f478bce71a96674ea2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1355957454081961027
-    second: boss1_death_0
+      213: -6208773258196274348
+    second: WizardBlinkIn - 1 SpriteSize 200x200_0
   - first:
-      213: -576677230596124563
-    second: boss1_death_1
+      213: -3091367687318962885
+    second: WizardBlinkIn - 1 SpriteSize 200x200_1
   - first:
-      213: -2029621163882193175
-    second: boss1_death_2
+      213: -5992149953925629307
+    second: WizardBlinkIn - 1 SpriteSize 200x200_2
   - first:
-      213: -7053227342690878521
-    second: boss1_death_3
+      213: 650702951735071722
+    second: WizardBlinkIn - 1 SpriteSize 200x200_3
   - first:
-      213: -3129326545644557752
-    second: boss1_death_4
+      213: -8646197226715798381
+    second: WizardBlinkIn - 1 SpriteSize 200x200_4
   - first:
-      213: 7833536955490111312
-    second: boss1_death_5
+      213: -7254415532777483635
+    second: WizardBlinkIn - 1 SpriteSize 200x200_5
   - first:
-      213: -7653474800787415152
-    second: boss1_death_6
+      213: 1838768893893449622
+    second: WizardBlinkIn - 1 SpriteSize 200x200_6
   - first:
-      213: -2963947774993746870
-    second: boss1_death_7
+      213: 736042318992164952
+    second: WizardBlinkIn - 1 SpriteSize 200x200_7
   - first:
-      213: 1389628531131097347
-    second: boss1_death_8
+      213: 2756184415406825928
+    second: WizardBlinkIn - 1 SpriteSize 200x200_8
+  - first:
+      213: 3826704798442423990
+    second: WizardBlinkIn - 1 SpriteSize 200x200_9
+  - first:
+      213: -3867435847911193788
+    second: WizardBlinkIn - 1 SpriteSize 200x200_10
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -59,7 +65,7 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: 1
+    aniso: 2
     mipBias: -100
     wrapU: 1
     wrapV: 1
@@ -72,7 +78,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,7 +96,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,7 +108,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -114,7 +120,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -126,7 +132,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -138,7 +144,19 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -149,13 +167,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boss1_death_0
+      name: WizardBlinkIn - 1 SpriteSize 200x200_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 101
-        width: 64
-        height: 101
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db3d6e231ebae2de0800000000000000
-      internalID: -1355957454081961027
+      spriteID: 453344efd9106d9a0800000000000000
+      internalID: -6208773258196274348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_death_1
+      name: WizardBlinkIn - 1 SpriteSize 200x200_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 101
-        width: 64
-        height: 101
+        x: 200
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6013483d1b3ff7f0800000000000000
-      internalID: -576677230596124563
+      spriteID: b3d7b3797714915d0800000000000000
+      internalID: -3091367687318962885
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_death_2
+      name: WizardBlinkIn - 1 SpriteSize 200x200_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 101
-        width: 64
-        height: 101
+        x: 400
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +223,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9eedf2a0e4655d3e0800000000000000
-      internalID: -2029621163882193175
+      spriteID: 58ab36b5d5b97dca0800000000000000
+      internalID: -5992149953925629307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_death_3
+      name: WizardBlinkIn - 1 SpriteSize 200x200_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 101
-        width: 64
-        height: 101
+        x: 600
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,20 +244,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7cb76d6f917ed1e90800000000000000
-      internalID: -7053227342690878521
+      spriteID: ae3977413e2c70900800000000000000
+      internalID: 650702951735071722
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_death_4
+      name: WizardBlinkIn - 1 SpriteSize 200x200_4
       rect:
         serializedVersion: 2
-        x: 256
-        y: 101
-        width: 64
-        height: 101
+        x: 800
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,20 +265,125 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84ae7ac26166294d0800000000000000
-      internalID: -3129326545644557752
+      spriteID: 39423ab8e69820880800000000000000
+      internalID: -8646197226715798381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_death_5
+      name: WizardBlinkIn - 1 SpriteSize 200x200_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d82d8bb2283235b90800000000000000
+      internalID: -7254415532777483635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardBlinkIn - 1 SpriteSize 200x200_6
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6979e88119e948910800000000000000
+      internalID: 1838768893893449622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardBlinkIn - 1 SpriteSize 200x200_7
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 858ce23e692f63a00800000000000000
+      internalID: 736042318992164952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardBlinkIn - 1 SpriteSize 200x200_8
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c1aac77f1fef3620800000000000000
+      internalID: 2756184415406825928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardBlinkIn - 1 SpriteSize 200x200_9
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b6817b4dbf2b1530800000000000000
+      internalID: 3826704798442423990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardBlinkIn - 1 SpriteSize 200x200_10
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 101
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,71 +391,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05f02ee6b5056bc60800000000000000
-      internalID: 7833536955490111312
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: boss1_death_6
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 101
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 09f99a1f73569c590800000000000000
-      internalID: -7653474800787415152
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: boss1_death_7
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 101
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a4430bac331fdd6d0800000000000000
-      internalID: -2963947774993746870
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: boss1_death_8
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 101
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30121d759c3f84310800000000000000
-      internalID: 1389628531131097347
+      spriteID: 44344ad369b145ac0800000000000000
+      internalID: -3867435847911193788
       vertices: []
       indices: 
       edges: []
@@ -340,7 +400,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 28be1af429eff8947bc35a423f1dc67b
+    spriteID: 0895ca99cc6689c4290de825f77e0132
     internalID: 0
     vertices: []
     indices: 

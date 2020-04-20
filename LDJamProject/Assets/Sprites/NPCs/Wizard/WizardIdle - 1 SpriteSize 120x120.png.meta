@@ -1,34 +1,34 @@
 fileFormatVersion: 2
-guid: 957da46fff881d44790f7f231e143ebf
+guid: cf73d23f40be0354fa528bd057a340d7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1355957454081961027
-    second: boss1_death_0
+      213: -889886348339280302
+    second: WizardIdle - 1 SpriteSize 120x120_0
   - first:
-      213: -576677230596124563
-    second: boss1_death_1
+      213: 1796372897441126144
+    second: WizardIdle - 1 SpriteSize 120x120_1
   - first:
-      213: -2029621163882193175
-    second: boss1_death_2
+      213: -344293144316867125
+    second: WizardIdle - 1 SpriteSize 120x120_2
   - first:
-      213: -7053227342690878521
-    second: boss1_death_3
+      213: -3994547008676104961
+    second: WizardIdle - 1 SpriteSize 120x120_3
   - first:
-      213: -3129326545644557752
-    second: boss1_death_4
+      213: -1458136878688336916
+    second: WizardIdle - 1 SpriteSize 120x120_4
   - first:
-      213: 7833536955490111312
-    second: boss1_death_5
+      213: 5290953585684837619
+    second: WizardIdle - 1 SpriteSize 120x120_5
   - first:
-      213: -7653474800787415152
-    second: boss1_death_6
+      213: 5967402095566930155
+    second: WizardIdle - 1 SpriteSize 120x120_6
   - first:
-      213: -2963947774993746870
-    second: boss1_death_7
+      213: 2369650063830861521
+    second: WizardIdle - 1 SpriteSize 120x120_7
   - first:
-      213: 1389628531131097347
-    second: boss1_death_8
+      213: 4373511254928073758
+    second: WizardIdle - 1 SpriteSize 120x120_8
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -59,7 +59,7 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: 1
+    aniso: 2
     mipBias: -100
     wrapU: 1
     wrapV: 1
@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,7 +90,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,7 +102,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -114,7 +114,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -126,7 +126,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -138,7 +138,19 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -149,13 +161,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boss1_death_0
+      name: WizardIdle - 1 SpriteSize 120x120_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 101
-        width: 64
-        height: 101
+        y: 120
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db3d6e231ebae2de0800000000000000
-      internalID: -1355957454081961027
+      spriteID: 25684ccb41d76a3f0800000000000000
+      internalID: -889886348339280302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_death_1
+      name: WizardIdle - 1 SpriteSize 120x120_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 101
-        width: 64
-        height: 101
+        x: 120
+        y: 120
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +196,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6013483d1b3ff7f0800000000000000
-      internalID: -576677230596124563
+      spriteID: 0071e14f1affde810800000000000000
+      internalID: 1796372897441126144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_death_2
+      name: WizardIdle - 1 SpriteSize 120x120_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 101
-        width: 64
-        height: 101
+        x: 240
+        y: 120
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +217,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9eedf2a0e4655d3e0800000000000000
-      internalID: -2029621163882193175
+      spriteID: bcd046a9533d83bf0800000000000000
+      internalID: -344293144316867125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_death_3
+      name: WizardIdle - 1 SpriteSize 120x120_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 101
-        width: 64
-        height: 101
+        x: 360
+        y: 120
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,20 +238,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7cb76d6f917ed1e90800000000000000
-      internalID: -7053227342690878521
+      spriteID: ff4f24dd8a48098c0800000000000000
+      internalID: -3994547008676104961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_death_4
+      name: WizardIdle - 1 SpriteSize 120x120_4
       rect:
         serializedVersion: 2
-        x: 256
-        y: 101
-        width: 64
-        height: 101
+        x: 480
+        y: 120
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,20 +259,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84ae7ac26166294d0800000000000000
-      internalID: -3129326545644557752
+      spriteID: ce382effb38a3cbe0800000000000000
+      internalID: -1458136878688336916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_death_5
+      name: WizardIdle - 1 SpriteSize 120x120_5
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 101
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,20 +280,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05f02ee6b5056bc60800000000000000
-      internalID: 7833536955490111312
+      spriteID: 3f4f2d5e04e3d6940800000000000000
+      internalID: 5290953585684837619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_death_6
+      name: WizardIdle - 1 SpriteSize 120x120_6
       rect:
         serializedVersion: 2
-        x: 64
+        x: 120
         y: 0
-        width: 64
-        height: 101
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,20 +301,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09f99a1f73569c590800000000000000
-      internalID: -7653474800787415152
+      spriteID: be0403ad69870d250800000000000000
+      internalID: 5967402095566930155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_death_7
+      name: WizardIdle - 1 SpriteSize 120x120_7
       rect:
         serializedVersion: 2
-        x: 128
+        x: 240
         y: 0
-        width: 64
-        height: 101
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -310,20 +322,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4430bac331fdd6d0800000000000000
-      internalID: -2963947774993746870
+      spriteID: 1d6ce989d20b2e020800000000000000
+      internalID: 2369650063830861521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: boss1_death_8
+      name: WizardIdle - 1 SpriteSize 120x120_8
       rect:
         serializedVersion: 2
-        x: 192
+        x: 360
         y: 0
-        width: 64
-        height: 101
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,8 +343,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30121d759c3f84310800000000000000
-      internalID: 1389628531131097347
+      spriteID: e1429238055d1bc30800000000000000
+      internalID: 4373511254928073758
       vertices: []
       indices: 
       edges: []
@@ -340,7 +352,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 28be1af429eff8947bc35a423f1dc67b
+    spriteID: 66e5585e262872240bac68d7b4e1965a
     internalID: 0
     vertices: []
     indices: 

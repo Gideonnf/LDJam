@@ -17,7 +17,8 @@ public class TradeManager : SingletonBase<TradeManager>
     [Tooltip("Sprite to show selected objects")]
     public Sprite SelectedObjectSprite;
 
-    //[Tooltip("Sprite for unselected objects")]
+    [Tooltip("Sprite for unselected objects")]
+    public Sprite UnselectedObjectSprite;
 
     [Tooltip("When the player selects an item to trade, this is the UI Item slot")]
     public GameObject PlayerTradeSlot;
@@ -267,6 +268,17 @@ public class TradeManager : SingletonBase<TradeManager>
         ClearPlayerInventory();
 
         CreatePlayerInventory();
+
+        // set the sprite back lol
+        currentActiveNPCButton.GetComponent<Image>().sprite = UnselectedObjectSprite;
+
+        // reset the active buttons
+        currentActiveNPCButton = null;
+        currentActivePlayerButton = null;
+
+        //ClearNPCInventory();
+
+        //CreateNPCInventory();
     }
 
     /// <summary>
