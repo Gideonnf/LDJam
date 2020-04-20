@@ -7,6 +7,9 @@ public class TradeNPC : MonoBehaviour
     [Tooltip("Inventory of the NPC")]
     public List<ItemObjBase> m_NPCItemList = new List<ItemObjBase>();
 
+    [Tooltip("Sprite of the NPC")]
+    public Sprite NPCSprite;
+
     // For the randomisation
     WeightedObject<ItemObjBase> m_NPCItems = new WeightedObject<ItemObjBase>();
 
@@ -26,7 +29,7 @@ public class TradeNPC : MonoBehaviour
     {
         if (PlayerInRange)
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 TradeManager.Instance.EnableTrading(this.gameObject);
             }
