@@ -167,7 +167,7 @@ MonoBehaviour:
       type: 3}
     startingAmount: 0
     amountToPool: 2
-  - enemyPrefab: {fileID: 625579389791766987, guid: f28cdb9702c3024429b9ee9f4602afe7,
+  - enemyPrefab: {fileID: 7277716997503437400, guid: f28cdb9702c3024429b9ee9f4602afe7,
       type: 3}
     startingAmount: 0
     amountToPool: 1

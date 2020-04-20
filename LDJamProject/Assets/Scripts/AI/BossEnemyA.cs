@@ -62,7 +62,7 @@ public class BossEnemyA : EnemyBase
         // Attack the player with spell
         BossEnemyA_Attack bullet = Instantiate(attackPrefab).GetComponent<BossEnemyA_Attack>();
         bullet.transform.position = shootPosition.position;
-        bullet.Init((Vector2)DEBUG_TARGET.position - m_rb.position);
+        bullet.Init(((Vector2)DEBUG_TARGET.position - m_rb.position).normalized);
        // m_animator.SetTrigger(attack_trigger);
     }
 
