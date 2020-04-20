@@ -62,7 +62,8 @@ public class BossEnemyA : EnemyBase
         BossEnemyA_Attack bullet = Instantiate(attackPrefab).GetComponent<BossEnemyA_Attack>();
         bullet.transform.position = shootPosition.position;
         bullet.Init(((Vector2)DEBUG_TARGET.position - m_rb.position).normalized);
-       // m_animator.SetTrigger(attack_trigger);
+        SoundManager.Instance.Play("MushBossDamaged");
+        // m_animator.SetTrigger(attack_trigger);
     }
 
     /// <summary>
@@ -73,9 +74,12 @@ public class BossEnemyA : EnemyBase
     {
         if (health > 0)
         {
+            SoundManager.Instance.Play("MushBossDamaged");
+
             m_animator.SetTrigger(hit_trigger);
             if (base.TakeDamage(dmg))
             {
+                SoundManager.Instance.Play("MushBossDeath");
                 OnDeath();
             }
         }
