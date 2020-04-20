@@ -1,17 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class WizardMenu : MonoBehaviour
 {
     [Tooltip("Reference to the game object for wizard trading")]
     public GameObject WizardTradeObject;
 
+    [Tooltip("Reference to the Money text object")]
+    public GameObject MoneyDisplay;
+
     [Tooltip("Reference to the prefab for inventory slot")]
     public GameObject InventoryItemSlot;
 
     [Tooltip("Sprite to show selected objects")]
     public Sprite SelectedObjectSprite;
+
+    [Tooltip("Sprite to show unselected objects")]
+    public Sprite UnselectedObjectSprite;
 
     [Header("Inventory Configuration")]
     [Tooltip("Starting position for hte first item slot")]
@@ -23,9 +31,13 @@ public class WizardMenu : MonoBehaviour
     [Tooltip("How many rows and columns")]
     public Vector2 ColumnRow = new Vector2(3, 4);
 
+    [HideInInspector] public List<ItemObjBase> SelectedItems = new List<ItemObjBase>();
+
     List<InventorySlot> InventorySlots = new List<InventorySlot>();
 
     PlayerInventory m_Inventory;
+
+    float MoneyFromitems = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +53,17 @@ public class WizardMenu : MonoBehaviour
         {
             OpenUI();
         }
+
+        float tempMoney = 0;
+        // Loop through the selected items to get the total money
+        for(int i = 0; i < SelectedItems.Count; ++i)
+        {
+            tempMoney += SelectedItems[i].m_ItemPrice;
+        }
+
+        MoneyFromitems = (tempMoney + m_Inventory.m_PlayerMoney);
+
+        MoneyDisplay.GetComponent<TextMeshProUGUI>().text = MoneyFromitems.ToString();
     }
 
     /// <summary>

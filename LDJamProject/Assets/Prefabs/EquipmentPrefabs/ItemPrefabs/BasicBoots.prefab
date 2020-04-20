@@ -141,7 +141,7 @@ MonoBehaviour:
   m_ItemSprite: {fileID: 8291713616737016725, guid: 71b35349ab3118f4da34f601afeac109,
     type: 3}
   m_ItemType: 3
-  m_ItemPrice: 0
+  m_ItemPrice: 150
   m_DamageBoost: 0
   m_SpeedBoost: 1
   m_HealthGain: 0
