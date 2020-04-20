@@ -138,7 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ItemName: Not Unique Shield
   m_ItemDescription: 
-  m_ItemSprite: {fileID: 0}
+  m_ItemSprite: {fileID: 6276438567079970222, guid: 71b35349ab3118f4da34f601afeac109,
+    type: 3}
   m_ItemType: 6
   m_ItemPrice: 200
   m_DamageBoost: 0
