@@ -64,7 +64,6 @@ public class RangedEnemyA : EnemyBase
         if (m_animator.GetCurrentAnimatorStateInfo(0).tagHash == attack_animation || m_animator.GetNextAnimatorStateInfo(0).tagHash == attack_animation)
             return;
         m_animator.SetTrigger(attack_trigger);
-        SoundManager.Instance.Play("EyeballAttack");
     }
 
     /// <summary>
@@ -72,6 +71,8 @@ public class RangedEnemyA : EnemyBase
     /// </summary>
     public void ShootProjectile()
     {
+        SoundManager.Instance.Play("EyeballAttack");
+
         // Shoot towards target
         RangedEnemyA_Projectile newProjectile = poolerInstance.FetchGO("ERA_Proj").GetComponent<RangedEnemyA_Projectile>();
         newProjectile.Init(m_rb.position, (m_rb.position - (Vector2)DEBUG_TARGET.position).normalized);

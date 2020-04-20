@@ -14,6 +14,7 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
 
     [Header("UI")]
     public GameObject m_LeaveRoomText;
+    public GameObject m_InteractText;
 
     [Header("Room Info")]
     public Vector2Int m_MinMaxRoomNumber = new Vector2Int(10,12);

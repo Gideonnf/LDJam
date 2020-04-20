@@ -45,8 +45,6 @@ public class MeleeEnemyB : EnemyBase
         if (m_animator.GetCurrentAnimatorStateInfo(0).tagHash == attack_animation || m_animator.GetNextAnimatorStateInfo(0).tagHash == attack_animation)
             return;
         m_animator.SetTrigger(attack_trigger);
-
-        SoundManager.Instance.Play("GolemAttack");
     }
 
     public void AttackPlayer()
@@ -55,6 +53,9 @@ public class MeleeEnemyB : EnemyBase
         // Check distance between player and enemy. Deals damage if the player is close enough to the enemy.
         if ((m_rb.position - (Vector2)PlayerController.Instance.transform.position).sqrMagnitude > attackDistance * attackDistance)
             return;
+
+        SoundManager.Instance.Play("GolemAttack");
+
         RaycastHit2D[] hits;
         hits = Physics2D.RaycastAll(m_rb.position, (Vector2)DEBUG_TARGET.position - m_rb.position, attackDistance);
         foreach(RaycastHit2D hit in hits)
@@ -65,6 +66,7 @@ public class MeleeEnemyB : EnemyBase
             PlayerController player = null;
             wagon = hit.collider.gameObject.GetComponent<WagonCollisionChecker>();
             player = hit.collider.gameObject.GetComponent<PlayerController>();
+
             if (wagon != null)
             {
                 // Damage wagon

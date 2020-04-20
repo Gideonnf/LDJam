@@ -59,12 +59,18 @@ public class NPCTextInteraction : MonoBehaviour
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
+        {
             m_PlayerNearby = true;
+            DungeonGeneration.Instance.m_InteractText.SetActive(true);
+        }
     }
 
     public virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
+        {
             m_PlayerNearby = false;
+            DungeonGeneration.Instance.m_InteractText.SetActive(false);
+        }
     }
 }
