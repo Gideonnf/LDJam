@@ -27,6 +27,7 @@ public class Lifesteal : ItemObjBase
         {
             if (playerStats.m_CurrentHealth < playerStats.m_MaxHealth)
             {
+                SoundManager.Instance.Play("BatTrigger");
                 playerStats.m_CurrentHealth++;
                 lifestealPet_.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Heal");
             }

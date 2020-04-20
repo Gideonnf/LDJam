@@ -5,43 +5,22 @@ using UnityEngine;
 public class SoundManager : SingletonBase<SoundManager>
 {
     AudioSource audioSource;
+    [SerializeField] GameObject SFXObject;
+    [SerializeField] GameObject PermanentAudioObj;
 
-    public enum AudioSourceType
-    {
-        BackgroundSource,
-        AmbientSource,
-        SFXSource,
-        ExtraSource,
-        TotalAudioSources
-    };
-
-    [Tooltip("List of audio sources to allow multiple music?")]
-    public List<AudioSource> ListOfAudioSources = new List<AudioSource>();
-    
     [Tooltip("List of audio objects")]
     public List<AudioObject> ListOfAudioObjects = new List<AudioObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-        //audioSource = GetComponent<AudioSource>();
-        foreach (AudioObject audio in ListOfAudioObjects)
-        {
-            audio.m_audioSource = ListOfAudioSources[(int)audio.AudioSourceType];
 
-            audio.m_audioSource.clip = audio.m_Clip;
-            audio.m_audioSource.loop = audio.m_Loop;
-            audio.m_audioSource.volume = audio.m_Volume;
-        }
-
-        //Play("Ambient");
-       // Play("Combat");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     /// <summary>
@@ -50,50 +29,84 @@ public class SoundManager : SingletonBase<SoundManager>
     /// <param name="audioName"> Audio to be played </param>
     /// <param name="audioSource"> Source to play on </param>
     /// <returns></returns>
-    public bool Play(string audioName)
+    public GameObject Play(string audioName)
     {
         foreach (AudioObject audio in ListOfAudioObjects)
         {
             if (audio.m_AudioName == audioName)
             {
-                audio.m_audioSource.Play();
+                if (audio.isSFX)
+                {
+                    GameObject tempSound = Instantiate(SFXObject);
+                    tempSound.GetComponent<AudioSource>().clip = audio.m_Clip;
+                    tempSound.GetComponent<AudioSource>().volume = audio.m_Volume;
+                    tempSound.GetComponent<AudioSource>().pitch = audio.m_Pitch;
+                    tempSound.GetComponent<AudioSource>().loop = audio.m_Loop;
+                    tempSound.GetComponent<AudioSource>().Play();
+                    return tempSound;
+                }
+                else
+                {
+                    GameObject tempSound = Instantiate(PermanentAudioObj);
+                    tempSound.GetComponent<AudioSource>().clip = audio.m_Clip;
+                    tempSound.GetComponent<AudioSource>().volume = audio.m_Volume;
+                    tempSound.GetComponent<AudioSource>().pitch = audio.m_Pitch;
+                    tempSound.GetComponent<AudioSource>().loop = audio.m_Loop;
+                    tempSound.GetComponent<AudioSource>().Play();
+                    return tempSound;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    //public bool PauseAudio(string audioName)
+    //{
+    //    foreach (AudioObject audio in ListOfAudioObjects)
+    //    {
+    //        if (audio.m_AudioName == audioName)
+    //        {
+    //            audio.m_audioSource.Pause();
+    //            return true;
+    //        }
+    //    }
+    //
+    //    return false;
+    //}
+
+    public bool PlaySFXWithPitch(string audioName, float range)
+    {
+        foreach (AudioObject audio in ListOfAudioObjects)
+        {
+            if (audio.m_AudioName == audioName)
+            {
+                if (audio.isSFX)
+                {
+                    GameObject tempSound = Instantiate(SFXObject);
+                    tempSound.GetComponent<AudioSource>().clip = audio.m_Clip;
+                    tempSound.GetComponent<AudioSource>().volume = audio.m_Volume;
+                    tempSound.GetComponent<AudioSource>().loop = audio.m_Loop;
+                    tempSound.GetComponent<AudioSource>().pitch = audio.m_Pitch + Random.Range(-range, range);
+                    tempSound.GetComponent<AudioSource>().Play();
+                    return true;
+                }
             }
         }
 
         return false;
     }
 
-    public bool PauseAudio (int audioSource)
+    public AudioObject GetAudioObject(string name)
     {
-        if (ListOfAudioSources[audioSource].isPlaying)
+        foreach (AudioObject audio in ListOfAudioObjects) 
         {
-            ListOfAudioSources[audioSource].Pause();
-            return true;
-        }
-
-        return false;
-    }
-
-    public bool PlayAudioWithPitch(string audioName)
-    {
-        foreach (AudioObject audio in ListOfAudioObjects)
-        {
-            if (audio.m_AudioName == audioName)
+            if (audio.m_AudioName == name)
             {
-                float tempPitch = audio.m_audioSource.pitch;
-
-                audio.m_audioSource.pitch = Random.Range(0.5f, 2.0f);
-
-                audio.m_audioSource.Play();
-
-                // Might need to change it so it stores its starting pitch
-                // incase this doesnt work
-                audio.m_audioSource.pitch = tempPitch;
-               
+                return audio;
             }
         }
 
-
-        return false;
+        return null;
     }
 }

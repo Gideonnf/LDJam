@@ -52,6 +52,19 @@ public class PlayerCombat : MonoBehaviour
     {
         if(meleeAttackSpeed_ >= playerStats.m_CurrentMeleeAttackSpeed && !playerMovement.isDashing && !playerMovement.isAttackDashing)
         {
+            switch(Random.Range(0,3))
+            {
+                case 0:
+                    SoundManager.Instance.Play("PlayerAttack1");
+                    break;
+                case 1:
+                    SoundManager.Instance.Play("PlayerAttack2");
+                    break;
+                case 2:
+                    SoundManager.Instance.Play("PlayerAttack3");
+                    break;
+            }
+
             attack1Animation = !attack1Animation;
             meleeWeaponAnimator.SetBool("Attack1", attack1Animation);
 

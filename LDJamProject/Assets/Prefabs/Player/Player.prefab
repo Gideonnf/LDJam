@@ -452,7 +452,9 @@ MonoBehaviour:
   ghostDash: {fileID: 3144734294903339422, guid: acb27c406eb0f7e4189b6b598049f8e1,
     type: 3}
   timeBeforeGhostSpawn: 0
+  timeBetweenFootstepSFX: 0.3
   isDashing: 0
+  isPullingCaravan: 0
   isAttackDashing: 0
   playerFaceDir: 0
   movementDir: {x: 0, y: 0, z: 0}
@@ -606,7 +608,7 @@ MonoBehaviour:
   - {x: -4.0636363, y: 0.448143, z: 0}
   m_ShapePathHash: 1823486170
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1766
+  m_InstanceId: -110664
 --- !u!1 &3416626134381552545
 GameObject:
   m_ObjectHideFlags: 0

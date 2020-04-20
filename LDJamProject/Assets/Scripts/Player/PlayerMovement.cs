@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float timeInactiveToBeIdle = 0.1f;
     [SerializeField] GameObject ghostDash;
     [SerializeField] float timeBeforeGhostSpawn;
+    [SerializeField] float timeBetweenFootstepSFX;
 
     PlayerStats playerStats;
     Rigidbody2D PlayerRB;
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     float distanceAttackDashed;
     float attackDashTimer;
     float idleTimer;
+    float footstepSFXTimer;
 
     float ghostSpawnTimer;
 
@@ -54,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         ghostSpawnTimer = 0;
         isPullingCaravan = false;
+        footstepSFXTimer = 0;
     }
 
     // Update is called once per frame
@@ -114,6 +117,26 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
+                footstepSFXTimer += Time.deltaTime;
+                if(footstepSFXTimer >= timeBetweenFootstepSFX)
+                {
+                    footstepSFXTimer = 0;
+                    switch(Random.Range(0,4))
+                    {
+                        case 0:
+                            SoundManager.Instance.Play("PlayerRun1");
+                            break;
+                        case 1:
+                            SoundManager.Instance.Play("PlayerRun2");
+                            break;
+                        case 2:
+                            SoundManager.Instance.Play("PlayerRun3");
+                            break;
+                        case 3:
+                            SoundManager.Instance.Play("PlayerRun4");
+                            break;
+                    }
+                }
                 idleTimer = 0;
                 playerAnimator.SetBool("IsIdling", false);
             }
@@ -142,6 +165,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (numOfDash > 0 && !isAttackDashing) 
         {
+            SoundManager.Instance.Play("PlayerDash");
             isDashing = true;
             playerStats.m_CurrentSpeed = playerStats.m_CurrentDashSpeed;
             distanceDashed = 0;
