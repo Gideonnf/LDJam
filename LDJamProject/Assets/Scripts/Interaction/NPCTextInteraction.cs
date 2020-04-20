@@ -11,12 +11,16 @@ public class NPCTextInteraction : MonoBehaviour
 
     bool m_PlayerNearby = false;
 
-    public void Awake()
+    public virtual void Awake()
     {
         m_PlayerNearby = false;
+
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+            spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if (m_DialogueManager == null)
             return;
@@ -34,30 +38,31 @@ public class NPCTextInteraction : MonoBehaviour
             if (m_PlayerNearby)
             {
                 //check for input
-                TriggerDialogue();
+                if (Input.GetKeyDown(KeyCode.E))
+                    TriggerDialogue();
             }
         }
     }
 
-    public void TriggerDialogue()
+    public virtual void TriggerDialogue()
     {
         //if clicked on npc
         m_DialogueManager.StartDialogue(m_Dialogue);
         SoundManager.Instance.Play(m_DialogueSound);
     }
 
-    public void NextLine()
+    public virtual void NextLine()
     {
         m_DialogueManager.DisplaySpeech();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
             m_PlayerNearby = true;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
             m_PlayerNearby = false;
