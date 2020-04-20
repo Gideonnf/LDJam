@@ -5,7 +5,7 @@ public class SecondSoundManager : SingletonBase<SecondSoundManager>
 {
     public Sound[] m_SoundClipList;
 
-    public void Awake()
+    public override void Awake()
     {
         foreach(Sound sound in m_SoundClipList)
         {

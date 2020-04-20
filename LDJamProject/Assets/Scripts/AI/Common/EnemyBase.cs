@@ -18,8 +18,8 @@ public class EnemyBase : MonoBehaviour
     static Color32 line_normal = new Color32(0, 0, 255, 255);
     static Color32 line_triggered = new Color32(255, 0, 0, 255);
 
-    protected bool m_triggered = false;
 #endif
+    protected bool m_triggered = false;
 
     // Values for knockback on damage
     [SerializeField] bool canBeKnocked;
