@@ -1421,6 +1421,7 @@ MonoBehaviour:
   m_Doors: {fileID: 7121483146699980818}
   m_DoorBlocks: {fileID: 7121483145537842870}
   m_PlayerSpawnPosition: {fileID: 7489397877229802598}
+  m_CaravanSpawnPosition: {fileID: 0}
   m_CameraPos: {fileID: 7121483145975617349}
 --- !u!1 &7121483146699980818
 GameObject:
@@ -2206,17 +2207,17 @@ PrefabInstance:
     - target: {fileID: 2294553451413724470, guid: 3903dda33219c10438c2ef455c0751a8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.017857142
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2294553451413724470, guid: 3903dda33219c10438c2ef455c0751a8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.017857142
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2294553451413724470, guid: 3903dda33219c10438c2ef455c0751a8,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.35714284
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2294553451413724471, guid: 3903dda33219c10438c2ef455c0751a8,
         type: 3}
@@ -2561,12 +2562,12 @@ PrefabInstance:
     - target: {fileID: 2294553451413724470, guid: 3903dda33219c10438c2ef455c0751a8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.375572
+      value: -1.33397
       objectReference: {fileID: 0}
     - target: {fileID: 2294553451413724470, guid: 3903dda33219c10438c2ef455c0751a8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.13737753
+      value: -0.17918
       objectReference: {fileID: 0}
     - target: {fileID: 2294553451413724470, guid: 3903dda33219c10438c2ef455c0751a8,
         type: 3}
@@ -2616,17 +2617,17 @@ PrefabInstance:
     - target: {fileID: 2294553451413724470, guid: 3903dda33219c10438c2ef455c0751a8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.017857142
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2294553451413724470, guid: 3903dda33219c10438c2ef455c0751a8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.017857142
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2294553451413724470, guid: 3903dda33219c10438c2ef455c0751a8,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.35714284
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2294553451413724471, guid: 3903dda33219c10438c2ef455c0751a8,
         type: 3}
