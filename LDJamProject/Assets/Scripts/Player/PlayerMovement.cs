@@ -70,6 +70,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerStats.m_CurrentHealth <= 0 || playerStats.m_CurrentCaravanHealth <= 0)
+            return;
+
         if(isPickingUpCaravan)
         {
             movement = Vector2.zero;
