@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BGMController : MonoBehaviour
+public class BGMController : SingletonBase<BGMController>
 {
 
     [SerializeField] float fadeSpeed;
