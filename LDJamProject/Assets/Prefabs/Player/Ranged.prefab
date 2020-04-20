@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc703a40fcbcee741b0017f76c9c31d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 5
   lifetime: 5
   distanceFromPlayer: 0.95
   projectileSpeed: 10
@@ -129,3 +129,6 @@ MonoBehaviour:
   canHitMultipleTimes: 0
   timeBetweenEachHit: 0
   posBasedOnMovementDir: 0
+  nonPlayerAttack: 0
+  projectileDir: {x: 0, y: 0, z: 0}
+  spawnPos: {x: 0, y: 0, z: 0}

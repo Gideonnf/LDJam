@@ -53,6 +53,17 @@ public class PlayerStats : MonoBehaviour
     [Tooltip("Distance Between Each Pet")]
     public float m_DistanceBetweenEachPet = 1f;
 
+    [Tooltip("Seconds of invincibility after getting hit")]
+    public float m_IFramesAfterHit = 1f;
+
+    [Tooltip("Rate of blinking when invincibile")]
+    public float m_TimeBetweenEachIFrameBlink = 0.05f;
+
+    public bool playerTakeDamageDebug;
+    public bool caravanTakeDamageDebug;
+
+    [SerializeField] GameObject caravan;
+
     // Current Stats after bonuses are applied from items
 
     public float m_CurrentDamage;
@@ -72,7 +83,10 @@ public class PlayerStats : MonoBehaviour
     public float m_CurrentAttackDashDistance;
     public float m_CurrentAttackDashTime;
     public int m_NumOfPets;
-
+    public float m_PlayerCurrentIFrames;
+    public float m_CaravanCurrentIFrames;
+    public float m_PlayerIFramesBlinkTimer;
+    public float m_CaravanIFramesBlinkTimer;
 
     // Start is called before the first frame update
     void Awake()
@@ -93,15 +107,93 @@ public class PlayerStats : MonoBehaviour
         m_CurrentAttackDashSpeed = m_StartingAttackDashSpeed;
         m_CurrentAttackDashDistance = m_StartingAttackDashDistance;
         m_CurrentAttackDashTime = m_StartingAttackDashTime;
+        m_PlayerCurrentIFrames = 0;
+        m_CaravanCurrentIFrames = 0;
+        m_PlayerIFramesBlinkTimer = m_TimeBetweenEachIFrameBlink;
+        m_CaravanIFramesBlinkTimer = m_TimeBetweenEachIFrameBlink;
         m_NumOfPets = 0;
 }
 
     // Update is called once per frame
     void Update()
     {
-        if(m_CurrentHealth <= 0 || m_CurrentCaravanHealth <= 0)
+        if(m_PlayerCurrentIFrames>=0)
+        {
+            m_PlayerCurrentIFrames -= Time.deltaTime;
+            m_PlayerIFramesBlinkTimer -= Time.deltaTime;
+            if(m_PlayerIFramesBlinkTimer <= 0)
+            {
+                Color temp = GetComponent<SpriteRenderer>().color;
+                if (temp.a == 1)
+                    temp.a = 0;
+                else
+                    temp.a = 1;
+                GetComponent<SpriteRenderer>().color = temp;
+                m_PlayerIFramesBlinkTimer = m_TimeBetweenEachIFrameBlink;
+            }
+            if(m_PlayerCurrentIFrames <= 0)
+            {
+                Color temp = GetComponent<SpriteRenderer>().color;
+                temp.a = 1;
+                GetComponent<SpriteRenderer>().color = temp;
+            }
+        }
+
+        if (m_CaravanCurrentIFrames >= 0)
+        {
+            m_CaravanCurrentIFrames -= Time.deltaTime;
+            m_CaravanIFramesBlinkTimer -= Time.deltaTime;
+            if (m_CaravanIFramesBlinkTimer <= 0)
+            {
+                Color temp = caravan.GetComponent<SpriteRenderer>().color;
+                if (temp.a == 1)
+                    temp.a = 0;
+                else
+                    temp.a = 1;
+                caravan.GetComponent<SpriteRenderer>().color = temp;
+                m_CaravanIFramesBlinkTimer = m_TimeBetweenEachIFrameBlink;
+            }
+            if (m_CaravanCurrentIFrames <= 0)
+            {
+                Color temp = caravan.GetComponent<SpriteRenderer>().color;
+                temp.a = 1;
+                caravan.GetComponent<SpriteRenderer>().color = temp;
+            }
+        }
+
+        if(playerTakeDamageDebug)
+        {
+            playerTakeDamageDebug = false;
+            PlayerTakeDamage(1);
+        }
+        if (caravanTakeDamageDebug)
+        {
+            caravanTakeDamageDebug = false;
+            CaravanTakeDamage(1);
+        }
+    }
+
+    public void PlayerTakeDamage(int damage)
+    {
+        if (m_PlayerCurrentIFrames > 0)
+            return;
+        m_CurrentHealth -= damage;
+        if (m_CurrentHealth <= 0)
         {
             //death screen
         }
+        m_PlayerCurrentIFrames = m_IFramesAfterHit;
+    }
+
+    public void CaravanTakeDamage(int damage)
+    {
+        if (m_CaravanCurrentIFrames > 0)
+            return;
+        m_CurrentCaravanHealth -= damage;
+        if (m_CurrentCaravanHealth <= 0)
+        {
+            //death screen
+        }
+        m_CaravanCurrentIFrames = m_IFramesAfterHit;
     }
 }

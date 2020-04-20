@@ -21,6 +21,7 @@ public class Wagon : MonoBehaviour
     GameObject wagonMoveSFX;
     bool isIdling;
     float pickUpCaravanTimer;
+    [HideInInspector]public bool isColliding;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class Wagon : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
         isIdling = false;
         pickUpCaravanTimer = 0;
+        isColliding = false;
     }
 
     // Update is called once per frame
@@ -138,18 +140,21 @@ public class Wagon : MonoBehaviour
             instructionText.SetActive(false);
         }
     }
+
     public void Interact()
     {
-        playerMovement.isPullingCaravan = !playerMovement.isPullingCaravan;
-        if (playerMovement.isPullingCaravan)
+
+        if (!playerMovement.isPullingCaravan)
         {
+            playerMovement.isPullingCaravan = true;
             instructionText.SetActive(false);
             wagonAnimator.SetBool("PlayerPulling", true);
             playerMovement.isPickingUpCaravan = true;
             pickUpCaravanTimer = 0;
         }
-        else
+        else if(playerMovement.isPullingCaravan && !isColliding)
         {
+            playerMovement.isPullingCaravan = false;
             wagonAnimator.SetBool("PlayerPulling", false);
         }
     }

@@ -76,7 +76,7 @@ public class AttackHitbox : MonoBehaviour
 
         for (int i = 0; i < timeBetweenEachHit_.Count; i++)
         {
-            if(timeBetweenEachHit_[i] < timeBetweenEachHit)
+            if(timeBetweenEachHit_[i] < timeBetweenEachHit && timeBetweenEachHit > 0)
                 timeBetweenEachHit_[i] += Time.deltaTime;
         }
     }
@@ -91,6 +91,10 @@ public class AttackHitbox : MonoBehaviour
                 {
                     return;
                 }
+                else if(objsAttacked[i] == other.gameObject)
+                {
+                    timeBetweenEachHit_[i] = 0;
+                }
             }
 
             if (!nonPlayerAttack)
@@ -102,10 +106,29 @@ public class AttackHitbox : MonoBehaviour
             }
 
             other.transform.parent.GetComponent<EnemyBase>().TakeDamage(damage);
+            timeBetweenEachHit_.Add(0);
+            objsAttacked.Add(other.gameObject);
             if (projectileSpeed > 0 && !projectilePierce)
             {
                 Destroy(gameObject);
             }
+        }
+
+        if(other.gameObject.CompareTag("Chest"))
+        {
+            Debug.Log(objsAttacked.Count);
+            for (int i = 0; i < objsAttacked.Count; i++)
+            {
+                if (objsAttacked[i] == other.gameObject)
+                {
+                    return;
+                }
+            }
+            other.gameObject.GetComponent<Animator>().SetTrigger("Open");
+
+            timeBetweenEachHit_.Add(0);
+            objsAttacked.Add(other.gameObject);
+
         }
         //if(other.gameObject.CompareTag("Wall"))
         //{
