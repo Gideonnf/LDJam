@@ -8,6 +8,7 @@ public class InventorySlot
     public GameObject SlotUI;
     public ItemObjBase ItemStored;
     public int Quantity;
+    public bool Selected = false;
 
     public InventorySlot()
     {

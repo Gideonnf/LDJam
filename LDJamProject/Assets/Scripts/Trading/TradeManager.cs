@@ -44,7 +44,6 @@ public class TradeManager : SingletonBase<TradeManager>
     [Tooltip("Distance Between each item slots")]
     public Vector2 PlayerSlotDistance = new Vector2(75, 100);
 
-
     [Tooltip("How many rows and columns")]
     public Vector2 ColumnRow = new Vector2(6, 2);
 
