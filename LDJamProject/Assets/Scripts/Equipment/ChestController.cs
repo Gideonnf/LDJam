@@ -5,11 +5,11 @@ using UnityEngine;
 public class ChestController : MonoBehaviour
 {
     Animator chestAnim;
-    public Sprite OpenChestSprite;
+    //public Sprite OpenChestSprite;
     // Start is called before the first frame update
     void Start()
     {
-        chestAnim.GetComponent<Animator>();
+        //chestAnim.GetComponent<Animator>();
     }
 
     // Update is called once per frame
