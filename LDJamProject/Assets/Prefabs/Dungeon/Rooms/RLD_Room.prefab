@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &547268956018294293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6816394767600762768}
+  m_Layer: 0
+  m_Name: CaravanSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6816394767600762768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547268956018294293}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.23255643, y: -0.228, z: 0}
+  m_LocalScale: {x: 0.35714287, y: 0.35714287, z: 0.35714287}
+  m_Children: []
+  m_Father: {fileID: 5434758055820978302}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1878951447461197529
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,6 +594,7 @@ Transform:
   - {fileID: 5434758055640012527}
   - {fileID: 5645010519808775628}
   - {fileID: 5018358244175813295}
+  - {fileID: 6816394767600762768}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -635,6 +666,7 @@ MonoBehaviour:
   m_Doors: {fileID: 5434758055993049528}
   m_DoorBlocks: {fileID: 5434758055275638556}
   m_PlayerSpawnPosition: {fileID: 5645010519808775628}
+  m_CaravanSpawnPosition: {fileID: 6816394767600762768}
   m_CameraPos: {fileID: 5434758055640012527}
 --- !u!1 &5434758055993049528
 GameObject:
@@ -882,7 +914,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6131445964079734525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.026, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5434758055820978302}

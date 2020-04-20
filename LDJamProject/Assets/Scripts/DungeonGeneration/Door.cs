@@ -38,8 +38,15 @@ public class Door : MonoBehaviour
                     //check if its same direction
                     if (Vector2.Dot(playerMovement.movementDir, roomOffset) > 0)
                     {
-                        player.ChangePlayerGridPosition(player.GetPlayerCurrentGridPos() + roomOffset);
-                        m_Entered = true;
+                        if (PlayerController.Instance.IsPullingCaravan())
+                        {
+                            player.ChangePlayerGridPosition(player.GetPlayerCurrentGridPos() + roomOffset);
+                            m_Entered = true;
+                        }
+                        else
+                        {
+                            //show the is not pulling caravan UI
+                        }
                     }
                 }
             }

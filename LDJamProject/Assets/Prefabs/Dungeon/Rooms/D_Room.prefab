@@ -30,6 +30,36 @@ Transform:
   m_Father: {fileID: 2055540038390393090}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &288630537360717277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7669628940683974640}
+  m_Layer: 0
+  m_Name: CaravanPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7669628940683974640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288630537360717277}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.315, y: -0.2541445, z: 0}
+  m_LocalScale: {x: 0.35714287, y: 0.35714287, z: 0.35714287}
+  m_Children: []
+  m_Father: {fileID: 2055540038390393090}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &940144697448116997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,6 +1169,7 @@ Transform:
   - {fileID: 2055540038596384659}
   - {fileID: 1854786260212077744}
   - {fileID: 8529644717533944716}
+  - {fileID: 7669628940683974640}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1210,6 +1241,7 @@ MonoBehaviour:
   m_Doors: {fileID: 2055540038813630660}
   m_DoorBlocks: {fileID: 2055540037828308576}
   m_PlayerSpawnPosition: {fileID: 1854786260212077744}
+  m_CaravanSpawnPosition: {fileID: 7669628940683974640}
   m_CameraPos: {fileID: 2055540038596384659}
 --- !u!1 &2055540038596384658
 GameObject:

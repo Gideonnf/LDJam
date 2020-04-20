@@ -86,4 +86,12 @@ public class PlayerController : SingletonBase<PlayerController>
     {
         return m_PlayerMovement;
     }
+
+    public bool IsPullingCaravan()
+    {
+        if (m_PlayerMovement == null)
+            return false;
+
+        return m_PlayerMovement.isPullingCaravan;
+    }
 }

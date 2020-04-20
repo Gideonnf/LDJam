@@ -13,6 +13,7 @@ public class RoomBehaviour : MonoBehaviour
     public GameObject m_Doors;
     public GameObject m_DoorBlocks;
     public Transform m_PlayerSpawnPosition; //if this is startRoom
+    public Transform m_CaravanSpawnPosition;
 
     [Header("RealizationData")]
     public Transform m_CameraPos;
@@ -55,6 +56,11 @@ public class RoomBehaviour : MonoBehaviour
 
         OpenBlocks(false);
         OpenDoors(true);
+
+        if (m_RoomType == RoomTypes.BOSS_ROOM)
+        {
+            //GET THE WIZARD
+        }
     }
 
     public void OpenDoors(bool open)
@@ -104,14 +110,20 @@ public class RoomBehaviour : MonoBehaviour
         //teleport player
         PlayerController.Instance.gameObject.transform.position = m_PlayerSpawnPosition.position;
 
-        Debug.Log(PlayerController.Instance.gameObject.transform.position + "   " + m_PlayerSpawnPosition.position);
-
         //teleport camera pos
         Camera camera = Camera.main;
         if (camera != null)
             camera.transform.position = m_CameraPos.position;
 
         CameraMovement.Instance.cameraOriPos = m_CameraPos.position;
+
+        //spawn the caravan at the proper place
+        GameObject caravan = GameObject.FindGameObjectWithTag("Wagon");
+        if (caravan != null)
+        {
+            if (m_CaravanSpawnPosition != null)
+                caravan.transform.position = m_CaravanSpawnPosition.position;
+        }
 
         RoomComplete();
     }
@@ -175,7 +187,14 @@ public class RoomBehaviour : MonoBehaviour
     public void SetUpBossRoom()
     {
         //spawn boss
-        RoomComplete();
+        //RoomComplete();
+
+        //SPAWN BOSS
+        Vector3 pos = m_PossibleEnemySpawnPosition.GetChild(0).position;
+        m_RoomEnemyStarted = true;
+
+        OpenBlocks(true);
+        OpenDoors(false);
     }
 
     public void SetRoomType(RoomTypes roomType)

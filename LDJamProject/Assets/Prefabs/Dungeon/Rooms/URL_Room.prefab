@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2859181830453773272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.103, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4167725829917095259}
@@ -2615,6 +2615,7 @@ Transform:
   - {fileID: 4167725829735238602}
   - {fileID: 4390310413636520169}
   - {fileID: 6032083348966329500}
+  - {fileID: 2712872996430158905}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2686,6 +2687,7 @@ MonoBehaviour:
   m_Doors: {fileID: 4167725831699029149}
   m_DoorBlocks: {fileID: 4167725830445658681}
   m_PlayerSpawnPosition: {fileID: 4390310413636520169}
+  m_CaravanSpawnPosition: {fileID: 2712872996430158905}
   m_CameraPos: {fileID: 4167725829735238602}
 --- !u!1 &4167725830408833202
 GameObject:
@@ -2875,6 +2877,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6032083348966329500}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5648949620623563211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2712872996430158905}
+  m_Layer: 0
+  m_Name: CaravanSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2712872996430158905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5648949620623563211}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.42403013, y: -0.24980718, z: -1.665987}
+  m_LocalScale: {x: 0.35714287, y: 0.35714287, z: 0.35714287}
+  m_Children: []
+  m_Father: {fileID: 4167725829917095259}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6407750291072519838
 GameObject:
