@@ -13,7 +13,7 @@ public class MeleeEnemyB : EnemyBase
     #endregion
     [SerializeField] float attackDistance;
     // Start is called before the first frame update
-    new public void Awake()
+    override public void Awake()
     {
         base.Awake();
         moving_bool = Animator.StringToHash("moving");
@@ -65,16 +65,17 @@ public class MeleeEnemyB : EnemyBase
     {
         if (health > 0)
         {
-            m_animator.SetTrigger(hit_trigger);
             if (base.TakeDamage(dmg))
             {
                 OnDeath();
             }
+            else
+                m_animator.SetTrigger(hit_trigger);
         }
         return true;
     }
 
-    new protected void OnDeath()
+    override protected void OnDeath()
     {
         base.OnDeath();
         m_animator.SetTrigger(death_trigger);

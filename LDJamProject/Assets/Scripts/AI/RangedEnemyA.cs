@@ -14,7 +14,7 @@ public class RangedEnemyA : EnemyBase
     int death_trigger;      // Death trigger
     #endregion
     // Start is called before the first frame update
-    new public void Awake()
+    override public void Awake()
     {
         base.Awake();
         moving_bool = Animator.StringToHash("moving");
@@ -30,7 +30,7 @@ public class RangedEnemyA : EnemyBase
     // Update is called once per frame
     new protected void Update()
     {
-        if (m_dead)
+        if (m_animator.GetBool(m_dead_BoolHash))
             return;
         base.Update();
     }
@@ -66,7 +66,7 @@ public class RangedEnemyA : EnemyBase
         // Shoot towards target
         RangedEnemyA_Projectile newProjectile = poolerInstance.FetchGO("ERA_Proj").GetComponent<RangedEnemyA_Projectile>();
         newProjectile.Init(m_rb.position, (m_rb.position - (Vector2)DEBUG_TARGET.position).normalized);
-        Debug.Log("shot towards an enemy");
+        //Debug.Log("shot towards an enemy");
     }
 
 

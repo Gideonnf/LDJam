@@ -30,7 +30,7 @@ public class BossEnemyA : EnemyBase
     // Update is called once per frame
     new protected void Update()
     {
-        if (m_dead)
+        if (m_animator.GetBool(m_dead_BoolHash))
             return;
         base.Update();
     }

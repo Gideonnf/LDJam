@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RangedEnemyA_Projectile : MonoBehaviour
 {
-    [SerializeField] float lifetime;
-    [SerializeField] float movespeed;
+    [SerializeField] float lifetime = 5f;
+    [SerializeField] float movespeed = 0.1f;
 
     Rigidbody2D rb;
     Animator m_animator;

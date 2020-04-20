@@ -16,14 +16,18 @@ public class EnemyBase : MonoBehaviour
     static Color32 line_triggered = new Color32(255, 0, 0, 255);
 
     protected bool m_triggered = false;
-#endif
+    #endif
+
+    // The hash for the animator's dead bool
+    protected int m_dead_BoolHash;
+
     protected int maxHealth = 10;
     protected int health;
     protected Vector3 m_nextPosition;
     protected Rigidbody2D m_rb;
     [SerializeField] float attack_range_sqr;
     public Transform DEBUG_TARGET;
-    protected bool m_dead;  // Does not update new path if true
+    //protected bool m_dead;  // Does not update new path if true
     NavMeshAgent m_agent;
     // Start is called before the first frame update
     virtual public void Awake()
@@ -35,13 +39,14 @@ public class EnemyBase : MonoBehaviour
         m_agent.updateRotation = false;
         DEBUG_TARGET = PlayerController.Instance.gameObject.transform;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        m_dead_BoolHash = Animator.StringToHash("dead");
         health = maxHealth;
         Init();
     }
 
     virtual public void Init()
     {
-        m_dead = false;
+        m_animator.SetBool(m_dead_BoolHash, false);
         health = maxHealth;
         SetMoveSpeed(movespeed);
     }
@@ -50,7 +55,7 @@ public class EnemyBase : MonoBehaviour
     virtual protected void Update()
     {
         spriteRenderer.sortingOrder = (int)(spriteRenderer.transform.position.y * -100);
-        if (m_dead)
+        if (m_animator.GetBool(m_dead_BoolHash))
             return;
         m_agent.SetDestination(DEBUG_TARGET.position);
         m_nextPosition = m_agent.nextPosition;
@@ -100,7 +105,9 @@ public class EnemyBase : MonoBehaviour
     virtual protected void OnDeath()
     {
         EquipmentManager.Instance.NormalItemDrop(gameObject.transform.position);
-        m_dead = true;
+        m_animator.SetBool(m_dead_BoolHash, true);
+        m_agent.acceleration = 0f;
+        m_agent.velocity = Vector3.zero;
         ClearPath();    // Stop it from moving
     }
 
@@ -108,7 +115,9 @@ public class EnemyBase : MonoBehaviour
     {
         if (m_agent)
         {
+            m_agent.updatePosition = true;
             m_agent.Warp(position);
+            m_agent.updatePosition = false;
         }
     }
 
