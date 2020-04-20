@@ -175,7 +175,7 @@ public class PlayerStats : MonoBehaviour
 
     public void PlayerTakeDamage(int damage)
     {
-        if (m_PlayerCurrentIFrames > 0)
+        if (m_PlayerCurrentIFrames > 0 || m_CurrentCaravanHealth <= 0 || m_CurrentHealth <= 0)
             return;
         m_CurrentHealth -= damage;
         switch(Random.Range(0,3))
@@ -200,7 +200,7 @@ public class PlayerStats : MonoBehaviour
 
     public void CaravanTakeDamage(int damage)
     {
-        if (m_CaravanCurrentIFrames > 0)
+        if (m_CaravanCurrentIFrames > 0 || m_CurrentCaravanHealth <= 0 || m_CurrentHealth <= 0)
             return;
         m_CurrentCaravanHealth -= damage;
         switch (Random.Range(0, 3))
