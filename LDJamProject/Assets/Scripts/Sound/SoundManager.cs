@@ -18,6 +18,7 @@ public class SoundManager : SingletonBase<SoundManager>
     public enum AudioSourceType
     {
         BackgroundSource,
+        AmbientSource,
         SFXSource,
         ExtraSource,
         TotalAudioSources
@@ -41,6 +42,9 @@ public class SoundManager : SingletonBase<SoundManager>
             audio.m_audioSource.loop = audio.m_Loop;
             audio.m_audioSource.volume = audio.m_Volume;
         }
+
+        ///Play("Ambient");
+       // Play("Combat");
     }
 
     // Update is called once per frame
