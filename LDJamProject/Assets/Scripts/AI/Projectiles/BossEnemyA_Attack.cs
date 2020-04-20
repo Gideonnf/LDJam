@@ -19,6 +19,7 @@ public class BossEnemyA_Attack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<CircleCollider2D>().radius = explosionRadius;
         explosionRadius *= 2f;   // Actually gonna use it as a diameter instead on runtime :P
         m_rb = GetComponent<Rigidbody2D>();
         poolerInstance = ObjectPooler.Instance;
@@ -56,13 +57,13 @@ public class BossEnemyA_Attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //ResolveCollision(collision.gameObject);
-        Destroy(gameObject); 
+        if (!collision.gameObject.CompareTag("Player"))
+            Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //ResolveCollision(collision.gameObject);
         Destroy(gameObject);
+        Debug.LogWarning("The boss projectile is not a trigger");
     }
 }

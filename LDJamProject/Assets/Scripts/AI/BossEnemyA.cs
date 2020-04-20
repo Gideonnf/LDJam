@@ -25,7 +25,6 @@ public class BossEnemyA : EnemyBase
         attack_trigger = Animator.StringToHash("attack");
         attack_animation = Animator.StringToHash("attackAnim");
         death_trigger = Animator.StringToHash("death");
-        m_animator.SetBool(moving_bool, true);
         SetMoveSpeed(movespeed);
         poolerInstance = ObjectPooler.Instance;
 #if UNITY_EDITOR
