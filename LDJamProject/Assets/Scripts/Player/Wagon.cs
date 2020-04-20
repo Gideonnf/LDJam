@@ -6,8 +6,10 @@ public class Wagon : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] GameObject instructionText;
+    [SerializeField] GameObject nearWagon;
     [SerializeField] float xDistanceFromPlayer;
     [SerializeField] float yDistanceFromPlayer;
+    [SerializeField] float timeItTakesToPickUpCaravan;
 
     public bool playerNearWagon;
 
@@ -16,6 +18,7 @@ public class Wagon : MonoBehaviour
 
     GameObject wagonMoveSFX;
     bool isIdling;
+    float pickUpCaravanTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -24,12 +27,20 @@ public class Wagon : MonoBehaviour
         wagonAnimator = GetComponent<Animator>();
         playerMovement = player.GetComponent<PlayerMovement>();
         isIdling = false;
+        pickUpCaravanTimer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(playerMovement.isPullingCaravan)
+        if(playerMovement.isPickingUpCaravan)
+        {
+            pickUpCaravanTimer += Time.deltaTime;
+            if (pickUpCaravanTimer >= timeItTakesToPickUpCaravan)
+                playerMovement.isPickingUpCaravan = false;
+        }
+
+        else if(playerMovement.isPullingCaravan)
         {
             if (player.GetComponent<PlayerMovement>().movementDir != Vector3.zero)
             {
@@ -77,7 +88,7 @@ public class Wagon : MonoBehaviour
                
                 float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                 //angle += 90;
-                //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                nearWagon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             }
             else
             {
@@ -124,6 +135,8 @@ public class Wagon : MonoBehaviour
         {
             instructionText.SetActive(false);
             wagonAnimator.SetBool("PlayerPulling", true);
+            playerMovement.isPickingUpCaravan = true;
+            pickUpCaravanTimer = 0;
         }
         else
         {

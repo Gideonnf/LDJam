@@ -487,6 +487,7 @@ MonoBehaviour:
   isDashing: 0
   isPullingCaravan: 0
   isAttackDashing: 0
+  isPickingUpCaravan: 0
   playerFaceDir: 0
   movementDir: {x: 0, y: 0, z: 0}
 --- !u!114 &3416626133933697769

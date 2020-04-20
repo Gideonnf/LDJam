@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isPullingCaravan;
     public bool isAttackDashing;
+    public bool isPickingUpCaravan;
+
     public enum FaceDirection
     {
         up,
@@ -57,12 +59,20 @@ public class PlayerMovement : MonoBehaviour
         ghostSpawnTimer = 0;
         isPullingCaravan = false;
         footstepSFXTimer = 0;
+        isPickingUpCaravan = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isAttackDashing)
+        if(isPickingUpCaravan)
+        {
+            movement = Vector2.zero;
+            playerAnimator.SetBool("IsIdling", true);
+            playerAnimator.SetFloat("XSpeed", movement.x);
+            playerAnimator.SetFloat("YSpeed", movement.y);
+        }
+        else if(isAttackDashing)
         {
             if (distanceAttackDashed >= playerStats.m_CurrentAttackDashDistance)
             {

@@ -3960,6 +3960,21 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 6095660}
+    - target: {fileID: 6582825800931668513, guid: 45b52c1a956c8024f9542aebc4d992b2,
+        type: 3}
+      propertyPath: timeItTakesToPickUpCaravan
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582825800931668513, guid: 45b52c1a956c8024f9542aebc4d992b2,
+        type: 3}
+      propertyPath: xDistanceFromPlayer
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582825800931668513, guid: 45b52c1a956c8024f9542aebc4d992b2,
+        type: 3}
+      propertyPath: yDistanceFromPlayer
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6582825800931668516, guid: 45b52c1a956c8024f9542aebc4d992b2,
         type: 3}
       propertyPath: m_Name
@@ -3983,11 +3998,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BGM
-      objectReference: {fileID: 0}
-    - target: {fileID: 8161019433227090660, guid: 46aab1e8725e75d40b7ca20440bd3798,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8161019433227090661, guid: 46aab1e8725e75d40b7ca20440bd3798,
         type: 3}
