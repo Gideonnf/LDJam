@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Item
   - PetSpawnPos
+  - Wagon
   layers:
   - Default
   - TransparentFX
@@ -46,4 +47,10 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: NPCs
+    uniqueID: 1142530901
+    locked: 0
+  - name: SpeechBubble
+    uniqueID: 1105331239
     locked: 0
