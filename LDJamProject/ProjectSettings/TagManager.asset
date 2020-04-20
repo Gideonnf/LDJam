@@ -22,7 +22,7 @@ TagManager:
   - Environment
   - PlayerSprite
   - PlayerFeetCollider
-  - 
+  - EnemyProjectile
   - 
   - 
   - 

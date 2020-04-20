@@ -71,12 +71,14 @@ public class MeleeEnemyA : EnemyBase
             if (wagon != null)
             {
                 // Damage wagon
+                PlayerController.Instance.m_PlayerStats.CaravanTakeDamage(1);
                 return;
             }
             player = col.gameObject.GetComponent<PlayerController>();
             if (player != null)
             {
                 // Damage player
+                PlayerController.Instance.m_PlayerStats.PlayerTakeDamage(1);
                 return;
             }
         }
