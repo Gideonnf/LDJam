@@ -29,6 +29,8 @@ public class PlayerController : SingletonBase<PlayerController>
     // Update is called once per frame
     void Update()
     {
+        if (playerStats.m_CurrentHealth <= 0 || playerStats.m_CurrentCaravanHealth <= 0)
+            return;
         // Interaction
         if (Input.GetKeyDown(KeyCode.E))
         {

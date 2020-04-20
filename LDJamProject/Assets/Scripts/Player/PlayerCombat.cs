@@ -35,6 +35,8 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerStats.m_CurrentHealth <= 0 || playerStats.m_CurrentCaravanHealth <= 0)
+            return;
         if (meleeAttackSpeed_ < playerStats.m_CurrentMeleeAttackSpeed)
             meleeAttackSpeed_ += Time.deltaTime;
         if (rangedAttackSpeed_ < playerStats.m_CurrentRangedAttackSpeed)
