@@ -15,14 +15,14 @@ public class Melee360 : ItemObjBase
     {
         PlayerCombat playerCombat = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>();
         playerCombat.attack360 = true;
-        playerCombat.gameObject.GetComponent<Animator>().SetBool("360Attack", true);
+        playerCombat.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetBool("360Attack", true);
         base.OnPickUp();
     }
     public override void OnRemove()
     {
         PlayerCombat playerCombat = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>();
         playerCombat.attack360 = false;
-        playerCombat.gameObject.GetComponent<Animator>().SetBool("360Attack", false);
+        playerCombat.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetBool("360Attack", false);
         base.OnRemove();
     }
 }
