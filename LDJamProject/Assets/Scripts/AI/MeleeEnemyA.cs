@@ -44,8 +44,11 @@ public class MeleeEnemyA : EnemyBase
     {
         if (health > 0)
         {
+            SoundManager.Instance.Play("SkullDamaged");
+
             if (base.TakeDamage(dmg))
             {
+                SoundManager.Instance.Play("SkullAttackDeath");
                 OnDeath();
             }
             else
@@ -60,6 +63,8 @@ public class MeleeEnemyA : EnemyBase
     /// </summary>
     void Explosion()
     {
+        SoundManager.Instance.Play("SkullAttackDeath");
+
         Collider2D[] colliders;
         colliders = Physics2D.OverlapCircleAll(m_rb.position, explosionRadius);
         foreach(Collider2D col in colliders)

@@ -45,6 +45,8 @@ public class MeleeEnemyB : EnemyBase
         if (m_animator.GetCurrentAnimatorStateInfo(0).tagHash == attack_animation || m_animator.GetNextAnimatorStateInfo(0).tagHash == attack_animation)
             return;
         m_animator.SetTrigger(attack_trigger);
+
+        SoundManager.Instance.Play("GolemAttack");
     }
 
     public void AttackPlayer()
@@ -82,8 +84,11 @@ public class MeleeEnemyB : EnemyBase
     {
         if (health > 0)
         {
+            SoundManager.Instance.Play("GolemDamaged");
+
             if (base.TakeDamage(dmg))
             {
+                SoundManager.Instance.Play("GolemDeath");
                 OnDeath();
             }
             else
