@@ -23,6 +23,11 @@ public class WizardInteraction : NPCTextInteraction
         //    spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
     }
 
+    public void OnEnable()
+    {
+        SoundManager.Instance.Play("WizardSpawn");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
