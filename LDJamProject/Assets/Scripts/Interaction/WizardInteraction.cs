@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class WizardInteraction : NPCTextInteraction
 {
-    [Tooltip("Reference to the Wizard menu")]
-    public GameObject WizardMenuReference;
-
-    WizardMenu m_WizardMenu;
+   //Wizardmenu
     bool ConversationStarted = false;
     // Start is called before the first frame update
     void Start()
     {
-        m_WizardMenu = WizardMenuReference.GetComponent<WizardMenu>();
+        // = /WizardMenuReference.GetComponent<WizardMenu>();
     }
 
     // Update is called once per frame
@@ -26,7 +23,9 @@ public class WizardInteraction : NPCTextInteraction
             // If the conversation have ended, m_talking is false
             if (m_DialogueManager.m_Talking == false)
             {
+                ConversationStarted = false;
                 // Start the UI Screen for the trading
+                WizardMenu.Instance.OpenUI();
             }
         }
     }

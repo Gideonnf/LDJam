@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WizardMenu : MonoBehaviour
+public class WizardMenu : SingletonBase<WizardMenu>
 {
     [Tooltip("Reference to the game object for wizard trading")]
     public GameObject WizardTradeObject;

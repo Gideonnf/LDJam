@@ -613,6 +613,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f429f16a639d6e948ab1e47ea493d880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bDontDestroyOnLoad: 0
+  bUseRootTransform: 0
   WizardTradeObject: {fileID: 9137329514599484178}
   MoneyDisplay: {fileID: 5276717475884529280}
   InventoryItemSlot: {fileID: 7621757913705874023, guid: 29befb6bd41ded247b4f81cdb1480928,

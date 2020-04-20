@@ -43,7 +43,11 @@ class WeightedObject<T>
     {
         // Generate a random number between the sums of all the weight
         // Adds a chance based on 40% of the total accumulated weight to spawn no items
+        // double r = rand.NextDouble() * (accumulatedWeight + (accumulatedWeight * 0.8)
+        //double r = rand.NextDouble() * accumulatedWeight;
+
         double r = rand.NextDouble() * (accumulatedWeight + (accumulatedWeight * 0.8));
+
         //double r = accumulatedWeight; // for testing
         // Loop through all the objects in the list
         foreach (Entry entry in entries)

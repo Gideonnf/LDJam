@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 3558530680943515481}
   - component: {fileID: 3558530680943515480}
   - component: {fileID: 3558530680943515463}
+  - component: {fileID: 8463895444252030971}
   - component: {fileID: 3558530680943515462}
   - component: {fileID: 3558530680943515482}
   - component: {fileID: 7012496602719321868}
@@ -407,7 +408,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3558530680943515461}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6a77f797ee5044aaf02c532dbeb221, type: 3}
   m_Name: 
@@ -420,6 +421,27 @@ MonoBehaviour:
     m_Name: 
   m_DialogueSound: 
   m_DialogueManager: {fileID: 3558530680943515462}
+--- !u!114 &8463895444252030971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558530680943515461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b954c396768b24693c0d00dd9f8cfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Dialogue:
+    m_Sentences:
+    - Hhahahah
+    - dwadawdawdawdwadwad
+    - adawdwadwadwad
+    m_Name: 
+  m_DialogueSound: 
+  m_DialogueManager: {fileID: 3558530680943515462}
+  WizardMenuReference: {fileID: 0}
 --- !u!114 &3558530680943515462
 MonoBehaviour:
   m_ObjectHideFlags: 0
