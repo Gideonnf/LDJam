@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Yno
+  m_text: Yno Dio Dela Cruz
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3ee9a2a803e0ae343a42a7bbfb079dd2, type: 2}
   m_sharedMaterial: {fileID: -150252801682233053, guid: 3ee9a2a803e0ae343a42a7bbfb079dd2,
@@ -832,10 +832,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: -159.7061}
   m_textInfo:
     textComponent: {fileID: 1053335700}
-    characterCount: 3
+    characterCount: 17
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 3
+    wordCount: 4
     linkCount: 0
     lineCount: 1
     pageCount: 1
