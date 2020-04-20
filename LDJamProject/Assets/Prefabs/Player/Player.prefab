@@ -207,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 3416626133304610296}
   m_LocalRotation: {x: 0, y: 0, z: 0.32556805, w: 0.9455186}
   m_LocalPosition: {x: 0.8, y: 37.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 100, y: 100, z: 1}
   m_Children:
   - {fileID: 3416626134381552550}
   m_Father: {fileID: 3416626132418124509}
@@ -252,7 +252,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1c4ac92e3d099274db91829fe0095c6b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bae9af9aba2cc8f459fa20471425ac9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -454,6 +454,7 @@ MonoBehaviour:
   timeBeforeGhostSpawn: 0
   isDashing: 0
   isAttackDashing: 0
+  playerFaceDir: 0
   movementDir: {x: 0, y: 0, z: 0}
 --- !u!114 &3416626133933697769
 MonoBehaviour:
@@ -520,6 +521,7 @@ MonoBehaviour:
   m_StartingAttackDashSpeed: 0
   m_StartingAttackDashDistance: 0
   m_StartingAttackDashTime: 0
+  m_DistanceBetweenEachPet: 1
   m_CurrentDamage: 0
   m_CurrentSpeed: 0
   m_CurrentMovementSpeed: 0
@@ -534,6 +536,7 @@ MonoBehaviour:
   m_CurrentAttackDashSpeed: 0
   m_CurrentAttackDashDistance: 0
   m_CurrentAttackDashTime: 0
+  m_NumOfPets: 0
 --- !u!114 &3416626133933697775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,6 +555,7 @@ MonoBehaviour:
   UISlotPrefab: {fileID: 5958950492926139781, guid: de86f4e5b05213f45908975c933c5fbd,
     type: 3}
   SlotDistance: 90
+  m_PlayerMoney: 0
 --- !u!95 &3416626133933697772
 Animator:
   serializedVersion: 3
@@ -602,7 +606,7 @@ MonoBehaviour:
   - {x: -4.0636363, y: 0.448143, z: 0}
   m_ShapePathHash: 1823486170
   m_Mesh: {fileID: 0}
-  m_InstanceId: 525838
+  m_InstanceId: -1766
 --- !u!1 &3416626134381552545
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,13 +632,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3416626134381552545}
-  m_LocalRotation: {x: -0, y: -0, z: 0.3762113, w: 0.92653394}
-  m_LocalPosition: {x: 2.5, y: 2.6, z: 0}
-  m_LocalScale: {x: 0.2, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0.022, z: 0}
+  m_LocalScale: {x: 0.3, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3416626133304610297}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 44.198}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!198 &3416626134381552548
 ParticleSystem:
   m_ObjectHideFlags: 0
