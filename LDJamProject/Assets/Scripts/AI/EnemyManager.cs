@@ -60,7 +60,9 @@ public class EnemyManager : SingletonBase<EnemyManager>
             var newPrefab = EnemyPrefabs[(int)_type].enemyPrefab;
             for (int i = 0; i < EnemyPrefabs[(int)_type].amountToPool; ++i)
             {
-                selectedEnemyPool.Add(Instantiate(newPrefab));
+                GameObject enemy = Instantiate(newPrefab);
+                enemy.SetActive(false);
+                selectedEnemyPool.Add(enemy);
             }
         }
         // If the enemy is inactive and ready for deployment
@@ -86,7 +88,9 @@ public class EnemyManager : SingletonBase<EnemyManager>
                 GameObject newPrefab = EnemyPrefabs[(int)_type].enemyPrefab;
                 for (int i = 0; i < numberToCreate; ++i)
                 {
-                    m_enemyPool[(int)_type].Add(Instantiate(newPrefab));
+                    GameObject enemy = Instantiate(newPrefab);
+                    enemy.SetActive(false);
+                    m_enemyPool[(int)_type].Add(enemy);
                 }
                 newEnemy = selectedEnemyPool[actualIndex];
                 break;
@@ -100,7 +104,7 @@ public class EnemyManager : SingletonBase<EnemyManager>
             }
 
         }
-        newEnemy.gameObject.SetActive(true);
+        newEnemy.gameObject.SetActive(false);
         newEnemy.GetComponent<EnemyBase>().Init();
         return newEnemy;
     }
