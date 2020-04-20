@@ -224,6 +224,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (playerStats.m_CurrentHealth <= 0 || playerStats.m_CurrentCaravanHealth <= 0)
+            return;
         PlayerRB.MovePosition(PlayerRB.position + movement * playerStats.m_CurrentSpeed * Time.fixedDeltaTime);
     }
 

@@ -36,7 +36,10 @@ public class RangedEnemyA : EnemyBase
     new protected void Update()
     {
         if (m_animator.GetBool(m_dead_BoolHash))
+        {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
             return;
+        }
         base.Update();
     }
 
@@ -83,11 +86,12 @@ public class RangedEnemyA : EnemyBase
     {
         if (health > 0)
         {
-            m_animator.SetTrigger(hit_trigger);
             if (base.TakeDamage(dmg))
             {
                 OnDeath();
             }
+            else
+                m_animator.SetTrigger(hit_trigger);
         }
         return true;
     }
