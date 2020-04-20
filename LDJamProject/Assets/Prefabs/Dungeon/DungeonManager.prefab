@@ -205,7 +205,7 @@ MonoBehaviour:
       m_LeftOpening: 1
       m_UpOpening: 1
       m_DownOpening: 1
-  - m_RoomPrefab: {fileID: 4167725829917095261, guid: 2e96d23fdeaef4a49a700ecfee158b8c,
+  - m_RoomPrefab: {fileID: 5274251242521833814, guid: 2cb161363be252d41a82f3cd26ba42fc,
       type: 3}
     m_RoomOpeningInfo:
       m_RoomOpeningType: 14
@@ -214,14 +214,51 @@ MonoBehaviour:
       m_LeftOpening: 1
       m_UpOpening: 1
       m_DownOpening: 1
-  - m_RoomPrefab: {fileID: 2913840284237538885, guid: 76344ca4884abfd46aabc20eb735d8cc,
+  - m_RoomPrefab: {fileID: 5274251242521833814, guid: 2cb161363be252d41a82f3cd26ba42fc,
       type: 3}
     m_RoomOpeningInfo:
-      m_RoomOpeningType: 15
+      m_RoomOpeningType: 19
       m_NumberOfOpenings: 0
       m_RightOpening: 0
       m_LeftOpening: 0
       m_UpOpening: 0
       m_DownOpening: 0
+  m_SpecialRoomTypeData:
+  - m_RoomPrefab: {fileID: 7121483146049464786, guid: 5b43a39e66b093c408963085226d45c4,
+      type: 3}
+    m_RoomOpeningInfo:
+      m_RoomOpeningType: 15
+      m_NumberOfOpenings: 4
+      m_RightOpening: 1
+      m_LeftOpening: 1
+      m_UpOpening: 1
+      m_DownOpening: 1
+  - m_RoomPrefab: {fileID: 8986342132683345527, guid: bbbf141bb331aa4408051648cc4388b9,
+      type: 3}
+    m_RoomOpeningInfo:
+      m_RoomOpeningType: 16
+      m_NumberOfOpenings: 1
+      m_RightOpening: 0
+      m_LeftOpening: 1
+      m_UpOpening: 0
+      m_DownOpening: 0
+  - m_RoomPrefab: {fileID: 1977006653042662057, guid: d1eed839612ebdb43a472926cc583156,
+      type: 3}
+    m_RoomOpeningInfo:
+      m_RoomOpeningType: 17
+      m_NumberOfOpenings: 1
+      m_RightOpening: 1
+      m_LeftOpening: 0
+      m_UpOpening: 0
+      m_DownOpening: 0
+  - m_RoomPrefab: {fileID: 4847572236650793340, guid: 89a907848e4cc5d49b28e516caf69022,
+      type: 3}
+    m_RoomOpeningInfo:
+      m_RoomOpeningType: 18
+      m_NumberOfOpenings: 1
+      m_RightOpening: 0
+      m_LeftOpening: 0
+      m_UpOpening: 0
+      m_DownOpening: 1
   m_RoomParent: {fileID: 447638065725612217}
   m_CameraMoveSpeed: 5

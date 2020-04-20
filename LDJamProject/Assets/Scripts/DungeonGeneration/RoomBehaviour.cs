@@ -89,6 +89,10 @@ public class RoomBehaviour : MonoBehaviour
             case RoomTypes.BOSS_ROOM:
                 SetUpBossRoom();
                 break;
+            case RoomTypes.TRADE_ROOM:
+                SetUpTradeRoom();
+                break;
+
         }
     }
 
@@ -107,6 +111,11 @@ public class RoomBehaviour : MonoBehaviour
         if (camera != null)
             camera.transform.position = m_CameraPos.position;
 
+        RoomComplete();
+    }
+
+    public void SetUpTradeRoom()
+    {
         RoomComplete();
     }
 
@@ -141,16 +150,16 @@ public class RoomBehaviour : MonoBehaviour
             if (enemy != null)
             {
                 int randomLocationIndex = Random.Range(0, m_PossibleEnemySpawnPosition.childCount);
-
+                Vector3 pos = m_PossibleEnemySpawnPosition.GetChild(randomLocationIndex).position;
+                enemy.transform.position = pos;
                 enemy.SetActive(true);
+
                 EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
                 if (enemyBase)
                 {
                     enemyBase.Init();
-                    enemyBase.Warp(m_PossibleEnemySpawnPosition.GetChild(randomLocationIndex).position); //spawn at a random location
+                    enemyBase.Warp(pos); //spawn at a random location
                     m_EnemiesInRoom.Add(enemy);
-
-                    Debug.Log(randomLocationIndex);
                 }
             }
         }
@@ -164,6 +173,7 @@ public class RoomBehaviour : MonoBehaviour
     public void SetUpBossRoom()
     {
         //spawn boss
+        RoomComplete();
     }
 
     public void SetRoomType(RoomTypes roomType)
