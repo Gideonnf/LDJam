@@ -15,6 +15,6 @@ MonoBehaviour:
   m_AudioName: PlayerDash
   m_Clip: {fileID: 8300000, guid: efa61ef018140774ab4aaa98b9d6009e, type: 3}
   isSFX: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   m_Loop: 0

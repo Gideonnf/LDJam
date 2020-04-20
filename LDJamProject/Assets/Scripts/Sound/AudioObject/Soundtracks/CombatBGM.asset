@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AudioName: CombatBGM
   m_Clip: {fileID: 8300000, guid: 027b8a0f1e3670844a2b35b44de42fda, type: 3}
-  AudioSourceType: 0
-  m_Volume: 1
+  isSFX: 0
+  m_Volume: 0.6
   m_Pitch: 1
-  m_HearingBaseOnDist: 1
   m_Loop: 1
-  m_audioSource: {fileID: 0}

@@ -15,6 +15,6 @@ MonoBehaviour:
   m_AudioName: PlayerRun4
   m_Clip: {fileID: 8300000, guid: e36f1efaa9b7b2f4abc43a27f560a14e, type: 3}
   isSFX: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   m_Loop: 0
