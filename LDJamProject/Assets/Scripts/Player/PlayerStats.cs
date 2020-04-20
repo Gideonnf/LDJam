@@ -117,7 +117,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(m_PlayerCurrentIFrames>=0)
+        if(m_PlayerCurrentIFrames>=0 && m_CurrentHealth > 0 && m_CurrentCaravanHealth > 0)
         {
             m_PlayerCurrentIFrames -= Time.deltaTime;
             m_PlayerIFramesBlinkTimer -= Time.deltaTime;
@@ -139,7 +139,7 @@ public class PlayerStats : MonoBehaviour
             }
         }
 
-        if (m_CaravanCurrentIFrames >= 0)
+        if (m_CaravanCurrentIFrames >= 0 && m_CurrentHealth > 0 && m_CurrentCaravanHealth > 0)
         {
             m_CaravanCurrentIFrames -= Time.deltaTime;
             m_CaravanIFramesBlinkTimer -= Time.deltaTime;
