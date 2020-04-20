@@ -7,35 +7,21 @@ using System.Collections.Generic;
 
 class WeightedObject<T>
 {
-    private struct Entry
+    public struct Entry
     {
-        public double accumulatedWeight;
+        public float accumulatedWeight;
         public T item;
     }
 
-    private List<Entry> entries = new List<Entry>();
-    private double accumulatedWeight;
-    private Random rand = new Random();
+    public List<Entry> entries = new List<Entry>();
+    public float accumulatedWeight;
+    public Random rand = new Random();
     
     // Adds a weighted object to the list
-    public void AddEntry(T item, double weight)
+    public void AddEntry(T item, float weight)
     {
         accumulatedWeight += weight;
         entries.Add(new Entry { item = item, accumulatedWeight = accumulatedWeight });
-    }
-
-    // Not done yet
-    //TODO: Fix it so it can be removed from the list
-    public void RemoveEntry(T item, double weight)
-    {
-        accumulatedWeight -= weight;
-        for (int i = 0; i < entries.Count; ++i)
-        {
-            //if (entries[i].item == item)
-            //{
-                
-            //}
-        }
     }
 
     public T GetRandomAlways()
@@ -64,9 +50,10 @@ class WeightedObject<T>
         // Adds a chance based on 40% of the total accumulated weight to spawn no items
         // double r = rand.NextDouble() * (accumulatedWeight + (accumulatedWeight * 0.8)
         //double r = rand.NextDouble() * accumulatedWeight;
-
-        double r = rand.NextDouble() * (accumulatedWeight + (accumulatedWeight * 0.8));
-
+        //double r = rand.NextDouble() * (accumulatedWeight + (accumulatedWeight * 0.8));
+       // EquipmentManager.Instance.rand.NextDouble();
+        //double r = EquipmentManager.Instance.rand.NextDouble() * (accumulatedWeight + (accumulatedWeight * 0.8));
+        double r = 50;
         //double r = accumulatedWeight; // for testing
         // Loop through all the objects in the list
         foreach (Entry entry in entries)
