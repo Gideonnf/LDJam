@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshPro m_DialogueText;
     public GameObject m_TextBox;
     public GameObject m_ArrowText; //only shown when the speech is done
+    public float m_TextSpeed = 0.0f;
     private Animator m_DialogueAnimator;
 
     [Header("Sound")]
@@ -117,7 +118,8 @@ public class DialogueManager : MonoBehaviour
         {
             m_DialogueText.text += letter;
             SoundManager.Instance.Play(m_LetterSound);
-            yield return null;
+
+            yield return new WaitForSeconds(m_TextSpeed);
         }
 
         if (m_ArrowText != null)
