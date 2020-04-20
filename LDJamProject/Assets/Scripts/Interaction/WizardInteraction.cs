@@ -73,9 +73,16 @@ public class WizardInteraction : NPCTextInteraction
             }
             // if npc is done talking
             // and first dialogue is done
-             if (TriggeredFirstDialogue && TriggerSecondDialogue)
+            if (TriggeredFirstDialogue && TriggerSecondDialogue)
             {
-                SceneManager.LoadScene("EndScene");
+                Animator animator = GetComponent<Animator>();
+                if (animator != null)
+                {
+                    animator.SetTrigger("WizardVamoosh");
+                    StartCoroutine(ChangeSceneAfterTime());
+                }
+                else
+                    SceneManager.LoadScene("EndScene");
             }
         }
         
@@ -124,5 +131,12 @@ public class WizardInteraction : NPCTextInteraction
     public override void NextLine()
     {
         base.NextLine();
+    }
+
+    IEnumerator ChangeSceneAfterTime()
+    {
+        yield return new WaitForSeconds(0.8f);
+
+        SceneManager.LoadScene("EndScene");
     }
 }

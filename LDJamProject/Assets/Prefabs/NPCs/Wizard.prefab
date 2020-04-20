@@ -436,18 +436,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Dialogue:
     m_Sentences:
-    - Hhahahah
-    - dwadawdawdawdwadwad
-    - adawdwadwadwad
+    - HO HO!
+    - I see you killed it.
+    - Now pay up and the curse will be gone!
     m_Name: 
   m_DialogueSound: NPCAha1
   m_DialogueManager: {fileID: 3558530680943515462}
   m_PlayerNearby: 0
   m_EndDialogue:
     m_Sentences:
-    - Dis the end
-    - pee pee poo poo
-    - Alvin drink piss
+    - HA hA HA haADAADSADAWASD
+    - PSYC
+    - BYE SUCKERS!
     m_Name: 
 --- !u!114 &3558530680943515462
 MonoBehaviour:
