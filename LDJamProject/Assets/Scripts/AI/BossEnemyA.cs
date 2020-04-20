@@ -6,6 +6,9 @@ public class BossEnemyA : EnemyBase
 {
     ObjectPooler poolerInstance;
     [SerializeField] float attackCooldown; // Time before another attack can be made
+    [SerializeField] GameObject attackPrefab;
+    [SerializeField] Transform shootPosition;
+    float m_countdown;
     #region Animation-related hashes
     int moving_bool;        // bool for isWalking
     int hit_trigger;        // Take damage trigger
@@ -25,6 +28,16 @@ public class BossEnemyA : EnemyBase
         m_animator.SetBool(moving_bool, true);
         SetMoveSpeed(movespeed);
         poolerInstance = ObjectPooler.Instance;
+#if UNITY_EDITOR
+        m_triggered = true;
+#endif
+    }
+
+    public override void Init()
+    {
+        base.Init();
+        m_countdown = attackCooldown;
+        m_animator.SetBool(m_dead_BoolHash, false);
     }
 
     // Update is called once per frame
@@ -32,19 +45,13 @@ public class BossEnemyA : EnemyBase
     {
         if (m_animator.GetBool(m_dead_BoolHash))
             return;
-        base.Update();
-    }
-
-    /// <summary>
-    /// Function called when player is within attack range
-    /// </summary>
-    override protected void OnTargetReached()
-    {
-        Attack();
-        ClearPath();
-#if UNITY_EDITOR
-        m_triggered = true;
-#endif
+        m_countdown -= Time.deltaTime;
+        if (m_countdown <= 0f)
+        {
+            Attack();
+            m_countdown = attackCooldown;
+        }
+        //base.Update();
     }
 
     /// <summary>
@@ -52,21 +59,11 @@ public class BossEnemyA : EnemyBase
     /// </summary>
     private void Attack()
     {
-        // Return if already attacking
-        if (m_animator.GetCurrentAnimatorStateInfo(0).tagHash == attack_animation || m_animator.GetNextAnimatorStateInfo(0).tagHash == attack_animation)
-            return;
-        m_animator.SetTrigger(attack_trigger);
-    }
-
-    /// <summary>
-    /// Function to be called by animation event so do not bother looking for where it's called in code.
-    /// </summary>
-    public void ShootProjectile()
-    {
-        // Shoot towards target
-        RangedEnemyA_Projectile newProjectile = poolerInstance.FetchGO("ERA_Proj").GetComponent<RangedEnemyA_Projectile>();
-        newProjectile.Init(m_rb.position, (m_rb.position - (Vector2)DEBUG_TARGET.position).normalized);
-        Debug.Log("shot towards an enemy");
+        // Attack the player with spell
+        BossEnemyA_Attack bullet = Instantiate(attackPrefab).GetComponent<BossEnemyA_Attack>();
+        bullet.transform.position = shootPosition.position;
+        bullet.Init((Vector2)DEBUG_TARGET.position - m_rb.position);
+       // m_animator.SetTrigger(attack_trigger);
     }
 
     /// <summary>

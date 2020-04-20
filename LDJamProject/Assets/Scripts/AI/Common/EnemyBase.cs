@@ -49,6 +49,7 @@ public class EnemyBase : MonoBehaviour
         m_animator.SetBool(m_dead_BoolHash, false);
         health = maxHealth;
         SetMoveSpeed(movespeed);
+        m_agent.acceleration = 9f;
     }
 
     // Update is called once per frame

@@ -27,6 +27,11 @@ public class RangedEnemyA : EnemyBase
         poolerInstance = ObjectPooler.Instance;
     }
 
+    public override void Init()
+    {
+        base.Init();
+    }
+
     // Update is called once per frame
     new protected void Update()
     {
