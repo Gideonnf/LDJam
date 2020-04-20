@@ -31,6 +31,9 @@ public class HealthManager : SingletonBase<HealthManager>
     List<GameObject> playerHealthList = new List<GameObject>();
     List<GameObject> caravanHealthList = new List<GameObject>();
 
+    int currentPlayerHealth = 0;
+    int currentCaravanHealth = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +45,16 @@ public class HealthManager : SingletonBase<HealthManager>
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentPlayerHealth != playerStats.m_CurrentHealth)
+        {
+            UpdatePlayerHealth();
+        }
+
+        else if (currentCaravanHealth != playerStats.m_CurrentCaravanHealth)
+        {
+            UpdateCaravanHealth();
+        }
+
     }
 
     public void UpdatePlayerHealth()
@@ -59,6 +71,8 @@ public class HealthManager : SingletonBase<HealthManager>
 
     void CreatePlayerHealth()
     {
+        currentPlayerHealth = playerStats.m_CurrentHealth;
+
         for(int i = 0; i < playerStats.m_MaxHealth; ++i)
         {
             GameObject HealthObject = Instantiate(HealthPrefab, PlayerHealthObject.transform);
@@ -86,6 +100,8 @@ public class HealthManager : SingletonBase<HealthManager>
 
     void CreateCaravanHealth()
     {
+        currentCaravanHealth = playerStats.m_CurrentCaravanHealth;
+
         for (int i = 0; i < playerStats.m_MaxCaravanHealth; ++i)
         {
             GameObject HealthObject = Instantiate(HealthPrefab, CaravanHealthObject.transform);
