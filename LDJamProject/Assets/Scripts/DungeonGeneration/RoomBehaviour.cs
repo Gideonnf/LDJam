@@ -96,7 +96,8 @@ public class RoomBehaviour : MonoBehaviour
                 SetUpStartRoom();
                 break;
             case RoomTypes.NORMAL_ROOM:
-                SetUpNormalRoom();
+                RoomComplete();
+                //SetUpNormalRoom();
                 break;
             case RoomTypes.BOSS_ROOM:
                 SetUpBossRoom();
@@ -200,11 +201,20 @@ public class RoomBehaviour : MonoBehaviour
         if (enemy != null)
         {
             enemy.transform.position = pos;
+            enemy.SetActive(true);
             m_EnemiesInRoom.Add(enemy);
+
+            EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
+            if (enemyBase)
+            {
+                enemyBase.Init();
+                enemyBase.Warp(pos); //spawn at a random location
+            }
         }
         else //if for some reason no boss
         {
             RoomComplete();
+            Debug.Log("WTF");
         }
 
         m_RoomEnemyStarted = true;
