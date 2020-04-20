@@ -100,8 +100,8 @@ public class AttackHitbox : MonoBehaviour
                     player.GetComponent<PlayerInventory>().UniqueItems[i].WhenEnemyHit(other.gameObject);
                 }
             }
-            EquipmentManager.Instance.NormalItemDrop(gameObject.transform.position);
-            Destroy(other.gameObject);
+
+            other.transform.parent.GetComponent<EnemyBase>().TakeDamage(damage);
             if (projectileSpeed > 0 && !projectilePierce)
             {
                 Destroy(gameObject);

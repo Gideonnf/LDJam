@@ -17,7 +17,8 @@ public class EnemyBase : MonoBehaviour
 
     protected bool m_triggered = false;
 #endif
-    protected int health = 10;
+    protected int maxHealth = 10;
+    protected int health;
     protected Vector3 m_nextPosition;
     protected Rigidbody2D m_rb;
     [SerializeField] float attack_range_sqr;
@@ -34,12 +35,14 @@ public class EnemyBase : MonoBehaviour
         m_agent.updateRotation = false;
         DEBUG_TARGET = PlayerController.Instance.gameObject.transform;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        health = maxHealth;
         Init();
     }
 
     virtual public void Init()
     {
         m_dead = false;
+        health = maxHealth;
         SetMoveSpeed(movespeed);
     }
 
@@ -84,13 +87,19 @@ public class EnemyBase : MonoBehaviour
         m_agent.speed = _speed;
     }
 
-    virtual protected bool TakeDamage()
+    virtual public bool TakeDamage(int dmg)
     {
-        return true;
+        health -= dmg;
+        if (health <= 0) 
+        {
+            return true;
+        }
+        return false;
     }
 
     virtual protected void OnDeath()
     {
+        EquipmentManager.Instance.NormalItemDrop(gameObject.transform.position);
         m_dead = true;
         ClearPath();    // Stop it from moving
     }

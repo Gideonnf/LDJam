@@ -74,10 +74,17 @@ public class RangedEnemyA : EnemyBase
     /// Function to call when this enemy takes damage
     /// </summary>
     /// <returns></returns>
-    override protected bool TakeDamage()
+    override public bool TakeDamage(int dmg)
     {
-        m_animator.SetTrigger(hit_trigger);
-        return base.TakeDamage();
+        if (health > 0)
+        {
+            m_animator.SetTrigger(hit_trigger);
+            if (base.TakeDamage(dmg))
+            {
+                OnDeath();
+            }
+        }
+        return true;
     }
 
     override protected void OnDeath()

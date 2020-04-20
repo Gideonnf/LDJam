@@ -11,6 +11,7 @@ public class MeleeEnemyA : EnemyBase
     int hit_trigger;        // Take damage trigger
     int attack_trigger;     // Shoot trigger
     int attack_animation;   // Attack animation
+    int death_trigger;      // Death trigger
     #endregion
     // Start is called before the first frame update
     new public void Awake()
@@ -20,6 +21,7 @@ public class MeleeEnemyA : EnemyBase
         hit_trigger = Animator.StringToHash("hit");
         attack_trigger = Animator.StringToHash("attack");
         attack_animation = Animator.StringToHash("attackAnim");
+        death_trigger = Animator.StringToHash("death");
         m_animator = GetComponentInChildren<Animator>();
     }
 
@@ -38,10 +40,17 @@ public class MeleeEnemyA : EnemyBase
 #endif
     }
 
-    override protected bool TakeDamage()
+    override public bool TakeDamage(int dmg)
     {
-        m_animator.SetTrigger(hit_trigger);
-        return base.TakeDamage();
+        if (health > 0)
+        {
+            m_animator.SetTrigger(hit_trigger);
+            if (base.TakeDamage(dmg))
+            {
+                OnDeath();
+            }
+        }
+        return true;
     }
 
     /// <summary>
@@ -61,6 +70,7 @@ public class MeleeEnemyA : EnemyBase
     new protected void OnDeath()
     {
         m_dead = true;
-        //base.OnDeath();
+        base.OnDeath();
+        m_animator.SetTrigger(death_trigger);
     }
 }
