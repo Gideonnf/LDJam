@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1668ff9b14de14693c1b2c5f2ce1bf, type: 3}
   m_Name: InventoryClick
   m_EditorClassIdentifier: 
-  m_AudioName: 
-  m_Clip: {fileID: 0}
-  isSFX: 0
+  m_AudioName: InventoryClick
+  m_Clip: {fileID: 8300000, guid: 91dcfadb9cdecea40a1e3fb6b37d3313, type: 3}
+  isSFX: 1
   m_Volume: 1
   m_Pitch: 1
   m_Loop: 0

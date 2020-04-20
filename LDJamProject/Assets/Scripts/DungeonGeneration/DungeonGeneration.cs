@@ -12,6 +12,9 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
     [Header("Wizard")]
     public GameObject m_Wizard;
 
+    [Header("UI")]
+    public GameObject m_LeaveRoomText;
+
     [Header("Room Info")]
     public Vector2Int m_MinMaxRoomNumber = new Vector2Int(10,12);
     public List<Room> m_RoomTypeData = new List<Room>();
