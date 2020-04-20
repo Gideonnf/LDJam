@@ -12,6 +12,7 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
     [Header("Room Info")]
     public Vector2Int m_MinMaxRoomNumber = new Vector2Int(10,12);
     public List<Room> m_RoomTypeData = new List<Room>();
+    public List<Room> m_SpecialRoomTypeData = new List<Room>();
     public GameObject m_RoomParent;
 
     [Header("Camera stuff")]
@@ -19,6 +20,7 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
 
     Dictionary<RoomOpeningTypes, RoomOpeningInfo> m_RoomOpeningsData = new Dictionary<RoomOpeningTypes, RoomOpeningInfo>();
     Dictionary<RoomOpeningTypes, GameObject> m_RoomObjectData = new Dictionary<RoomOpeningTypes, GameObject>();
+    Dictionary<RoomOpeningTypes, GameObject> m_SpecialRoomObjectData = new Dictionary<RoomOpeningTypes, GameObject>();
 
     Dictionary<Vector2Int, RoomOpeningTypes> m_Taken = new Dictionary<Vector2Int, RoomOpeningTypes>();
     //store a dictionary of the room
@@ -29,6 +31,7 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
     //impt room locations
     Vector2Int m_SpawnRoomGridPos = Vector2Int.zero;
     Vector2Int m_BossRoomGridPos = Vector2Int.zero;
+    Vector2Int m_TradeRoomGridPos = Vector2Int.zero;
     
     //for room and camera movement
     Camera m_MainCamera;
@@ -44,6 +47,11 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         {
             m_RoomOpeningsData.Add(room.m_RoomOpeningInfo.m_RoomOpeningType, room.m_RoomOpeningInfo);
             m_RoomObjectData.Add(room.m_RoomOpeningInfo.m_RoomOpeningType, room.m_RoomPrefab);
+        }
+
+        foreach (Room room in m_SpecialRoomTypeData)
+        {
+            m_SpecialRoomObjectData.Add(room.m_RoomOpeningInfo.m_RoomOpeningType, room.m_RoomPrefab);
         }
 
         //get width and heigt of room
@@ -86,6 +94,7 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         }
 
         Vector2Int start = Vector2Int.zero;
+        m_SpawnRoomGridPos = m_BossRoomGridPos = m_TradeRoomGridPos = start;
         Queue<Vector2Int> m_RoomLocations = new Queue<Vector2Int>();
         m_Taken.Add(start, RoomOpeningTypes.L_R_U_D_OPENING);
         m_RoomLocations.Enqueue(start);
@@ -142,8 +151,10 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
             }
         }
 
+        FixAllRooms(); //make sure theres no weird rooms with broken paths
+        DecideRoomType(); //set the room types
         InstantiateRooms(); //spawn and instantiate rooms
-        DecideAndInitRoomType(); //decide which room type it should have
+        InitRoomType();
         BuildNavMesh();
         SetAllRoomsInactive();
         InitUI(); //init the minimap stuff
@@ -278,7 +289,7 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         List<RoomOpeningTypes> possibleRooms = GetPossibleRoomTypes(pos, numberOfNeighbours, rightNeighbour, leftNeighbour, upNeighbour, downNeighbour);
 
         if (possibleRooms.Count > 0)
-            return possibleRooms[Random.Range(0, possibleRooms.Count - 1)];
+            return possibleRooms[Random.Range(0, possibleRooms.Count)];
         else
             return RoomOpeningTypes.NO_OPENING;
     }
@@ -389,9 +400,9 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         return RoomOpeningTypes.NO_OPENING;
     }
 
-    public void InstantiateRooms()
+    public void FixAllRooms()
     {
-        foreach (KeyValuePair<Vector2Int,RoomOpeningTypes> roomInfo in m_Taken)
+        foreach (KeyValuePair<Vector2Int, RoomOpeningTypes> roomInfo in m_Taken)
         {
             Vector2Int gridPos = roomInfo.Key;
             RoomOpeningTypes roomType = roomInfo.Value;
@@ -399,11 +410,42 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
             //if for some reason theres no opening, check the surrounds and give it one
             if (roomType == RoomOpeningTypes.NO_OPENING)
                 roomType = ChangeCurrentRoomToExact(gridPos);
+        }
+    }
+
+    public void InstantiateRooms()
+    {
+        foreach (KeyValuePair<Vector2Int,RoomOpeningTypes> roomInfo in m_Taken)
+        {
+            Vector2Int gridPos = roomInfo.Key;
+            RoomOpeningTypes roomType = roomInfo.Value;
+
+            //if for some reason theres still no opening, check the surrounds and give it one
+            if (roomType == RoomOpeningTypes.NO_OPENING)
+                roomType = ChangeCurrentRoomToExact(gridPos);
 
             if (m_RoomObjectData.ContainsKey(roomType))
             {
                 Vector2 worldPos = new Vector2(gridPos.x * m_RoomTileWidthHeight.x, gridPos.y * m_RoomTileWidthHeight.y);
-                GameObject room = Instantiate(m_RoomObjectData[roomType], worldPos, m_RoomObjectData[roomType].transform.rotation);
+                GameObject room = null;
+                if (gridPos == m_BossRoomGridPos)
+                {
+                    if (roomType == RoomOpeningTypes.L_OPENING)
+                        room = Instantiate(m_SpecialRoomObjectData[RoomOpeningTypes.BOSS_ROOM_L_OPENING], worldPos, m_SpecialRoomObjectData[RoomOpeningTypes.BOSS_ROOM_L_OPENING].transform.rotation);
+                    else if (roomType == RoomOpeningTypes.D_OPENING)
+                        room = Instantiate(m_SpecialRoomObjectData[RoomOpeningTypes.BOSS_ROOM_D_OPENING], worldPos, m_SpecialRoomObjectData[RoomOpeningTypes.BOSS_ROOM_D_OPENING].transform.rotation);
+                    else
+                        room = Instantiate(m_SpecialRoomObjectData[RoomOpeningTypes.BOSS_ROOM_R_OPENING], worldPos, m_SpecialRoomObjectData[RoomOpeningTypes.BOSS_ROOM_R_OPENING].transform.rotation);
+                }
+                else if (gridPos == m_TradeRoomGridPos)
+                {
+                    if (m_SpecialRoomObjectData.ContainsKey(RoomOpeningTypes.TRADE_ROOM))
+                        room = Instantiate(m_SpecialRoomObjectData[RoomOpeningTypes.TRADE_ROOM], worldPos, m_SpecialRoomObjectData[RoomOpeningTypes.TRADE_ROOM].transform.rotation);
+                }
+                else
+                {
+                    room = Instantiate(m_RoomObjectData[roomType], worldPos, m_RoomObjectData[roomType].transform.rotation);
+                }
 
                 if (m_RoomParent != null)
                     room.transform.parent = m_RoomParent.transform;
@@ -420,39 +462,73 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         }           
     }
 
-    public void DecideAndInitRoomType()
+    public void DecideRoomType()
     {
         //pick a random room to be the start room
         //prefably those with 2 or more rooms
-        int randomNumber = Random.Range(0, m_Taken.Count - 1);
+        int randomNumber = Random.Range(0, m_Taken.Count);
         m_SpawnRoomGridPos = Vector2Int.zero;
         List<Vector2Int> possibleRooms = GetRoomsWithCertainOpeningNumber(2, 4);
         if (possibleRooms.Count > 0)
         {
-            m_SpawnRoomGridPos = possibleRooms[Random.Range(0, possibleRooms.Count - 1)];
+            m_SpawnRoomGridPos = possibleRooms[Random.Range(0, possibleRooms.Count)];
+        }
+        else
+        {
+            Debug.Log("no spawn room??");
         }
 
         //pick a random room to be the boss room
         //prefably those with 1-2 entrances
         m_BossRoomGridPos = Vector2Int.zero;
         possibleRooms.Clear();
-        possibleRooms = GetRoomsWithCertainOpeningNumber(1, 2);
+        possibleRooms = GetRoomsWithCertainOpeningNumberNoUp(1, 1, true);
         if (possibleRooms.Count > 0)
         {
-            m_BossRoomGridPos = possibleRooms[Random.Range(0, possibleRooms.Count - 1)];
+            m_BossRoomGridPos = possibleRooms[Random.Range(0, possibleRooms.Count)];
         }
+        else
+        {
+            //create one on top i guess
+            foreach (KeyValuePair<Vector2Int, RoomOpeningTypes> roomTaken in m_Taken)
+            {
+                Vector2Int gridPos = roomTaken.Key;
+                Vector2Int bossRoomGridPos = gridPos + new Vector2Int(0, 1);
+                if (!m_Taken.ContainsKey(bossRoomGridPos))
+                {
+                    //add the boss room
+                    AddToTaken(bossRoomGridPos, RoomOpeningTypes.D_OPENING);
 
+                    //fix the other room below it
+                    if (m_Taken.ContainsKey(gridPos))
+                        m_Taken[gridPos] = ChangeCurrentRoomToExact(gridPos);
+
+                    m_BossRoomGridPos = bossRoomGridPos;
+                    break;
+                }
+            }
+        }
+    }
+
+    public void InitRoomType()
+    {
         //set the startRoom type
         if (m_RoomsBehaviour.ContainsKey(m_SpawnRoomGridPos))
         {
             m_RoomsBehaviour[m_SpawnRoomGridPos].SetRoomType(RoomTypes.START_ROOM);
         }
 
+        //trade room will always be Vector.zero
+        if (m_RoomsBehaviour.ContainsKey(m_TradeRoomGridPos))
+        {
+            m_RoomsBehaviour[m_TradeRoomGridPos].SetRoomType(RoomTypes.TRADE_ROOM);
+        }
+
         //set the boss room type
-        //if (m_RoomsBehaviour.ContainsKey(m_BossRoomGridPos))
-        //{
-        //    m_RoomsBehaviour[m_BossRoomGridPos].SetRoomType(RoomTypes.BOSS_ROOM);
-        //}
+        if (m_RoomsBehaviour.ContainsKey(m_BossRoomGridPos))
+        {
+            m_RoomsBehaviour[m_BossRoomGridPos].SetRoomType(RoomTypes.BOSS_ROOM);
+        }
     }
 
     //get rooms with a certain number of 'openings'
@@ -464,6 +540,41 @@ public class DungeonGeneration : SingletonBase<DungeonGeneration>
         {
             Vector2Int gridPos = pair.Key;
             RoomOpeningTypes roomOpeningsType = pair.Value;
+
+            //if grid pos already taken dont return, this is a hack, im so tired
+            if (gridPos == m_SpawnRoomGridPos || gridPos == m_TradeRoomGridPos)
+                continue;
+
+            RoomOpeningInfo roomInfo = null;
+            if (m_RoomOpeningsData.ContainsKey(roomOpeningsType))
+                roomInfo = m_RoomOpeningsData[roomOpeningsType];
+
+            if (roomInfo == null)
+                continue;
+
+            if (roomInfo.m_NumberOfOpenings >= minNumber && roomInfo.m_NumberOfOpenings <= maxNumber)
+                m_PossibleRooms.Add(gridPos);
+        }
+
+        return m_PossibleRooms;
+    }
+
+    //another hack function for the boss room, so we dont get a up room
+    public List<Vector2Int> GetRoomsWithCertainOpeningNumberNoUp(int minNumber, int maxNumber, bool noUpOpening)
+    {
+        List<Vector2Int> m_PossibleRooms = new List<Vector2Int>();
+
+        foreach (KeyValuePair<Vector2Int, RoomOpeningTypes> pair in m_Taken)
+        {
+            Vector2Int gridPos = pair.Key;
+            RoomOpeningTypes roomOpeningsType = pair.Value;
+
+            //if grid pos already taken dont return, this is a hack, im so tired
+            if (gridPos == m_SpawnRoomGridPos || gridPos == m_TradeRoomGridPos)
+                continue;
+
+            if (noUpOpening && roomOpeningsType == RoomOpeningTypes.U_OPENING)
+                continue;
 
             RoomOpeningInfo roomInfo = null;
             if (m_RoomOpeningsData.ContainsKey(roomOpeningsType))

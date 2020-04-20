@@ -2,15 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//[System.Serializable]
-//public class AudioObject
-//{
-//    public string name;
-//    public AudioClip audioFile;
-//    public bool isLooping = false;
-//    public bool isRepeatable = false;
-//}
-
 public class SoundManager : SingletonBase<SoundManager>
 {
     AudioSource audioSource;

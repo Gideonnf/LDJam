@@ -23,12 +23,18 @@
 
     //4 room openings
     L_R_U_D_OPENING,
-    NO_OPENING,
+    TRADE_ROOM,
+    BOSS_ROOM_L_OPENING,
+    BOSS_ROOM_R_OPENING,
+    BOSS_ROOM_D_OPENING,
+
+    NO_OPENING
 }
 
 public enum RoomTypes
 {
     START_ROOM,
     NORMAL_ROOM, //just normal mobs and stuff etc.
-    BOSS_ROOM
+    BOSS_ROOM,
+    TRADE_ROOM
 }

@@ -3,6 +3,17 @@
 public class Door : MonoBehaviour
 {
     public DoorDirection m_DoorDirection;
+    bool m_Entered = false;
+
+    private void OnEnable()
+    {
+        m_Entered = false;
+    }
+
+    private void OnDisable()
+    {
+        m_Entered = false;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -11,6 +22,9 @@ public class Door : MonoBehaviour
 
     public void CheckPlayer(Collider2D collision)
     {
+        if (m_Entered)
+            return;
+
         if (collision.tag == "Player")
         {
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
@@ -25,6 +39,7 @@ public class Door : MonoBehaviour
                     if (Vector2.Dot(playerMovement.movementDir, roomOffset) > 0)
                     {
                         player.ChangePlayerGridPosition(player.GetPlayerCurrentGridPos() + roomOffset);
+                        m_Entered = true;
                     }
                 }
             }
