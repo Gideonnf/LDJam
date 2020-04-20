@@ -46,6 +46,7 @@ public class RoomBehaviour : MonoBehaviour
             }
 
             BGMController.Instance.ChangeMusic("NonCombatBGM");
+            SoundManager.Instance.Play("RoomClear");
             RoomComplete(); //no more enemies alive, that means room completed
         }
     }
