@@ -41,8 +41,7 @@ public class RangedEnemyA_Projectile : MonoBehaviour
         m_moveDir = _dir;
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Wagon wagon = null;
         PlayerController player = null;

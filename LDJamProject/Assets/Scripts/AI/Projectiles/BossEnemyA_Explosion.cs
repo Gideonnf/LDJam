@@ -27,18 +27,24 @@ public class BossEnemyA_Explosion : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (m_damagedPlayer)    // not damage them twice in one hit
+            return;
         Wagon wagon = null;
         PlayerController player = null;
         wagon = collision.gameObject.GetComponent<Wagon>();
         if (wagon != null)
         {
             // Damage wagon
+            PlayerController.Instance.m_PlayerStats.CaravanTakeDamage(1);
+            m_damagedPlayer = true;
             return;
         }
         player = collision.gameObject.GetComponent<PlayerController>();
         if (player != null)
         {
             // Damage player
+            PlayerController.Instance.m_PlayerStats.PlayerTakeDamage(1);
+            m_damagedPlayer = true;
             return;
         }
     }
