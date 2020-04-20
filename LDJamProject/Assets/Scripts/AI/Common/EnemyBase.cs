@@ -37,7 +37,6 @@ public class EnemyBase : MonoBehaviour
         m_animator = GetComponentInChildren<Animator>();
         m_agent.updatePosition = false;
         m_agent.updateRotation = false;
-        DEBUG_TARGET = PlayerController.Instance.gameObject.transform;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         m_dead_BoolHash = Animator.StringToHash("dead");
         health = maxHealth;
@@ -50,6 +49,13 @@ public class EnemyBase : MonoBehaviour
         health = maxHealth;
         SetMoveSpeed(movespeed);
         m_agent.acceleration = 9f;
+        float distToPlayer = ((Vector2)PlayerController.Instance.transform.position - m_rb.position).sqrMagnitude;
+        float distToYourMom = ((Vector2)Wagon.instance.transform.position - m_rb.position).sqrMagnitude;
+        if (distToYourMom < distToPlayer)
+            DEBUG_TARGET = Wagon.instance.transform;
+        else
+            DEBUG_TARGET = PlayerController.Instance.gameObject.transform;
+
     }
 
     // Update is called once per frame

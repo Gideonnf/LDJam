@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Wagon : MonoBehaviour
 {
+    public static Wagon instance = null;
     [SerializeField] GameObject player;
     [SerializeField] GameObject instructionText;
     [SerializeField] GameObject nearWagon;
@@ -25,6 +26,12 @@ public class Wagon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one Wagon detected! Deleting new instance");
+            instance.gameObject.SetActive(true);
+        }
+        instance = this;
         playerNearWagon = false;
         wagonAnimator = GetComponent<Animator>();
         playerMovement = player.GetComponent<PlayerMovement>();
