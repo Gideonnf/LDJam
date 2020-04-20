@@ -7,6 +7,7 @@ public class Wagon : MonoBehaviour
     public static Wagon instance = null;
     [SerializeField] GameObject player;
     [SerializeField] GameObject instructionText;
+    [SerializeField] GameObject instructionText2;
     [SerializeField] GameObject nearWagon;
     [SerializeField] float xDistanceFromPlayer;
     [SerializeField] float yDistanceFromPlayer;
@@ -168,11 +169,14 @@ public class Wagon : MonoBehaviour
             wagonAnimator.SetBool("PlayerPulling", true);
             playerMovement.isPickingUpCaravan = true;
             pickUpCaravanTimer = 0;
+
+            instructionText2.SetActive(true);
         }
         else if(playerMovement.isPullingCaravan && !isColliding)
         {
             playerMovement.isPullingCaravan = false;
             wagonAnimator.SetBool("PlayerPulling", false);
+            instructionText2.SetActive(false);
         }
     }
 }
