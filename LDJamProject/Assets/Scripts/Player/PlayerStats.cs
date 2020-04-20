@@ -71,10 +71,10 @@ public class PlayerStats : MonoBehaviour
     public float m_CurrentMovementSpeed;
     public float m_CurrentDashSpeed;
     public float m_CurrentDashDistance;
-    public float m_CurrentHealth;
-    public float m_MaxHealth;
-    public float m_CurrentCaravanHealth;
-    public float m_MaxCaravanHealth;
+    public int m_CurrentHealth;
+    public int m_MaxHealth;
+    public int m_CurrentCaravanHealth;
+    public int m_MaxCaravanHealth;
     public float m_CurrentMeleeAttackSpeed;
     public float m_CurrentRangedAttackSpeed;
     public float m_CurrentTimeToRechargeOneDash;
