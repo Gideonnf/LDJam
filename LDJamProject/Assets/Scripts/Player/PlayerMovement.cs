@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject ghostDash;
     [SerializeField] float timeBeforeGhostSpawn;
     [SerializeField] float timeBetweenFootstepSFX;
+    [SerializeField] ParticleSystem dashParticles;
 
     PlayerStats playerStats;
     Rigidbody2D PlayerRB;
@@ -230,6 +231,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (numOfDash > 0 && !isAttackDashing) 
         {
+            dashParticles.Play();
             SoundManager.Instance.Play("PlayerDash");
             isDashing = true;
             playerStats.m_CurrentSpeed = playerStats.m_CurrentDashSpeed;

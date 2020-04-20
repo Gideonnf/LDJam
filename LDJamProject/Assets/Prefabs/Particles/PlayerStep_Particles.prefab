@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5351214334474987726}
   - component: {fileID: 1044188213040862208}
   - component: {fileID: 7838609118324595321}
+  - component: {fileID: 92717036}
   m_Layer: 0
   m_Name: PlayerStep_Particles
   m_TagString: Untagged
@@ -284,7 +285,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.05
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -4754,3 +4755,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &92717036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7014239312932330160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 090526c17a7e7624ea39fee3aee88fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yOffset: -0.5

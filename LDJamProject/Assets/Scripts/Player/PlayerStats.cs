@@ -175,24 +175,50 @@ public class PlayerStats : MonoBehaviour
 
     public void PlayerTakeDamage(int damage)
     {
-        if (m_PlayerCurrentIFrames > 0)
+        if (m_PlayerCurrentIFrames > 0 || m_CurrentCaravanHealth <= 0 || m_CurrentHealth <= 0)
             return;
         m_CurrentHealth -= damage;
+        switch(Random.Range(0,3))
+        {
+            case 0:
+                SoundManager.Instance.Play("PlayerDamaged1");
+                break;
+            case 1:
+                SoundManager.Instance.Play("PlayerDamaged2");
+                break;
+            case 2:
+                SoundManager.Instance.Play("PlayerDamaged3");
+                break;
+        }
         if (m_CurrentHealth <= 0)
         {
             GetComponent<Animator>().SetTrigger("Death");
+            SoundManager.Instance.Play("PlayerDeath");
         }
         m_PlayerCurrentIFrames = m_IFramesAfterHit;
     }
 
     public void CaravanTakeDamage(int damage)
     {
-        if (m_CaravanCurrentIFrames > 0)
+        if (m_CaravanCurrentIFrames > 0 || m_CurrentCaravanHealth <= 0 || m_CurrentHealth <= 0)
             return;
         m_CurrentCaravanHealth -= damage;
+        switch (Random.Range(0, 3))
+        {
+            case 0:
+                SoundManager.Instance.Play("CaravanDamaged1");
+                break;
+            case 1:
+                SoundManager.Instance.Play("CaravanDamaged2");
+                break;
+            case 2:
+                SoundManager.Instance.Play("CaravanDamaged3");
+                break;
+        }
         if (m_CurrentCaravanHealth <= 0)
         {
-            //death screen
+            caravan.GetComponent<Animator>().SetTrigger("Death");
+            SoundManager.Instance.Play("CaravanDeath");
         }
         m_CaravanCurrentIFrames = m_IFramesAfterHit;
     }
