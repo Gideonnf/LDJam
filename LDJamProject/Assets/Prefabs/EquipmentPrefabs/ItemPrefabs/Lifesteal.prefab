@@ -146,7 +146,7 @@ MonoBehaviour:
   m_DamageBoost: 0
   m_SpeedBoost: 0
   m_HealthGain: 0
-  m_ItemChance: 70
+  m_ItemChance: 60
   UniqueAbility: 1
   lifestealPet: {fileID: 1967637525528496196, guid: e43394f9dce38d2438ca5edfc99e890c,
     type: 3}
