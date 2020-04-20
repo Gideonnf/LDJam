@@ -49,8 +49,10 @@ public class MeleeEnemyB : EnemyBase
 
     public void AttackPlayer()
     {
-        // Check distance between player and enemy. Deals damage if the player is close enough to the enemy.
         //Collider2D[] colliders;
+        // Check distance between player and enemy. Deals damage if the player is close enough to the enemy.
+        if ((m_rb.position - (Vector2)PlayerController.Instance.transform.position).sqrMagnitude > attackDistance * attackDistance)
+            return;
         RaycastHit2D[] hits;
         hits = Physics2D.RaycastAll(m_rb.position, (Vector2)DEBUG_TARGET.position - m_rb.position, attackDistance);
         foreach(RaycastHit2D hit in hits)
