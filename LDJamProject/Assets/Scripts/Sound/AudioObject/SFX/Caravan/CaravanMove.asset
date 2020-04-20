@@ -15,6 +15,6 @@ MonoBehaviour:
   m_AudioName: CaravanMove
   m_Clip: {fileID: 8300000, guid: 47fbc98b05bb2e44fbe8e5a062dd74be, type: 3}
   isSFX: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   m_Loop: 1
