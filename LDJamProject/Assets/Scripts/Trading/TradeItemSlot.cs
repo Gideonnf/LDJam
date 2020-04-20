@@ -30,6 +30,11 @@ public class TradeItemSlot : MonoBehaviour
         itemSprite.GetComponent<Image>().sprite = ItemSprite.m_ItemSprite;
     }
 
+    public void ResetButtonSprite()
+    {
+
+    }
+
     public void SelectItem()
     {
         if (IsPlayerSlot)

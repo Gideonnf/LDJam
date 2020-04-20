@@ -10,16 +10,17 @@ public class WizardInteraction : NPCTextInteraction
 
     //Wizardmenu
     bool ConversationStarted = false;
-    bool m_PlayerNearby = false;
+   // bool m_PlayerNearby = false;
     bool EnoughMonies = false;
 
     public override void Awake()
     {
-        m_PlayerNearby = false;
+        base.Awake();
+        //m_PlayerNearby = false;
 
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-            spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
+        //SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        //if (spriteRenderer != null)
+        //    spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
     }
 
     // Start is called before the first frame update
@@ -97,21 +98,5 @@ public class WizardInteraction : NPCTextInteraction
     public override void NextLine()
     {
         base.NextLine();
-    }
-
-    public override void OnTriggerEnter2D(Collider2D collision)
-    {
-        //base.OnTriggerEnter2D(collision);
-        if (collision.tag == "Player")
-            m_PlayerNearby = true;
-
-    }
-
-    public override void OnTriggerExit2D(Collider2D collision)
-    {
-        // base.OnTriggerExit2D(collision);
-        if (collision.tag == "Player")
-            m_PlayerNearby = false;
-
     }
 }

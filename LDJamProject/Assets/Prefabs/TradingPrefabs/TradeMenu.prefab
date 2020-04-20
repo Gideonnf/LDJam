@@ -455,6 +455,8 @@ MonoBehaviour:
     type: 3}
   SelectedObjectSprite: {fileID: 21300000, guid: 16305036bcf46df4aad90528f2f21d16,
     type: 3}
+  UnselectedObjectSprite: {fileID: 21300000, guid: bae88e866f6919748b9b6f49f56031dc,
+    type: 3}
   PlayerTradeSlot: {fileID: 4392595933409410907}
   NPCTradeSlot: {fileID: 4392595931776238350}
   NPCSprite: {fileID: 4392595932161846348}
