@@ -33,6 +33,14 @@ public class SoundManager : SingletonBase<SoundManager>
     void Start()
     {
         //audioSource = GetComponent<AudioSource>();
+        foreach (AudioObject audio in ListOfAudioObjects)
+        {
+            audio.m_audioSource = ListOfAudioSources[(int)audio.AudioSourceType];
+
+            audio.m_audioSource.clip = audio.m_Clip;
+            audio.m_audioSource.loop = audio.m_Loop;
+            audio.m_audioSource.volume = audio.m_Volume;
+        }
     }
 
     // Update is called once per frame
@@ -47,19 +55,13 @@ public class SoundManager : SingletonBase<SoundManager>
     /// <param name="audioName"> Audio to be played </param>
     /// <param name="audioSource"> Source to play on </param>
     /// <returns></returns>
-    public bool Play(string audioName, int audioSource)
+    public bool Play(string audioName)
     {
         foreach (AudioObject audio in ListOfAudioObjects)
         {
             if (audio.m_AudioName == audioName)
             {
-                ListOfAudioSources[audioSource].clip = audio.m_Clip;
-
-                ListOfAudioSources[audioSource].loop = audio.m_Loop;
-
-                ListOfAudioSources[audioSource].volume = audio.m_Volume;
-
-                ListOfAudioSources[audioSource].Play();
+                audio.m_audioSource.Play();
             }
         }
 
@@ -77,20 +79,22 @@ public class SoundManager : SingletonBase<SoundManager>
         return false;
     }
 
-    public bool PlayAudioWithPitch(string audioName, int audioSource)
+    public bool PlayAudioWithPitch(string audioName)
     {
         foreach (AudioObject audio in ListOfAudioObjects)
         {
             if (audio.m_AudioName == audioName)
             {
-                ListOfAudioSources[audioSource].clip = audio.m_Clip;
+                float tempPitch = audio.m_audioSource.pitch;
 
-                ListOfAudioSources[audioSource].loop = audio.m_Loop;
+                audio.m_audioSource.pitch = Random.Range(0.5f, 2.0f);
 
-                // Rand a pitch for the audio source between 0.5 to 2.0f
-                ListOfAudioSources[audioSource].pitch = Random.Range(0.5f, 2.0f);
+                audio.m_audioSource.Play();
 
-                ListOfAudioSources[audioSource].Play();
+                // Might need to change it so it stores its starting pitch
+                // incase this doesnt work
+                audio.m_audioSource.pitch = tempPitch;
+               
             }
         }
 
