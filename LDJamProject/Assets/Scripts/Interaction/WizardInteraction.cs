@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WizardInteraction : NPCTextInteraction
 {
@@ -12,6 +13,10 @@ public class WizardInteraction : NPCTextInteraction
     bool ConversationStarted = false;
    // bool m_PlayerNearby = false;
     bool EnoughMonies = false;
+    // im just hard coding shit lol
+    bool TriggeredFirstDialogue = false;
+    bool TriggerSecondDialogue = false;
+    
 
     public override void Awake()
     {
@@ -49,13 +54,14 @@ public class WizardInteraction : NPCTextInteraction
         }
 
 
-        //if npc is not currently talking
+        //if npc is currently talking
         if (m_DialogueManager.m_Talking)
         {
             //if click or press the correct button, go to next sentence
             if (Input.GetKeyDown(KeyCode.E))
                 NextLine();
         }
+        // IF he is not talking
         else
         {
             //if clicked on npc || player go close and interact with npc
@@ -65,6 +71,17 @@ public class WizardInteraction : NPCTextInteraction
                 if (Input.GetKeyDown(KeyCode.E))
                     TriggerDialogue();
             }
+            // if npc is done talking
+            // and first dialogue is done
+             if (TriggeredFirstDialogue && TriggerSecondDialogue)
+            {
+                SceneManager.LoadScene("EndScene");
+            }
+        }
+        
+        if(TriggeredFirstDialogue)
+        {
+            TriggerSecondDialogue = true;
         }
 
         // If the player started hte conversation with the wizard
@@ -73,6 +90,8 @@ public class WizardInteraction : NPCTextInteraction
             // If the conversation have ended, m_talking is false
             if (m_DialogueManager.m_Talking == false)
             {
+                TriggeredFirstDialogue = true;
+
                 ConversationStarted = false;
                 // Start the UI Screen for the trading
                 WizardMenu.Instance.OpenUI();
@@ -85,13 +104,15 @@ public class WizardInteraction : NPCTextInteraction
     {
         // base.TriggerDialogue();
         //if clicked on npc
-        if (EnoughMonies == true)
+        if (EnoughMonies == true && TriggeredFirstDialogue == true)
         {
+            //TriggerSecondDialogue = true;
             m_DialogueManager.StartDialogue(m_EndDialogue);
             SoundManager.Instance.Play(m_DialogueSound);
         }
         else
         {
+
             m_DialogueManager.StartDialogue(m_Dialogue);
             SoundManager.Instance.Play(m_DialogueSound);
 
