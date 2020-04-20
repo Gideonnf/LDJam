@@ -180,7 +180,7 @@ public class PlayerStats : MonoBehaviour
         m_CurrentHealth -= damage;
         if (m_CurrentHealth <= 0)
         {
-            //death screen
+            GetComponent<Animator>().SetTrigger("Death");
         }
         m_PlayerCurrentIFrames = m_IFramesAfterHit;
     }

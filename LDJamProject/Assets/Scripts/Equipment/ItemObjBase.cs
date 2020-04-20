@@ -53,6 +53,11 @@ public class ItemObjBase : MonoBehaviour
         return;
     }
 
+    public virtual void OnDash()
+    {
+        return;
+    }
+
     public virtual void WhenDashEnds()
     {
         return;

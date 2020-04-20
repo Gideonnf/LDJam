@@ -19,6 +19,7 @@ public class PlayerCombat : MonoBehaviour
     float meleeAttackSpeed_;
     float rangedAttackSpeed_;
     bool attack1Animation;
+    public bool attack360;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class PlayerCombat : MonoBehaviour
         meleeAttackSpeed_ = playerStats.m_CurrentMeleeAttackSpeed;
         rangedAttackSpeed_ = playerStats.m_CurrentRangedAttackSpeed;
         attack1Animation = false;
+        attack360 = false;
     }
 
     // Update is called once per frame
@@ -52,17 +54,25 @@ public class PlayerCombat : MonoBehaviour
     {
         if(meleeAttackSpeed_ >= playerStats.m_CurrentMeleeAttackSpeed && !playerMovement.isDashing && !playerMovement.isAttackDashing)
         {
-            switch(Random.Range(0,3))
+            if (!attack360)
             {
-                case 0:
-                    SoundManager.Instance.Play("PlayerAttack1");
-                    break;
-                case 1:
-                    SoundManager.Instance.Play("PlayerAttack2");
-                    break;
-                case 2:
-                    SoundManager.Instance.Play("PlayerAttack3");
-                    break;
+                switch (Random.Range(0, 3))
+                {
+                    case 0:
+                        SoundManager.Instance.Play("PlayerAttack1");
+                        break;
+                    case 1:
+                        SoundManager.Instance.Play("PlayerAttack2");
+                        break;
+                    case 2:
+                        SoundManager.Instance.Play("PlayerAttack3");
+                        break;
+                }
+                Instantiate(meleeAttackHitbox);
+            }
+            else
+            {
+                SoundManager.Instance.Play("360Attack");
             }
 
             attack1Animation = !attack1Animation;
@@ -76,7 +86,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 GetComponent<PlayerInventory>().UniqueItems[i].MeleeAttack();
             }
-            Instantiate(meleeAttackHitbox);
+
             meleeAttackSpeed_ = 0;
         }
     }
@@ -85,6 +95,9 @@ public class PlayerCombat : MonoBehaviour
     {
         if (rangedAttackSpeed_ >= playerStats.m_CurrentRangedAttackSpeed && !playerMovement.isDashing && !playerMovement.isAttackDashing)
         {
+            SoundManager.Instance.Play("AirSliceAttack");
+            attack1Animation = !attack1Animation;
+            meleeWeaponAnimator.SetBool("Attack1", attack1Animation);
             Instantiate(rangedAttackHitbox);
             rangedAttackSpeed_ = 0;
         }

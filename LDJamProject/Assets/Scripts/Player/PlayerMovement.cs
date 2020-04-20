@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
 
-    [SerializeField] Slider staminaBar;
+    [SerializeField] RectTransform staminaBarFill1;
+    [SerializeField] RectTransform staminaBarFill2;
+    [SerializeField] RectTransform staminaBarFill3;
+    [SerializeField] RectTransform staminaBarFill4;
     [SerializeField] float timeInactiveToBeIdle = 0.1f;
     [SerializeField] GameObject ghostDash;
     [SerializeField] float timeBeforeGhostSpawn;
@@ -20,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     int numOfDash;
     float dashRechargeTime;
     Animator playerAnimator;
+    float staminaBarFillSize;
 
     public bool isPullingCaravan;
     public bool isAttackDashing;
@@ -60,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         isPullingCaravan = false;
         footstepSFXTimer = 0;
         isPickingUpCaravan = false;
+        staminaBarFillSize = 143;
     }
 
     // Update is called once per frame
@@ -163,7 +168,54 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        staminaBar.value = (((float)numOfDash * playerStats.m_CurrentTimeToRechargeOneDash) + dashRechargeTime) / (playerStats.m_CurrentTimeToRechargeOneDash * (float)playerStats.m_CurrentMaxDash);
+        float tempPercentage = (((float)numOfDash * playerStats.m_CurrentTimeToRechargeOneDash) + dashRechargeTime) / (playerStats.m_CurrentTimeToRechargeOneDash * (float)playerStats.m_CurrentMaxDash);
+        Vector2 temp1;
+        Vector2 temp2;
+        Vector2 temp3;
+        Vector2 temp4;
+        temp1 = staminaBarFill1.sizeDelta;
+        temp2 = staminaBarFill2.sizeDelta;
+        temp3 = staminaBarFill3.sizeDelta;
+        temp4 = staminaBarFill4.sizeDelta;
+        if (tempPercentage >= 1)
+        {
+            temp1.x = staminaBarFillSize;
+            temp2.x = staminaBarFillSize;
+            temp3.x = staminaBarFillSize;
+            temp4.x = staminaBarFillSize;
+        }
+        else if (tempPercentage >= 0.75)
+        {
+            temp1.x = staminaBarFillSize;
+            temp2.x = staminaBarFillSize;
+            temp3.x = staminaBarFillSize;
+            temp4.x = (tempPercentage - 0.75f) * staminaBarFillSize * 4;
+        }
+        else if (tempPercentage >= 0.5)
+        {
+            temp1.x = staminaBarFillSize;
+            temp2.x = staminaBarFillSize;
+            temp3.x = (tempPercentage - 0.5f) * staminaBarFillSize * 4;
+            temp4.x = 0;
+        }
+        else if (tempPercentage >= 0.25)
+        {
+            temp1.x = staminaBarFillSize;
+            temp2.x = (tempPercentage - 0.25f) * staminaBarFillSize * 4;
+            temp3.x = 0;
+            temp4.x = 0;
+        }
+        else
+        {
+            temp1.x = tempPercentage * staminaBarFillSize * 4;
+            temp2.x = 0;
+            temp3.x = 0;
+            temp4.x = 0;
+        }
+        staminaBarFill1.sizeDelta = temp1;
+        staminaBarFill2.sizeDelta = temp2;
+        staminaBarFill3.sizeDelta = temp3;
+        staminaBarFill4.sizeDelta = temp4;
     }
 
     private void FixedUpdate()
@@ -181,6 +233,10 @@ public class PlayerMovement : MonoBehaviour
             distanceDashed = 0;
             numOfDash--;
             playerAnimator.SetBool("IsDashing", true);
+            for (int i = 0; i < GetComponent<PlayerInventory>().UniqueItems.Count; ++i)
+            {
+                GetComponent<PlayerInventory>().UniqueItems[i].OnDash();
+            }
         }
     }
 

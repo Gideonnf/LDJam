@@ -27,6 +27,7 @@ public class ShooterPetAI : MonoBehaviour
             attackSpeedTimer_ += Time.deltaTime;
             if (attackSpeedTimer_ >= attackSpeed)
             {
+                SoundManager.Instance.Play("BirdTrigger");
                 GameObject projectile_ = Instantiate(projectile);
                 projectile_.GetComponent<AttackHitbox>().projectileDir = (target.transform.position - transform.parent.position).normalized;
                 projectile_.GetComponent<AttackHitbox>().spawnPos = transform.parent.position + (target.transform.position - transform.parent.position).normalized * distanceFromPet;

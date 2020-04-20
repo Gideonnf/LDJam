@@ -5,9 +5,24 @@ using UnityEngine;
 public class Melee360 : ItemObjBase
 {
     public GameObject Melee360Hitbox;
+
     public override void MeleeAttack()
     {
         Instantiate(Melee360Hitbox);
         base.MeleeAttack();
+    }
+    public override void OnPickUp()
+    {
+        PlayerCombat playerCombat = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>();
+        playerCombat.attack360 = true;
+        playerCombat.gameObject.GetComponent<Animator>().SetBool("360Attack", true);
+        base.OnPickUp();
+    }
+    public override void OnRemove()
+    {
+        PlayerCombat playerCombat = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>();
+        playerCombat.attack360 = false;
+        playerCombat.gameObject.GetComponent<Animator>().SetBool("360Attack", false);
+        base.OnRemove();
     }
 }

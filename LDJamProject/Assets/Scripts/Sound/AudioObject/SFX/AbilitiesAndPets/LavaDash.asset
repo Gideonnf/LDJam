@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce1668ff9b14de14693c1b2c5f2ce1bf, type: 3}
+  m_Name: LavaDash
+  m_EditorClassIdentifier: 
+  m_AudioName: LavaDash
+  m_Clip: {fileID: 8300000, guid: dac2bfe40b4e212439669f0bc9191aaf, type: 3}
+  isSFX: 1
+  m_Volume: 1
+  m_Pitch: 1
+  m_Loop: 0
