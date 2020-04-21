@@ -175,7 +175,7 @@ public class WizardInteraction : NPCTextInteraction
 
     IEnumerator ChangeSceneAfterTime()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(2.0f);
 
         SceneManager.LoadScene("EndScene");
     }
