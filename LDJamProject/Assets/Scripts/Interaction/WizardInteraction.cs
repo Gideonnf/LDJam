@@ -103,6 +103,9 @@ public class WizardInteraction : NPCTextInteraction
 
             if (ConversationStarted == false && TriggeredFirstDialogue == true && TriggeredSecondDialogue == true)
             {
+                if (m_DialogueManager.m_Talking)
+                    return;
+
                 Animator animator = GetComponent<Animator>();
                 if (animator != null)
                 {
